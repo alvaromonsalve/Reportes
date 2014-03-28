@@ -1,0 +1,2111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1030"/>
+	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
+		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
+		<box>
+			<pen lineWidth="0.25" lineStyle="Dotted"/>
+			<topPen lineWidth="0.25" lineStyle="Dotted"/>
+			<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+			<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+			<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+		</box>
+	</style>
+	<style name="title2" style="title1" hAlign="Left" vAlign="Middle" fontSize="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<pen lineWidth="0.0"/>
+		<box>
+			<pen lineWidth="0.0"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="text_desc" isDefault="true" hAlign="Left" vAlign="Middle" fontName="Calibri" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Calibri" isPdfEmbedded="true"/>
+	<style name="title_desc" style="text_desc" fontSize="7" isBold="true">
+		<pen lineStyle="Solid"/>
+	</style>
+	<style name="encab" style="title_desc" mode="Opaque" backcolor="#FFFFFF" radius="5" hAlign="Center" vAlign="Middle">
+		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
+		<box>
+			<pen lineWidth="0.25" lineStyle="Dotted"/>
+			<topPen lineWidth="0.25" lineStyle="Dotted"/>
+			<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+			<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+			<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+		</box>
+	</style>
+	<style name="text_desc_long" style="text_desc" radius="5" hAlign="Justified" fontSize="6">
+		<pen lineWidth="0.0"/>
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+			<pen lineWidth="1.0" lineColor="#999999"/>
+			<topPen lineWidth="1.0" lineColor="#999999"/>
+			<leftPen lineWidth="1.0" lineColor="#999999"/>
+			<bottomPen lineWidth="1.0" lineColor="#999999"/>
+			<rightPen lineWidth="1.0" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="texto1" style="title2" isBold="false"/>
+	<style name="texto2" style="texto1" mode="Transparent" fontSize="7"/>
+	<style name="texto3" style="texto2" fontSize="6">
+		<pen lineWidth="0.25" lineStyle="Solid" lineColor="#DFDEDE"/>
+	</style>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#C3CFD9">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#E6F3FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="booleano" style="texto3" fill="Solid">
+		<pen lineWidth="1.0" lineColor="#000000"/>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="medicHC">
+		<parameter name="id_HistoriaC" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     info_posologia_hcu.`dosis_n`,
+     info_posologia_hcu.`dosis_u` AS dosis_u,
+     info_posologia_hcu.`administracion` AS administracion,
+     sum_suministro.`id` AS id_sum_suministro,
+     sum_atc_principioactivo.`nombre` AS principioact,
+     sum_atc_presentacionfarmaceutica.`nombre` AS presfarmaceutica,
+     sum_suministro.`concentracion` AS concentracion,
+     sum_suministro.`viaadministracion` AS viaadministracion
+FROM
+     `database`.`info_historiac` info_historiac INNER JOIN `database`.`Config_decripcion_login` Config_decripcion_login ON info_historiac.`id_usuario` = Config_decripcion_login.`id`
+     INNER JOIN `database`.`info_posologia_hcu` info_posologia_hcu ON info_historiac.`id` = info_posologia_hcu.`id_historiac`
+     INNER JOIN `database`.`info_Admision` info_Admision ON info_historiac.`id_infoadmision` = info_Admision.`id`
+     INNER JOIN `database`.`info_Paciente` info_Paciente ON info_Admision.`id_datos_personales` = info_Paciente.`id`
+     INNER JOIN `database`.`info_entidades` info_entidades ON info_Admision.`id_entidad_admision` = info_entidades.`id`
+     INNER JOIN `database`.`sum_suministro` sum_suministro ON info_posologia_hcu.`id_suministro` = sum_suministro.`id`
+     INNER JOIN `database`.`sum_atc_principioactivo` sum_atc_principioactivo ON sum_suministro.`id_pricipioactivo` = sum_atc_principioactivo.`id`
+     INNER JOIN `database`.`sum_atc_presentacionfarmaceutica` sum_atc_presentacionfarmaceutica ON sum_suministro.`id_presentacionfarmaceutica` = sum_atc_presentacionfarmaceutica.`id`
+WHERE `info_historiac`.id = $P{id_HistoriaC}]]>
+		</queryString>
+		<field name="dosis_n" class="java.lang.Float">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="dosis_u" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="administracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="id_sum_suministro" class="java.lang.Long"/>
+		<field name="principioact" class="java.lang.String"/>
+		<field name="presfarmaceutica" class="java.lang.String"/>
+		<field name="concentracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="viaadministracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="procedHc">
+		<parameter name="idHistoriaC" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     config_cups.`codigo`,
+     config_cups.`de_subcategoria` AS config_cups_de_subcategoria,
+     info_procedimiento_hcu.`observacion` AS observacion
+FROM
+     `info_procedimiento_hcu` info_procedimiento_hcu INNER JOIN `config_cups` config_cups ON info_procedimiento_hcu.`id_cups` = config_cups.`id`
+     INNER JOIN `info_historiac` info_historiac ON info_procedimiento_hcu.`id_historiac` = info_historiac.`id`
+     INNER JOIN `Config_decripcion_login` Config_decripcion_login ON info_procedimiento_hcu.`id_usuario` = Config_decripcion_login.`id`
+     INNER JOIN `info_Admision` info_Admision ON info_historiac.`id_infoadmision` = info_Admision.`id`
+     INNER JOIN `info_Paciente` info_Paciente ON info_Admision.`id_datos_personales` = info_Paciente.`id`
+     INNER JOIN `info_entidades` info_entidades ON info_Admision.`id_entidad_admision` = info_entidades.`id`
+WHERE info_historiac.id = $P{idHistoriaC}]]>
+		</queryString>
+		<field name="codigo" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="config_cups_de_subcategoria" class="java.lang.String"/>
+		<field name="observacion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="valEspHc">
+		<parameter name="idHistoriaC" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     config_cups.`codigo`,
+     info_interconsulta_hcu.`justificacion`,
+     static_Especialidades.`especialidad` AS static_Especialidades_especialidad,
+     config_cups.`de_subcategoria` AS config_cups_de_subcategoria
+FROM
+     `info_interconsulta_hcu` info_interconsulta_hcu INNER JOIN `info_historiac` info_historiac ON info_interconsulta_hcu.`id_historiac` = info_historiac.`id`
+     INNER JOIN `static_Especialidades` static_Especialidades ON info_interconsulta_hcu.`id_especialidades` = static_Especialidades.`id`
+     INNER JOIN `config_cups` config_cups ON info_interconsulta_hcu.`id_config_cups` = config_cups.`id`
+     INNER JOIN `info_Admision` info_Admision ON info_historiac.`id_infoadmision` = info_Admision.`id`
+     INNER JOIN `Config_decripcion_login` Config_decripcion_login ON info_historiac.`id_usuario` = Config_decripcion_login.`id`
+     INNER JOIN `info_Paciente` info_Paciente ON info_Admision.`id_datos_personales` = info_Paciente.`id`
+     INNER JOIN `info_entidades` info_entidades ON info_Admision.`id_entidad_admision` = info_entidades.`id`
+WHERE
+     info_historiac.id = $P{idHistoriaC}]]>
+		</queryString>
+		<field name="codigo" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="justificacion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="static_Especialidades_especialidad" class="java.lang.String"/>
+		<field name="config_cups_de_subcategoria" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="medidaHc">
+		<parameter name="idHC" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select medidag,observacion from info_medidasg_hcu
+ WHERE id_historiac = $P{idHC}]]>
+		</queryString>
+		<field name="medidag" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="observacion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="medicMezclaHCU">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+`sum_suministro`.`suministro`
+    , `sum_suministro`.`concentracion`
+    , `sum_atc_presentacionfarmaceutica`.`Administracion`
+    , `hcu_mezclas_medicamentos_desc`.`dosis_n`
+    , `hcu_mezclas_medicamentos_desc`.`dosis_u`
+    , `hcu_mezclas_medicamentos`.`administracion`
+    , `hcu_mezclas_medicamentos`.`via`
+    , `hcu_mezclas_medicamentos_desc`.`sol_diluir`
+
+
+FROM
+    `database`.`hcu_mezclas_medicamentos_desc`
+    INNER JOIN `database`.`hcu_mezclas_medicamentos`
+        ON (`hcu_mezclas_medicamentos_desc`.`id_hcu_mezclas_medicamentos` = `hcu_mezclas_medicamentos`.`id`)
+    INNER JOIN `database`.`sum_suministro`
+        ON (`hcu_mezclas_medicamentos_desc`.`id_suministro` = `sum_suministro`.`id`)
+    INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
+        ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
+        WHERE `hcu_mezclas_medicamentos`.`estado`='0'
+        ORDER BY `hcu_mezclas_medicamentos_desc`.`sol_diluir` DESC;]]>
+		</queryString>
+		<field name="suministro" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="concentracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Administracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="dosis_n" class="java.lang.Float">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="dosis_u" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="administracion" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="via" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="sol_diluir" class="java.lang.Boolean">
+			<fieldDescription><![CDATA[0=es solucion diluyente;1=no es solucion diluyente]]></fieldDescription>
+		</field>
+		<group name="administracion">
+			<groupExpression><![CDATA[$F{administracion}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="idHC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NameReport" class="java.lang.String"/>
+	<parameter name="servicio" class="java.lang.String"/>
+	<parameter name="version" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="DestinoHC" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    (CONCAT(`info_paciente`.`nombre1`,' ',`info_paciente`.`nombre2`,' ',`info_paciente`.`apellido1`,' ',`info_paciente`.`apellido2`)) AS NOMBRE
+    , `info_paciente`.`estado_civil` AS `ESTADOCIVIL`
+    , `info_paciente`.`genero` AS `SEXO`
+    , `info_pais`.`nombre` AS `PAISNACIMIENTO`
+    , `info_departamentos`.`nombre` AS `DEPRESIDENCIA`
+    , `info_paciente`.`direccion_ppal` AS `DIRECCION`
+    , `info_paciente`.`ocupacion` AS `OCUPACION`
+    , `info_entidades`.`nombre_entidad` AS `NOMBREENTIDAD`
+    , `info_admision`.`edad` AS `EDAD`
+    , `info_paciente`.`fecha_nacimiento` AS `FECHANACIMIENTO`
+    , `info_pais_1`.`nombre` AS `PAISRESIDENCIA`
+    , `info_municipios`.`nombre` AS `MUNICIPIORESIDENCIA`
+    , `info_paciente`.`telefono` AS `TELEFONO`
+    , `info_paciente`.`estrato_se` AS `ESTRATO`
+    , `info_paciente`.`nivel` AS `NIVEL`
+    , CONCAT(`info_paciente`.`tipo_doc`,' ', `info_paciente`.`num_doc`) AS DOCUMENTO
+    , `info_paciente`.`barrio_o_vereda` AS `BARRIO`
+    , `info_paciente`.`num_celular` AS `CELULAR`
+    , `info_paciente`.`zona_res` AS `ZONA`
+    , `info_paciente`.`tipo_afiliacion` AS `TIPOAFILIACION`
+    ,(CONCAT( `config_decripcion_login`.`nombres`, ' ', `config_decripcion_login`.`apellidos`)) AS `NombreMedico`
+    , `cm_profesionales`.`tarjeta_profesional` AS `RegistroMEdico`
+    , `config_decripcion_login`.`ruta_firma` AS `Firma`
+    , `info_admision`.`id`
+    , `info_paciente`.`hc`
+    , `info_historiac`.`motivo_consulta`
+    , `info_historiac`.`causa_externa`
+    , `info_historiac`.`nivel_triaje`
+    , `info_historiac`.`alergias`
+    , `info_historiac`.`ingresos_previos`
+    , `info_historiac`.`traumatismos`
+    , `info_historiac`.`tratamientos`
+    , `info_historiac`.`dm`
+    , `info_historiac`.`hta`
+    , `info_historiac`.`dislipidemia`
+    , `info_historiac`.`desc_hdd`
+    , `info_historiac`.`tabaco`
+    , `info_historiac`.`alcohol`
+    , `info_historiac`.`droga`
+    , `info_historiac`.`otros_habitos`
+    , `info_historiac`.`situacion_basal`
+    , `info_historiac`.`ant_familiares`
+    , `info_historiac`.`enfermedad_actual`
+    , `info_hc_expfisica`.`ta`
+    , `info_hc_expfisica`.`tam`
+    , `info_hc_expfisica`.`fc`
+    , `info_hc_expfisica`.`fr`
+    , `info_hc_expfisica`.`t`
+    , `info_hc_expfisica`.`sao2`
+    , `info_hc_expfisica`.`pvc`
+    , `info_hc_expfisica`.`pic`
+    , `info_hc_expfisica`.`peso`
+    , `info_hc_expfisica`.`talla`
+    , `info_hc_expfisica`.`otros`
+    , `info_hc_expfisica`.`aspectogeneral`
+    , `info_hc_expfisica`.`cara`
+    , `info_hc_expfisica`.`cardio`
+    , `info_hc_expfisica`.`respiratorio`
+    , `info_hc_expfisica`.`gastro`
+    , `info_hc_expfisica`.`renal`
+    , `info_hc_expfisica`.`hemato`
+    , `info_hc_expfisica`.`endo`
+    , `info_hc_expfisica`.`osteo`
+    , `info_historiac`.`hallazgo`
+    , `info_admision`.`fecha_ingreso`,
+    static_cie101.id AS static_cie101_id,
+static_cie101.codigo AS codigo1,
+static_cie101.descripcion AS descripcion1,
+static_cie102.id AS static_cie102_id,
+static_cie102.codigo AS codigo2,
+static_cie102.descripcion AS descripcion2,
+static_cie103.id AS static_cie103_id,
+static_cie103.codigo AS codigo3,
+static_cie103.descripcion AS descripcion3,
+static_cie104.id AS static_cie104_id,
+static_cie104.codigo AS codigo4,
+static_cie104.descripcion AS descripcion4,
+static_cie105.id AS static_cie105_id,
+static_cie105.codigo AS codigo5,
+static_cie105.descripcion AS descripcion5, `info_admision`.`estadoIngreso`
+    , `info_admision`.`mediodeingreso`
+    , `info_admision`.`hora_ingreso`
+    , `info_otros_datos_admision`.`materna`
+    , `info_otros_datos_admision`.`exposicion_dolor`
+    , `info_otros_datos_admision`.`estado` AS `Estadomater`
+    , `info_admision`.`causaExterna`
+FROM
+    `database`.`info_historiac`
+    INNER JOIN `database`.`info_admision`
+        ON (`info_historiac`.`id_infoadmision` = `info_admision`.`id`)
+    INNER JOIN `database`.`config_decripcion_login`
+        ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`info_paciente`
+        ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
+    INNER JOIN `database`.`info_entidades`
+        ON (`info_paciente`.`contratante` = `info_entidades`.`id`)
+    INNER JOIN `database`.`info_camas`
+        ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
+    INNER JOIN `database`.`config_camas`
+        ON (`info_camas`.`id_config_camas` = `config_camas`.`id`)
+    INNER JOIN `database`.`cm_profesionales`
+        ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`info_hc_expfisica`
+        ON (`info_hc_expfisica`.`id_infohistoriac` = `info_historiac`.`id`)
+    INNER JOIN `database`.`static_cie10` AS static_cie101
+        ON (`info_historiac`.`diagnostico` = `static_cie101`.`id`)
+    INNER JOIN `database`.`static_cie10` AS static_cie102
+        ON (`info_historiac`.`diagnostico2` = `static_cie102`.`id`)
+    INNER JOIN `database`.`static_cie10` AS static_cie103
+        ON (`info_historiac`.`diagnostico3` = `static_cie103`.`id`)
+    INNER JOIN `database`.`static_cie10` AS static_cie104
+        ON (`info_historiac`.`diagnostico4` = `static_cie104`.`id`)
+    INNER JOIN `database`.`static_cie10` AS static_cie105
+        ON (`info_historiac`.`diagnostico5` = `static_cie105`.`id`)
+    INNER JOIN `database`.`info_departamentos`
+        ON (`info_departamentos`.`id` = `info_paciente`.`id_dpto_res`)
+    INNER JOIN `database`.`info_municipios`
+        ON (`info_municipios`.`id_dep` = `info_departamentos`.`id`)
+    INNER JOIN `database`.`info_pais`
+        ON (`info_pais`.`id` = `info_paciente`.`id_pais_nac`) AND (`info_departamentos`.`id_pais` = `info_pais`.`id`) AND (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)
+    INNER JOIN `database`.`info_pais` AS `info_pais_1`
+        ON (`info_pais_1`.`id` = `info_paciente`.`id_pais_res`)
+    INNER JOIN `database`.`info_otros_datos_admision`
+        ON (`info_otros_datos_admision`.`id_admision` = `info_admision`.`id`)
+WHERE (`info_historiac`.`id` =$P{idHC});]]>
+	</queryString>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="ESTADOCIVIL" class="java.lang.String"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="PAISNACIMIENTO" class="java.lang.String"/>
+	<field name="DEPRESIDENCIA" class="java.lang.String"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="OCUPACION" class="java.lang.String"/>
+	<field name="NOMBREENTIDAD" class="java.lang.String"/>
+	<field name="EDAD" class="java.lang.String"/>
+	<field name="FECHANACIMIENTO" class="java.sql.Timestamp"/>
+	<field name="PAISRESIDENCIA" class="java.lang.String"/>
+	<field name="MUNICIPIORESIDENCIA" class="java.lang.String"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="ESTRATO" class="java.lang.String"/>
+	<field name="NIVEL" class="java.lang.String"/>
+	<field name="DOCUMENTO" class="java.lang.String"/>
+	<field name="BARRIO" class="java.lang.String"/>
+	<field name="CELULAR" class="java.lang.String"/>
+	<field name="ZONA" class="java.lang.String"/>
+	<field name="TIPOAFILIACION" class="java.lang.String"/>
+	<field name="NombreMedico" class="java.lang.String"/>
+	<field name="RegistroMEdico" class="java.lang.String"/>
+	<field name="Firma" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="hc" class="java.lang.String"/>
+	<field name="motivo_consulta" class="java.lang.String"/>
+	<field name="causa_externa" class="java.lang.String"/>
+	<field name="nivel_triaje" class="java.lang.Boolean"/>
+	<field name="alergias" class="java.lang.String"/>
+	<field name="ingresos_previos" class="java.lang.String"/>
+	<field name="traumatismos" class="java.lang.String"/>
+	<field name="tratamientos" class="java.lang.String"/>
+	<field name="dm" class="java.lang.Integer"/>
+	<field name="hta" class="java.lang.Integer"/>
+	<field name="dislipidemia" class="java.lang.Integer"/>
+	<field name="desc_hdd" class="java.lang.String"/>
+	<field name="tabaco" class="java.lang.Integer"/>
+	<field name="alcohol" class="java.lang.Integer"/>
+	<field name="droga" class="java.lang.Integer"/>
+	<field name="otros_habitos" class="java.lang.String"/>
+	<field name="situacion_basal" class="java.lang.String"/>
+	<field name="ant_familiares" class="java.lang.String"/>
+	<field name="enfermedad_actual" class="java.lang.String"/>
+	<field name="ta" class="java.lang.String"/>
+	<field name="tam" class="java.lang.String"/>
+	<field name="fc" class="java.lang.String"/>
+	<field name="fr" class="java.lang.String"/>
+	<field name="t" class="java.lang.String"/>
+	<field name="sao2" class="java.lang.String"/>
+	<field name="pvc" class="java.lang.String"/>
+	<field name="pic" class="java.lang.String"/>
+	<field name="peso" class="java.lang.String"/>
+	<field name="talla" class="java.lang.String"/>
+	<field name="otros" class="java.lang.String"/>
+	<field name="aspectogeneral" class="java.lang.String"/>
+	<field name="cara" class="java.lang.String"/>
+	<field name="cardio" class="java.lang.String"/>
+	<field name="respiratorio" class="java.lang.String"/>
+	<field name="gastro" class="java.lang.String"/>
+	<field name="renal" class="java.lang.String"/>
+	<field name="hemato" class="java.lang.String"/>
+	<field name="endo" class="java.lang.String"/>
+	<field name="osteo" class="java.lang.String"/>
+	<field name="hallazgo" class="java.lang.String"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="static_cie101_id" class="java.lang.Long"/>
+	<field name="codigo1" class="java.lang.String"/>
+	<field name="descripcion1" class="java.lang.String"/>
+	<field name="static_cie102_id" class="java.lang.Long"/>
+	<field name="codigo2" class="java.lang.String"/>
+	<field name="descripcion2" class="java.lang.String"/>
+	<field name="static_cie103_id" class="java.lang.Long"/>
+	<field name="codigo3" class="java.lang.String"/>
+	<field name="descripcion3" class="java.lang.String"/>
+	<field name="static_cie104_id" class="java.lang.Long"/>
+	<field name="codigo4" class="java.lang.String"/>
+	<field name="descripcion4" class="java.lang.String"/>
+	<field name="static_cie105_id" class="java.lang.Long"/>
+	<field name="codigo5" class="java.lang.String"/>
+	<field name="descripcion5" class="java.lang.String"/>
+	<field name="estadoIngreso" class="java.lang.String"/>
+	<field name="mediodeingreso" class="java.lang.String"/>
+	<field name="hora_ingreso" class="java.sql.Time"/>
+	<field name="materna" class="java.lang.String"/>
+	<field name="exposicion_dolor" class="java.lang.String"/>
+	<field name="Estadomater" class="java.lang.String"/>
+	<field name="causaExterna" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="85" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="528" height="85"/>
+				<subreportParameter name="codigo">
+					<subreportParameterExpression><![CDATA[$P{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="version">
+					<subreportParameterExpression><![CDATA[$P{version}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="servicio">
+					<subreportParameterExpression><![CDATA[$P{servicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NameReport">
+					<subreportParameterExpression><![CDATA[$P{NameReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotuloepi.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="470" y="54" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="54" width="14" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="488" y="54" width="6" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="95">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="86"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS PERSONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="50" width="79" height="10"/>
+				<textElement/>
+				<text><![CDATA[DEP. DE RESIDENCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="39" width="79" height="10"/>
+				<textElement/>
+				<text><![CDATA[PAIS DE NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="72" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[OCUPACION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="17" width="43" height="10"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" mode="Transparent" x="5" y="83" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[NOMBRE ENTIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="28" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[ESTADO CIVIL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="61" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[DIRECCION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="61" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[TELEFONO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="50" width="88" height="10"/>
+				<textElement/>
+				<text><![CDATA[MUN. RESIDENCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="72" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[ESTRATO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="17" width="25" height="10"/>
+				<textElement/>
+				<text><![CDATA[EDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" mode="Transparent" x="230" y="83" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[NIVEL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="28" width="87" height="10"/>
+				<textElement/>
+				<text><![CDATA[FECHA DE NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="230" y="39" width="87" height="10"/>
+				<textElement/>
+				<text><![CDATA[PAIS DE RESIDENCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="317" y="17" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[DOCUMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="361" y="61" width="73" height="10"/>
+				<textElement/>
+				<text><![CDATA[CELULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="361" y="72" width="73" height="10"/>
+				<textElement/>
+				<text><![CDATA[ZONA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" mode="Transparent" x="361" y="83" width="76" height="10"/>
+				<textElement/>
+				<text><![CDATA[TIPO DE AFILIACION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="402" y="50" width="61" height="10"/>
+				<textElement/>
+				<text><![CDATA[BARRIO/VEREDA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="17" width="181" height="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="28" width="74" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTADOCIVIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="title2" x="126" y="28" width="44" height="10"/>
+				<textElement/>
+				<text><![CDATA[SEXO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="170" y="28" width="60" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SEXO}.equals("F") ? "FEMENINO":"MASCULINO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="39" width="146" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PAISNACIMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="50" width="146" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DEPRESIDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="61" width="181" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="72" width="181" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCUPACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="83" width="158" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBREENTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="17" width="62" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EDAD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="317" y="28" width="128" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHANACIMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="39" width="209" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PAISRESIDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="50" width="85" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MUNICIPIORESIDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="61" width="84" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="72" width="84" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTRATO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="83" width="84" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NIVEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="369" y="17" width="76" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DOCUMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="50" width="63" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{BARRIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="17" width="81" height="10"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["HC N°: " +$F{hc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="61" width="92" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="72" width="92" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ZONA}.equals("R") ? "RURAL" : "URBANO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="83" width="92" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TIPOAFILIACION}.equals("0") ? "COTIZANTE" : ($F{TIPOAFILIACION}.equals("1") ? "BENEFICIARIO" : ($F{TIPOAFILIACION}.equals("2") ? "ADICIONAL" : "OTRO"))]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="39">
+			<subreport>
+				<reportElement x="0" y="1" width="528" height="38"/>
+				<subreportParameter name="idhc">
+					<subreportParameterExpression><![CDATA[$P{idHC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "datosa.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="54">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="40"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE ADMISION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="26" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[ESTADO INGRESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" mode="Transparent" x="5" y="37" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[OTROS DATOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="15" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[CAUSA EXTERNA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="218" y="26" width="79" height="10"/>
+				<textElement/>
+				<text><![CDATA[MEDIO DE INGRESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="218" y="15" width="79" height="10"/>
+				<textElement/>
+				<text><![CDATA[FECHA INGRESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="378" y="15" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[HORA INGRESO:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="425" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="425" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["N° DE ADMISION: " +$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="26" width="146" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estadoIngreso}.equals("0") ? "CONCIENTE" : ($F{estadoIngreso}.equals("1") ? "INCONCIENTE" : ($F{estadoIngreso}.equals("2") ? "MUERTO" : "OTRO"))]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="297" y="15" width="81" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="26" width="229" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{mediodeingreso}.equals("1") ? "INGRESO POR SUS PROPIOS MEDIOS" : "NO INGRESO POR SUS PROPIOS MEDIOS"]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="445" y="15" width="81" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hora_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="37" width="30" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materna}.equals("1")? "MATERNA" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="37" width="423" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{exposicion_dolor}.equals("1")  ? "EXPOSICION AL DOLOR" :"SIN OTROS DATOS DE ADMISION"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="15" width="146" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{causaExterna}.equals("01") ? "ACCIDENTE DE TRABAJO":
+($F{causaExterna}.equals("02")? "ACCIDENTE DE TRANSITO":
+    ($F{causaExterna}.equals("03")?"ACCIDENTE RABICO":
+        ($F{causaExterna}.equals("04")?"ACCIDENTE OFIDICO":
+            ($F{causaExterna}.equals("05")?"OTRO TIPO DE ACCIDENTE":
+                ($F{causaExterna}.equals("06")?"EVENTO CATASTROFICO":
+                    ($F{causaExterna}.equals("07")?"LESION POR AGRESION":
+                        ($F{causaExterna}.equals("08")?"LESION AUTO-INFLIGIDA":
+                            ($F{causaExterna}.equals("09")?"SOSPECHA DE MALTRATO FISICO":
+                                ($F{causaExterna}.equals("10")?"SOSPECHA DE ABUSO SEXUAL":
+                                    ($F{causaExterna}.equals("11")?"SOSPECHA DE VIOLENCIA SEXUAL":
+                                        ($F{causaExterna}.equals("12")?"SOSPECHA DE MALTRATO EMOCIONAL":
+                                            ($F{causaExterna}.equals("13")?"ENFERMEDAD GENERAL":
+                                                ($F{causaExterna}.equals("14")?"ENFERMEDAD PROFESIONAL":"OTRA")))))))))))))]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="56">
+			<rectangle>
+				<reportElement x="0" y="4" width="528" height="12" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="26" width="528" height="28"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="20" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="20" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOTIVO DE CONSULTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="33" width="133" height="10"/>
+				<textElement/>
+				<text><![CDATA[ORIGEN DE LA ENFERMEDAD O ACCIDENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="141" y="33" width="175" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{causa_externa}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="425" y="20" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="424" y="20" width="100" height="12"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{nivel_triaje}.equals("0") ? "PRIORIDAD 1"
+    : ( $F{nivel_triaje}.equals("1") ? "PRIORIDAD 2"
+        : ( $F{nivel_triaje}.equals("2") ? "PRIORIDAD 3" : "PRIORIDAD 4" ) ) )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="44" width="522" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{motivo_consulta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="4" width="528" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA DE INGRESO]]></text>
+			</staticText>
+		</band>
+		<band height="24">
+			<line>
+				<reportElement x="0" y="7" width="528" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANTECEDENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title2" x="5" y="14" width="110" height="10"/>
+				<textElement/>
+				<text><![CDATA[ALERGIAS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="115" y="14" width="411" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{alergias}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="12">
+			<staticText>
+				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
+				<textElement/>
+				<text><![CDATA[INGRESOS PREVIOS Y CIRUGIAS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="115" y="1" width="411" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ingresos_previos}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="12">
+			<staticText>
+				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
+				<textElement/>
+				<text><![CDATA[TRAUMATISMOS / ACCIDENTES:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="115" y="1" width="411" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{traumatismos}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="12">
+			<staticText>
+				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
+				<textElement/>
+				<text><![CDATA[TRATAMIENTOS HABITUALES:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="115" y="1" width="411" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tratamientos}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="37">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="28"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTORES DE RIESGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="25" width="88" height="10"/>
+				<textElement/>
+				<text><![CDATA[OBSERVACIONES Y OTROS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="14" width="88" height="10"/>
+				<textElement/>
+				<text><![CDATA[HIPERTENCION ARTERIAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="126" y="14" width="76" height="10"/>
+				<textElement/>
+				<text><![CDATA[DIABETES MELLITUS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="241" y="14" width="56" height="10"/>
+				<textElement/>
+				<text><![CDATA[DISLIPIDEMIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="93" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hta}.equals(0) ? " ":"X"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dm}.equals(0)? "":"X"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dislipidemia}.equals(0) ? "":"X"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="93" y="25" width="433" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{desc_hdd}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="37">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="28"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HABITOS TOXICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="25" width="63" height="10"/>
+				<textElement/>
+				<text><![CDATA[OTROS HABITOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="14" width="43" height="10"/>
+				<textElement/>
+				<text><![CDATA[TABACO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="72" y="14" width="42" height="10"/>
+				<textElement/>
+				<text><![CDATA[ALCOHOL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="139" y="14" width="75" height="10"/>
+				<textElement/>
+				<text><![CDATA[DROGAS DE ABUSO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tabaco}.equals(0) ? "":"X"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{alcohol}.equals(0) ? "":"X"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="14" width="12" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{droga}.equals(0) ? "":"X"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="68" y="25" width="458" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{otros_habitos}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="17"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENFERMEDAD ACTUAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="522" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{enfermedad_actual}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="37">
+			<rectangle radius="5">
+				<reportElement x="0" y="7" width="528" height="28"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXPLORACION FISICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="14" width="15" height="10"/>
+				<textElement/>
+				<text><![CDATA[TA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="5" y="25" width="27" height="10"/>
+				<textElement/>
+				<text><![CDATA[PESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="68" y="14" width="20" height="10"/>
+				<textElement/>
+				<text><![CDATA[TAM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="132" y="14" width="14" height="10"/>
+				<textElement/>
+				<text><![CDATA[FC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="203" y="14" width="14" height="10"/>
+				<textElement/>
+				<text><![CDATA[FR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="268" y="14" width="14" height="10"/>
+				<textElement/>
+				<text><![CDATA[T:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="334" y="14" width="22" height="10"/>
+				<textElement/>
+				<text><![CDATA[SaO2:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="405" y="14" width="18" height="10"/>
+				<textElement/>
+				<text><![CDATA[PVC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="471" y="14" width="18" height="10"/>
+				<textElement/>
+				<text><![CDATA[PIC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="102" y="25" width="27" height="10"/>
+				<textElement/>
+				<text><![CDATA[TALLA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title_desc" x="203" y="25" width="27" height="10"/>
+				<textElement/>
+				<text><![CDATA[OTROS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="20" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ta}.equals("")? "" : $F{ta}+" mmHg"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tam}.equals("")? "" : $F{tam}+" mmHg"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fc}.equals("")? "" : $F{fc}+" x'"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fr}.equals("")? "" : $F{fr}+" x'"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{t}.equals("")? "" : $F{t}+" °C"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sao2}.equals("")? "" : $F{sao2}+" %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="14" width="40" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pvc}.equals("")? "" : $F{pvc}+" Cm"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="14" width="37" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pic}.equals("")? "" : $F{pic}+" mmHg"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="25" width="56" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{peso}.equals("")? "" : $F{peso}+" Kg"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="25" width="64" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{talla}.equals("")? "" : $F{talla}+" m"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="25" width="296" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{otros}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASPECTOS GENERALES]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{aspectogeneral}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NEUROLOGICO ORL Y CARA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cara}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARDIOVASCULAR]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cardio}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPIRATORIO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{respiratorio}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GASTROINTESTINAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{gastro}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GENITOURINARIO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{renal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HEMATOINFECCIOSO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hemato}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="26">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDOCRINO-METABOLICO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{endo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="25">
+			<rectangle>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OSTEOMUSCULAR Y PIEL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{osteo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="26">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="18"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRUEBAS COMPLEMENTARIAS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="14" width="522" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hallazgo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="27">
+			<rectangle radius="5">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="18"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIAGNOSTICO MEDICO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="5" y="13" width="522" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[($F{static_cie101_id}.equals("1")? "" : "DIAGNOSTICO PRINCIPAL:         ["+$F{codigo1}+"] - "+$F{descripcion1}+"\n")+
+($F{static_cie102_id}.equals("1")? "" : "DIAGNOSTICO RELACIONADO 1:     ["+$F{codigo2}+"] - "+$F{descripcion2}+"\n")+
+($F{static_cie103_id}.equals("1")? "" : "DIAGNOSTICO RELACIONADO 2:     ["+$F{codigo3}+"] - "+$F{descripcion3}+"\n")+
+($F{static_cie104_id}.equals("1")? "" : "DIAGNOSTICO RELACIONADO 3:     ["+$F{codigo4}+"] - "+$F{descripcion4}+"\n")+
+($F{static_cie105_id}.equals("1")? "" : "DIAGNOSTICO RELACIONADO 4:     ["+$F{codigo5}+"] - "+$F{descripcion5})]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="52">
+			<line>
+				<reportElement x="0" y="7" width="528" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLAN DE MANEJO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="14" width="412" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{DestinoHC}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="0" y="29" width="528" height="21"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="medicHC">
+						<datasetParameter name="id_HistoriaC">
+							<datasetParameterExpression><![CDATA[$P{idHC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="527">
+						<jr:tableHeader height="12" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="527" height="12"/>
+								<box>
+									<pen lineWidth="0.25" lineColor="#666666"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  MEDICAMENTOS INDIVIDUALES]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="131">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="131" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="7"/>
+									</textElement>
+									<text><![CDATA[Principio Activo]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="129" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{principioact}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="68">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="68" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="7"/>
+									</textElement>
+									<text><![CDATA[Concentracion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="66" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{concentracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="90" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="7"/>
+									</textElement>
+									<text><![CDATA[Forma Farmaceutica]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="88" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{presfarmaceutica}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="16">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="16" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="6"/>
+									</textElement>
+									<text><![CDATA[Dosis]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField>
+									<reportElement style="texto3" x="2" y="0" width="14" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{dosis_n}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="37">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1"/>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField>
+									<reportElement style="texto3" x="2" y="0" width="35" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="63">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="63" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="6"/>
+									</textElement>
+									<text><![CDATA[Via de Administracion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="61" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{viaadministracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="122">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="122" height="12"/>
+									<textElement textAlignment="Center">
+										<font size="7"/>
+									</textElement>
+									<text><![CDATA[Observacion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="120" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement style="title_desc" x="7" y="14" width="96" height="10"/>
+				<textElement/>
+				<text><![CDATA[DESTINO:]]></text>
+			</staticText>
+		</band>
+		<band height="31">
+			<subreport>
+				<reportElement x="0" y="9" width="528" height="20"/>
+				<subreportParameter name="idHCU">
+					<subreportParameterExpression><![CDATA[$P{idHC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCUadMedicMezcla.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="25">
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="0" y="3" width="528" height="20"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="procedHc">
+						<datasetParameter name="idHistoriaC">
+							<datasetParameterExpression><![CDATA[$P{idHC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="527">
+						<jr:tableHeader height="12" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="527" height="12"/>
+								<box>
+									<pen lineWidth="0.25" lineColor="#666666"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  PROCEDIMIENTOS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="44">
+							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="43" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Codigo CUPS]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="11" rowSpan="1">
+								<textField>
+									<reportElement style="texto3" x="2" y="0" width="41" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="265">
+							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="265" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Descripcion CUPS]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="11" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="263" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{config_cups_de_subcategoria}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="218">
+							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="218" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Observacion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="11" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="216" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="28">
+			<componentElement>
+				<reportElement key="table 5" style="table 5" x="0" y="4" width="528" height="22"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="valEspHc">
+						<datasetParameter name="idHistoriaC">
+							<datasetParameterExpression><![CDATA[$P{idHC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="528">
+						<jr:tableHeader height="12" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="528" height="12"/>
+								<box>
+									<pen lineWidth="0.25" lineColor="#666666"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  VALORACION ESPECIALISTA]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="47">
+							<jr:columnHeader style="table 5_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="47" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Codigo CUPS]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="10" rowSpan="1">
+								<textField>
+									<reportElement style="texto3" x="2" y="0" width="45" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="168">
+							<jr:columnHeader style="table 5_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="168" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Descripcion CUPS]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="166" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{config_cups_de_subcategoria}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="114">
+							<jr:columnHeader style="table 5_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="114" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Especialidad]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="112" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{static_Especialidades_especialidad}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="199">
+							<jr:columnHeader style="table 5_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="199" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Justificacion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="10" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement style="texto3" x="2" y="0" width="197" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{justificacion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="26">
+			<componentElement>
+				<reportElement key="table 6" style="table 6" x="0" y="2" width="528" height="21"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="medidaHc">
+						<datasetParameter name="idHC">
+							<datasetParameterExpression><![CDATA[$P{idHC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="527">
+						<jr:tableHeader height="12" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="527" height="12"/>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  MEDIDAS GENERALES]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="240">
+							<jr:columnHeader style="table 6_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="240" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Medida General]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="10" rowSpan="1">
+								<textField>
+									<reportElement x="2" y="0" width="238" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{medidag}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="287">
+							<jr:columnHeader style="table 6_CH" height="12" rowSpan="1">
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="287" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Observacion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="10" rowSpan="1">
+								<textField>
+									<reportElement x="2" y="0" width="285" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="65">
+			<textField>
+				<reportElement x="361" y="47" width="167" height="14"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{NombreMedico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="texto3" mode="Transparent" x="363" y="38" width="58" height="10"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Registro Medico N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="421" y="38" width="105" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RegistroMEdico}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="359" y="37" width="167" height="1"/>
+			</line>
+			<image>
+				<reportElement x="388" y="1" width="120" height="35"/>
+				<imageExpression><![CDATA[$F{Firma}]]></imageExpression>
+			</image>
+		</band>
+		<band height="23">
+			<subreport>
+				<reportElement x="1" y="0" width="527" height="20"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<subreportParameter name="idhc">
+					<subreportParameterExpression><![CDATA[$P{idHC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "EvolucionE.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

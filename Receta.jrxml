@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receta" language="groovy" pageWidth="612" pageHeight="396" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Medicamentos">
+		<parameter name="ideegre" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+    `sum_atc_principioactivo`.`nombre` AS `PrincipioActivo`
+    , `sum_suministro`.`concentracion` AS `Concentracion`
+    , `sum_atc_presentacionfarmaceutica`.`nombre` AS `FormaFarmaceutica`
+    , `hcu_evo_posologia`.`dosis_n` AS `Dosis`
+    , `hcu_evo_posologia`.`dosis_u`
+    , `sum_suministro`.`viaadministracion` AS `ViadeAdministracion`
+    , `hcu_evo_posologia`.`administracion` AS `Observacion`
+FROM
+    `database`.`hcu_evolucion`
+    INNER JOIN `database`.`info_historiac`
+        ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
+    INNER JOIN `database`.`hcu_evo_posologia`
+        ON (`hcu_evo_posologia`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
+    INNER JOIN `database`.`sum_suministro`
+        ON (`hcu_evo_posologia`.`id_suministro` = `sum_suministro`.`id`)
+    INNER JOIN `database`.`sum_atc_principioactivo`
+        ON (`sum_suministro`.`id_pricipioactivo` = `sum_atc_principioactivo`.`id`)
+    INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
+        ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
+WHERE (`hcu_evolucion`.`id` =$P{ideegre} AND hcu_evolucion.`estado`=3);]]>
+		</queryString>
+		<field name="PrincipioActivo" class="java.lang.String"/>
+		<field name="Concentracion" class="java.lang.String"/>
+		<field name="FormaFarmaceutica" class="java.lang.String"/>
+		<field name="Dosis" class="java.lang.Float"/>
+		<field name="dosis_u" class="java.lang.String"/>
+		<field name="ViadeAdministracion" class="java.lang.String"/>
+		<field name="Observacion" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="Idevolucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NameReport" class="java.lang.String"/>
+	<parameter name="Version" class="java.lang.String"/>
+	<parameter name="Codigo" class="java.lang.String"/>
+	<parameter name="Servicio" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Administrador\\Dropbox\\Proyectos netbeans\\Imprimir\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     `config_decripcion_login`.`nombres`
+    , `config_decripcion_login`.`apellidos`
+    , `config_decripcion_login`.`ruta_firma`
+    , `cm_profesionales`.`tarjeta_profesional`
+    , DATE_FORMAT(`hcu_evolucion`.`fecha_evo`,'%d/%m/%Y %h:%i %p') AS `FECHA`
+FROM
+     `database`.`config_decripcion_login`
+    INNER JOIN `database`.`hcu_evolucion`
+        ON (`config_decripcion_login`.`id_login` = `hcu_evolucion`.`usuario`)
+    INNER JOIN `database`.`cm_profesionales`
+        ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
+WHERE (`hcu_evolucion`.`estado` =3
+    AND `hcu_evolucion`.`id` =$P{Idevolucion});]]>
+	</queryString>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="ruta_firma" class="java.lang.String"/>
+	<field name="tarjeta_profesional" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<variable name="Nombrem" class="java.lang.String">
+		<variableExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="85" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="530" height="85"/>
+				<subreportParameter name="codigo">
+					<subreportParameterExpression><![CDATA[$P{Codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="version">
+					<subreportParameterExpression><![CDATA[$P{Version}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="servicio">
+					<subreportParameterExpression><![CDATA[$P{Servicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NameReport">
+					<subreportParameterExpression><![CDATA[$P{NameReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotulo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="52" width="14" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="488" y="52" width="6" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="470" y="52" width="18" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isStrikeThrough="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" x="0" y="2" width="530" height="32"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Medicamentos">
+						<datasetParameter name="ideegre">
+							<datasetParameterExpression><![CDATA[$P{Idevolucion}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="530">
+						<jr:tableHeader height="12" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="530" height="12"/>
+								<box>
+									<pen lineWidth="0.25" lineColor="#666666"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textElement>
+									<font fontName="Calibri" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  MEDICAMENTOS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="121">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="121" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Principio Activo]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="119" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PrincipioActivo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="66" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Concentracion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="65" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{Concentracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="90" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[FormaFarmaceutica]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="88" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{FormaFarmaceutica}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="18">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="18" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Dosis]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="16" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{Dosis}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="38">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="36" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="1" y="0" width="66" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Via de Administracion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="65" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{ViadeAdministracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="129">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="129" height="12"/>
+									<textElement textAlignment="Center">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Observacion]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="127" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{Observacion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="75" splitType="Stretch">
+			<image>
+				<reportElement x="386" y="1" width="120" height="35"/>
+				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="361" y="38" width="55" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<text><![CDATA[Registro Medico N°:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="360" y="37" width="167" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="416" y="38" width="113" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="47" width="169" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Nombrem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
