@@ -277,7 +277,7 @@
 				<reportElement x="356" y="38" width="167" height="1" uuid="b995bf36-719f-49ea-b2d4-e56286ad005b"/>
 			</line>
 			<textField>
-				<reportElement style="title2" x="358" y="50" width="167" height="14" uuid="33a86d14-2994-49f8-bfc2-d71254fe8b9e"/>
+				<reportElement style="title2" x="360" y="50" width="163" height="14" uuid="33a86d14-2994-49f8-bfc2-d71254fe8b9e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{nameMedic}]]></textFieldExpression>
 			</textField>
