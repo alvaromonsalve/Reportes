@@ -4,6 +4,7 @@
 	<property name="ireport.zoom" value="1.7715610000000022"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="43"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AP1"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -218,7 +219,7 @@
 			<staticText>
 				<reportElement style="title3" mode="Transparent" x="279" y="139" width="249" height="10" uuid="ea49e346-b7f2-4231-a558-e1f6e822ac19"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[OBSERVACION]]></text>
+				<text><![CDATA[OBSERVACIÓN]]></text>
 			</staticText>
 			<textField>
 				<reportElement style="texto2" x="280" y="98" width="76" height="10" uuid="32f7d710-2216-48bc-9b47-7c58af721126"/>
@@ -262,7 +263,7 @@
 				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto3" x="4" y="1" width="70" height="8" uuid="268896cf-f01d-460b-b82b-010ffab82b36"/>
+				<reportElement style="texto3" x="0" y="1" width="74" height="8" uuid="268896cf-f01d-460b-b82b-010ffab82b36"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
