@@ -370,9 +370,47 @@ FROM
 	<field name="apertura_ocular" class="java.lang.Integer"/>
 	<field name="respuesta_verbal" class="java.lang.Integer"/>
 	<field name="respuesta_motora" class="java.lang.Integer"/>
-	<variable name="Glas" class="java.lang.String">
-		<variableExpression><![CDATA[$F{apertura_ocular}==null || $F{respuesta_verbal}==null || $F{respuesta_motora}==null ? "Sin calcular":$F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora}]]></variableExpression>
-		<initialValueExpression><![CDATA[$F{apertura_ocular}==null || $F{respuesta_verbal}==null || $F{respuesta_motora}==null ? "Sin calcular":$F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora}]]></initialValueExpression>
+	<variable name="Glas" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{glasgow_ao}>0 || $V{glasgow_rv}>0 || $V{glasgow_rm}>0 ? 
+$V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{glasgow_ao}>0 || $V{glasgow_rv}>0 || $V{glasgow_rm}>0 ? 
+$V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></initialValueExpression>
+	</variable>
+	<variable name="glasgow_ao" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{apertura_ocular} == null ? 0 : 
+	$F{apertura_ocular} == 0 ? 4 : 
+		$F{apertura_ocular} == 1 ? 3 : 
+			$F{apertura_ocular} == 2 ? 2 : 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{apertura_ocular} == null ? 0 : 
+	$F{apertura_ocular} == 0 ? 4 : 
+		$F{apertura_ocular} == 1 ? 3 : 
+			$F{apertura_ocular} == 2 ? 2 : 1]]></initialValueExpression>
+	</variable>
+	<variable name="glasgow_rv" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{respuesta_verbal} == null ? 0 : 
+	$F{respuesta_verbal} == 0 ? 5 : 
+		$F{respuesta_verbal} == 1 ? 4 : 
+			$F{respuesta_verbal} == 2 ? 3 : 
+				$F{respuesta_verbal} == 3 ? 2 : 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{respuesta_verbal} == null ? 0 : 
+	$F{respuesta_verbal} == 0 ? 5 : 
+		$F{respuesta_verbal} == 1 ? 4 : 
+			$F{respuesta_verbal} == 2 ? 3 : 
+				$F{respuesta_verbal} == 3 ? 2 : 1]]></initialValueExpression>
+	</variable>
+	<variable name="glasgow_rm" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{respuesta_motora} == null ? 0 : 
+	$F{respuesta_motora} == 0 ? 6 :
+		$F{respuesta_motora} == 1 ? 5 : 
+			$F{respuesta_motora} == 2 ? 4 : 
+				$F{respuesta_motora} == 3 ? 3 : 
+					$F{respuesta_motora} == 4 ? 2 : 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{respuesta_motora} == null ? 0 : 
+	$F{respuesta_motora} == 0 ? 6 :
+		$F{respuesta_motora} == 1 ? 5 : 
+			$F{respuesta_motora} == 2 ? 4 : 
+				$F{respuesta_motora} == 3 ? 3 : 
+					$F{respuesta_motora} == 4 ? 2 : 1]]></initialValueExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -733,8 +771,10 @@ FROM
 			</staticText>
 			<textField>
 				<reportElement style="text_desc" x="406" y="16" width="118" height="9" uuid="b030e454-2296-49f3-8132-f9a5feed2a88"/>
-				<textFieldExpression><![CDATA[$F{conciencia}==null?"":(
-$F{conciencia} == 0 ? "ALERTA":"")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{conciencia}==null?"":$F{conciencia}==0?"ALERTA":$F{conciencia}==1?"AGITACION PSICOMOTORA":
+$F{conciencia}==2?"SOMNOLENCIA":$F{conciencia}==3?"OBNUBILACION":$F{conciencia}==4?"ESTUPOR":
+$F{conciencia}==5?"COMA":$F{conciencia}==6?"ESTADO VEGETATIVO PERSISTENTE": $F{conciencia}==7?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"
+]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="title_desc" x="3" y="26" width="97" height="9" uuid="2ac092ce-d2c3-4e67-81b5-a0bea1e41338"/>
@@ -774,7 +814,7 @@ $F{conciencia} == 0 ? "ALERTA":"")]]></textFieldExpression>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{apertura_ocular}==null || $F{respuesta_verbal}==null || $F{respuesta_motora}==null ? "GLASGOW: Sin calcular":"GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{Glas}.toString()=="0" ? "GLASGOW: Sin Calcular":"GLASGOW: "+$V{Glas}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="title_desc" x="13" y="12" width="67" height="9" uuid="a10e2dc0-81c2-470c-8977-c638ddbf1cf3"/>
@@ -802,21 +842,21 @@ $F{conciencia} == 0 ? "ALERTA":"")]]></textFieldExpression>
 				<textElement verticalAlignment="Top">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{apertura_ocular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{glasgow_ao}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="text_desc" x="224" y="12" width="94" height="9" uuid="a504ce5b-5f43-47bf-a32c-31a3d467b176"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_verbal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{glasgow_rv}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="text_desc" x="387" y="12" width="133" height="9" uuid="d89ad979-fce6-45ce-9e44-84aba5e364db"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_motora}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{glasgow_rm}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="61">
