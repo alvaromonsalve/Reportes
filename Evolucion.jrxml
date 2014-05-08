@@ -773,8 +773,7 @@ $V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></initialValueExpression>
 				<reportElement style="text_desc" x="406" y="16" width="118" height="9" uuid="b030e454-2296-49f3-8132-f9a5feed2a88"/>
 				<textFieldExpression><![CDATA[$F{conciencia}==null?"":$F{conciencia}==0?"ALERTA":$F{conciencia}==1?"AGITACION PSICOMOTORA":
 $F{conciencia}==2?"SOMNOLENCIA":$F{conciencia}==3?"OBNUBILACION":$F{conciencia}==4?"ESTUPOR":
-$F{conciencia}==5?"COMA":$F{conciencia}==6?"ESTADO VEGETATIVO PERSISTENTE": $F{conciencia}==7?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"
-]]></textFieldExpression>
+$F{conciencia}==5?"COMA":$F{conciencia}==6?"ESTADO VEGETATIVO PERSISTENTE": $F{conciencia}==7?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="title_desc" x="3" y="26" width="97" height="9" uuid="2ac092ce-d2c3-4e67-81b5-a0bea1e41338"/>
@@ -1593,7 +1592,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<textFieldExpression><![CDATA[$F{NombreMedico}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="360" y="37" width="167" height="1" uuid="9df0f835-8634-4aed-8191-c00687caa945"/>
+				<reportElement x="360" y="37" width="170" height="1" uuid="9df0f835-8634-4aed-8191-c00687caa945"/>
 			</line>
 			<textField>
 				<reportElement x="416" y="38" width="113" height="10" uuid="3ce8b466-dea4-4ac8-a3b5-62d010ed54a8"/>
