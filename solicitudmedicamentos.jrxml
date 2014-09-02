@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solPorcedimientos" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="058aeb92-881f-471d-9946-be02af590ba2">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="121"/>
+	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
+		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
+		<box>
+			<pen lineWidth="0.25" lineStyle="Dotted"/>
+			<topPen lineWidth="0.25" lineStyle="Dotted"/>
+			<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+			<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+			<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+		</box>
+	</style>
+	<style name="title2" style="title1" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<pen lineWidth="0.0"/>
+		<box>
+			<pen lineWidth="0.0"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="texto1" style="title2" isBold="false"/>
+	<style name="texto2" style="texto1" mode="Transparent" fontSize="7"/>
+	<style name="title3" style="title2" fontSize="6"/>
+	<style name="texto3" style="texto2" fontSize="6"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="proced" uuid="5d965ed4-ff55-44bd-aae7-770e702304d1">
+		<parameter name="idevo" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="idconsecutivo" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+    `sum_suministro`.`suministro`
+    , `hcu_receta_medica_desc`.`cantidad`
+    , `hcu_receta_medica_desc`.`dosis_n`
+    , `hcu_receta_medica_desc`.`dosis_u`
+    , `hcu_receta_medica_desc`.`administracion`
+    , `sum_suministro`.`concentracion`
+    , `sum_atc_presentacionfarmaceutica`.`nombre`
+    , `sum_suministro`.`viaadministracion`
+FROM
+    `database`.`info_historiac`
+    INNER JOIN `database`.`hcu_receta_medica`
+        ON (`info_historiac`.`id` = `hcu_receta_medica`.`id_hcu`)
+    INNER JOIN `database`.`hcu_receta_medica_desc`
+        ON (`hcu_receta_medica_desc`.`id_hcu_receta_medica` = `hcu_receta_medica`.`id`)
+    INNER JOIN `database`.`sum_suministro`
+        ON (`sum_suministro`.`id` = `hcu_receta_medica_desc`.`id_sum_suministro`)
+    INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
+        ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
+WHERE (`info_historiac`.`id` =$P{idevo}
+    AND `info_historiac`.`estado` =1
+    AND `hcu_receta_medica`.`id` =$P{idconsecutivo});]]>
+		</queryString>
+		<field name="suministro" class="java.lang.String"/>
+		<field name="cantidad" class="java.lang.Float"/>
+		<field name="dosis_n" class="java.lang.Float"/>
+		<field name="dosis_u" class="java.lang.String"/>
+		<field name="administracion" class="java.lang.String"/>
+		<field name="concentracion" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
+		<field name="viaadministracion" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="NombreReport" class="java.lang.String"/>
+	<parameter name="version" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="servicio" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_hc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     `info_paciente`.`nombre1`
+    , `info_paciente`.`nombre2`
+    , `info_paciente`.`apellido1`
+    , `info_paciente`.`apellido2`
+    , `info_admision`.`edad` AS `Edad`
+    , `info_historiac`.`fecha_dato` AS `Fecha`
+    , `info_paciente`.`tipo_doc`
+    , `info_paciente`.`num_doc`
+    , `info_paciente`.`hc`
+    , `info_entidades`.`nombre_entidad` AS `Entiadmision`
+    , `info_entidades_1`.`nombre_entidad` AS `Enticontratante`
+    , `info_entidades_1`.`tipo` AS `tipouser`
+    , `hcu_receta_medica`.`id`
+    , `config_decripcion_login`.`nombres`
+    , `config_decripcion_login`.`apellidos`
+    , `config_decripcion_login`.`ruta_firma`
+    , `cm_profesionales`.`tarjeta_profesional`
+FROM
+    `database`.`info_historiac`
+    INNER JOIN `database`.`hcu_receta_medica`
+        ON (`info_historiac`.`id` = `hcu_receta_medica`.`id_hcu`)
+    INNER JOIN `database`.`info_admision`
+        ON (`info_historiac`.`id_infoadmision` = `info_admision`.`id`)
+    INNER JOIN `database`.`config_decripcion_login`
+        ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`hcu_receta_medica_desc`
+        ON (`hcu_receta_medica_desc`.`id_hcu_receta_medica` = `hcu_receta_medica`.`id`)
+    INNER JOIN `database`.`info_paciente`
+        ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
+    INNER JOIN `database`.`info_entidades`
+        ON (`info_admision`.`id_entidad_admision` = `info_entidades`.`id`)
+    INNER JOIN `database`.`info_entidades` AS `info_entidades_1`
+        ON (`info_paciente`.`contratante` = `info_entidades_1`.`id`)
+    INNER JOIN `database`.`cm_profesionales`
+        ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
+WHERE (`info_historiac`.`id` = $P{id_hc}
+    AND `info_historiac`.`estado` =1)
+ORDER BY `hcu_receta_medica`.`id` DESC LIMIT 1;]]>
+	</queryString>
+	<field name="nombre1" class="java.lang.String"/>
+	<field name="nombre2" class="java.lang.String"/>
+	<field name="apellido1" class="java.lang.String"/>
+	<field name="apellido2" class="java.lang.String"/>
+	<field name="Edad" class="java.lang.String"/>
+	<field name="Fecha" class="java.sql.Timestamp"/>
+	<field name="tipo_doc" class="java.lang.String"/>
+	<field name="num_doc" class="java.lang.String"/>
+	<field name="hc" class="java.lang.String"/>
+	<field name="Entiadmision" class="java.lang.String"/>
+	<field name="Enticontratante" class="java.lang.String"/>
+	<field name="tipouser" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="ruta_firma" class="java.lang.String"/>
+	<field name="tarjeta_profesional" class="java.lang.String"/>
+	<variable name="nombreCompleto" class="java.lang.String">
+		<variableExpression><![CDATA[$F{nombre1}+" "+$F{nombre2}+" "+$F{apellido1}+" "+$F{apellido2}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{nombre1}+" "+$F{nombre2}+" "+$F{apellido1}+" "+$F{apellido2}]]></initialValueExpression>
+	</variable>
+	<variable name="documento" class="java.lang.String">
+		<variableExpression><![CDATA[$F{tipo_doc}+" "+$F{num_doc}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{tipo_doc}+" "+$F{num_doc}]]></initialValueExpression>
+	</variable>
+	<variable name="fecha" class="java.lang.String">
+		<variableExpression><![CDATA["Caucasia, Antioquia. "+$F{Fecha}]]></variableExpression>
+		<initialValueExpression><![CDATA["Caucasia, Antioquia. "+$F{Fecha}]]></initialValueExpression>
+	</variable>
+	<variable name="tipousuario" class="java.lang.String">
+		<variableExpression><![CDATA[($F{tipouser}.intValue() == 0 ? "PARTICULAR"
+    :($F{tipouser}.intValue() == 1 ? "CONTRIBUTIVO"
+        :($F{tipouser}.intValue() == 2 ? "SUBSIDIADO"
+            :"OTRO"
+        )
+    )
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{tipouser}.intValue() == 0 ? "PARTICULAR"
+    :($F{tipouser}.intValue() == 1 ? "CONTRIBUTIVO"
+        :($F{tipouser}.intValue() == 2 ? "SUBSIDIADO"
+            :"OTRO"
+        )
+    )
+)]]></initialValueExpression>
+	</variable>
+	<variable name="nameMedic" class="java.lang.String">
+		<variableExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="142" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="45745325-0e41-456c-ae4b-522c96ca01d4" x="0" y="89" width="528" height="48"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<subreport>
+				<reportElement uuid="b725af11-0b55-435b-b1b9-e5e0572bc15b" x="0" y="0" width="528" height="85"/>
+				<subreportParameter name="codigo">
+					<subreportParameterExpression><![CDATA[$P{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="version">
+					<subreportParameterExpression><![CDATA[$P{version}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="servicio">
+					<subreportParameterExpression><![CDATA[$P{servicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NameReport">
+					<subreportParameterExpression><![CDATA[$P{NombreReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotulo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="176e8b73-d8bc-44ff-a40f-d668a274aee5" x="470" y="52" width="18" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isStrikeThrough="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6b6aa076-af7a-4136-bcbf-3c08f76e20b6" x="488" y="52" width="6" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="9b173834-d257-46e0-a2d0-13512da2ddcf" x="494" y="52" width="14" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e2ad6b35-8b1c-4e89-a2db-1f2b1228eb36" style="title2" mode="Transparent" x="10" y="110" width="60" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[DOCUMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="409a8156-f6f6-4ddf-bafa-b59d654d1c52" style="title2" mode="Transparent" x="185" y="110" width="86" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[N° HISTORIA CLINICA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1069b140-45ff-486c-a3c5-fe21eff19a19" style="title2" mode="Transparent" x="362" y="110" width="67" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[TIPO DE USUARIO:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement uuid="17e1947d-2ff4-4d37-afcc-ea615959ebfb" style="title2" x="50" y="98" width="204" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4755b004-7ab5-4b0d-b41f-6d3d7275778e" style="texto2" mode="Transparent" x="70" y="110" width="80" height="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7bb955a9-2686-45f5-839b-85125501eca1" style="texto2" mode="Transparent" x="271" y="110" width="89" height="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c5671666-6fb1-49df-b61f-92559e100db8" style="texto2" x="362" y="98" width="161" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fff35085-31f8-491e-87f6-9792f7e32a52" style="texto2" mode="Transparent" x="429" y="110" width="94" height="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{tipousuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0be3c529-71ab-42d9-b596-6c121ad26304" style="texto2" x="280" y="98" width="76" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7c8bcfc3-a897-4432-b5ad-05a40afc18bb" style="title2" mode="Transparent" x="10" y="122" width="85" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[ENTIDAD ADMISION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4d93f3e2-88eb-46f7-9be4-e3a22a386b8c" style="texto2" x="96" y="122" width="175" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Entiadmision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c3019adc-2b53-49f9-a991-a16595ca3521" style="title2" mode="Transparent" x="275" y="122" width="85" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[CONTRATANTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="df46fb74-8472-4066-a153-5ff6a60382e4" style="texto2" x="362" y="122" width="161" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Enticontratante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="df0ab2ea-152f-44f3-a7ec-0eeb61b95c7c" style="title2" mode="Transparent" x="256" y="98" width="24" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[EDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a2bd902d-2c97-44d3-9503-7a1e4e7fa81a" style="title2" mode="Transparent" x="10" y="98" width="40" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="43ae504f-b0c8-42a0-af57-8ba456fdd19d" x="10" y="84" width="159" height="10"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="c5597388-6d7a-4786-8f92-bbeb17d34d62" x="10" y="84" width="159" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SOLICITUD DE PROCEDIMIENTOS N° "+$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="b986ff62-d86f-4a5b-833a-4b14af5037b9" key="table 3" mode="Transparent" x="2" y="0" width="526" height="22"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="proced" uuid="59eafa0b-43c0-4b22-a25c-8090cbac38ed">
+						<datasetParameter name="idevo">
+							<datasetParameterExpression><![CDATA[$P{id_hc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idconsecutivo">
+							<datasetParameterExpression><![CDATA[$F{id}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="116" uuid="0158b935-afac-4e2d-9d3f-bf1251f42033">
+						<jr:columnHeader style="table_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="2e0df3f2-0341-4caf-afc4-dfd68eb34cbb" x="0" y="0" width="116" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[PRINCIPIO ACTIVO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="2cdaba52-6a8e-4350-9d52-0fe2dd9f7dc4" x="2" y="0" width="114" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{suministro}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="1f83063e-40b7-437f-a871-fbcc0c73ae51">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="e191c55c-2701-4127-ba17-63a60a7e6b81" x="0" y="0" width="55" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[CONCENTRACIÓN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="ee6d3aa4-e024-42a1-9dbf-15f7c74b09dc" x="2" y="0" width="53" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{concentracion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="626f7075-9e10-401c-8ffa-dc330c51637f">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="2cd65a84-04a2-4f7e-a744-fc6ba56c78d0" x="0" y="0" width="75" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[FORMA FARMACEUTICA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="08231379-243a-449a-a52f-a6b43e5bb843" x="2" y="0" width="68" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="18" uuid="cd931c78-6eb4-48b7-b30f-5eb1091c4422">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="bc7bcf93-4fde-4927-b1aa-2dcfb74ec95c" x="0" y="0" width="18" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[DOSIS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="ffd3a44f-7824-4414-84b6-377c0c37ab85" x="2" y="0" width="16" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dosis_n}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="38" uuid="8cbc1218-0e01-4895-9959-fb9b596d0836">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="86250a3a-9e9d-45c2-8c38-7b314e595628" x="2" y="0" width="36" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e14bfe70-41cb-444c-bb4f-a9aa3c8b8515">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="98f08ecf-d1c1-4bf3-b061-64280b8fbc81" x="0" y="0" width="90" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[VIA DE ADMINISTRACIÓN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField>
+								<reportElement uuid="2d3ac907-dcb4-493e-ae00-b14834c568b9" x="2" y="0" width="88" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{viaadministracion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="35" uuid="9a7cea0e-0edd-4e02-a8eb-e9253a6c7fd0">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="bee4b219-7135-4dc5-add9-3d3b4c5163b2" x="0" y="0" width="35" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[CANTIDAD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="a16b1d10-0a65-40c6-bc24-4a419d2527d5" x="2" y="0" width="33" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="983996d0-8b4c-449a-b099-5b920d968274">
+						<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement uuid="9f282249-0600-4592-8ccc-7b5bdb417cf6" x="0" y="0" width="100" height="12"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[OBSERVACION]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="10" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="bc03844d-0f17-4b3b-9ef9-d47183cb5099" x="2" y="0" width="98" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="63">
+			<line>
+				<reportElement uuid="1035816d-aa80-41d9-a902-8133bbcae212" x="356" y="38" width="167" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="ebef12d4-c089-4f3b-9199-e8732f762c4c" style="title2" x="356" y="39" width="167" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{nameMedic}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="5784726e-7888-4517-8e0f-8ea56ab0f01e" x="383" y="2" width="120" height="35"/>
+				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="0ac91267-2784-4829-bf89-192aae36304a" style="texto3" mode="Transparent" x="356" y="49" width="58" height="10"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Registro Medico N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ffa58d84-e257-4fcf-b78c-a637d57785ff" style="texto3" x="414" y="49" width="105" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" language="groovy" pageWidth="530" pageHeight="710" columnWidth="530" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.2396694214876032"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" pageWidth="530" pageHeight="710" columnWidth="530" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="da775d57-00d4-43e1-8f94-8daefd6fdb4a">
+	<property name="ireport.zoom" value="2.415765000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="44"/>
+	<property name="ireport.y" value="96"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -104,7 +104,7 @@
 		</box>
 	</style>
 	<style name="style1" forecolor="#000000" hAlign="Left" vAlign="Top" isBlankWhenNull="false" fontName="Calibri" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-	<subDataset name="Medicamentosevu">
+	<subDataset name="Medicamentosevu" uuid="1f0ae321-152c-4ec3-b01c-8f6165753214">
 		<parameter name="Idevu" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -139,7 +139,7 @@ WHERE (`hcu_evolucion`.`id` = $P{Idevu});]]>
 		<field name="ViadeAdministracion" class="java.lang.String"/>
 		<field name="Observacion" class="java.lang.String"/>
 	</subDataset>
-	<subDataset name="procedimientos">
+	<subDataset name="procedimientos" uuid="179889fe-d64f-4588-9759-48a46fa3d39c">
 		<parameter name="idevu" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -160,7 +160,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_procedimiento`.`estado`='1
 		<field name="Descipcion CUPS" class="java.lang.String"/>
 		<field name="Observacion" class="java.lang.String"/>
 	</subDataset>
-	<subDataset name="vespec">
+	<subDataset name="vespec" uuid="abf1e5c4-f321-49fa-bfdd-56838c704cbe">
 		<parameter name="idevu" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -185,7 +185,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu});]]>
 		<field name="Especialidad" class="java.lang.String"/>
 		<field name="Justificacion" class="java.lang.String"/>
 	</subDataset>
-	<subDataset name="Medidasg">
+	<subDataset name="Medidasg" uuid="3c3fabd3-0345-4426-96be-ef1327f7543f">
 		<parameter name="idevu" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -213,6 +213,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
      `hcu_evolucion`.`subjetivo` AS `SUBJETIVO`
     , `hcu_evolucion`.`analisis` AS `ANALISIS`
     , `hcu_evolucion`.`objetivo` AS `OBJETIVO`
+    , `hcu_evolucion`.`conciencia`
     ,(CONCAT( `config_decripcion_login`.`nombres`, ' ', `config_decripcion_login`.`apellidos`)) AS `NombreMedico`
     , `cm_profesionales`.`tarjeta_profesional` AS `RegistroMEdico`
     , `config_decripcion_login`.`ruta_firma` AS `Firma`
@@ -243,16 +244,14 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
         ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
-        INNER JOIN `database`.`static_cie10`
+    INNER JOIN `database`.`static_cie10`
         ON (`hcu_evolucion`.`dx` = `static_cie10`.`id`)
     INNER JOIN `database`.`config_decripcion_login`
         ON (`config_decripcion_login`.`id` = `hcu_evolucion`.`usuario`)
     INNER JOIN `database`.`cm_profesionales`
         ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
-    INNER JOIN `database`.`cm_esp_pprofesional`
-        ON (`cm_esp_pprofesional`.`id_profesional` = `cm_profesionales`.`id`)
     INNER JOIN `database`.`static_especialidades`
-        ON (`cm_esp_pprofesional`.`id_especialidad` = `static_especialidades`.`id`)
+        ON (`hcu_evolucion`.`id_static_especialidades` = `static_especialidades`.`id`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_1`
         ON (`static_cie10_1`.`id` = `hcu_evolucion`.`dx1`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_2`
@@ -261,20 +260,41 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
         ON (`static_cie10_3`.`id` = `hcu_evolucion`.`dx3`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_4`
         ON (`static_cie10_4`.`id` = `hcu_evolucion`.`dx4`)
-WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`<>3);]]>
+WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=2);]]>
 	</queryString>
-	<field name="SUBJETIVO" class="java.lang.String"/>
-	<field name="ANALISIS" class="java.lang.String"/>
-	<field name="OBJETIVO" class="java.lang.String"/>
+	<field name="SUBJETIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ANALISIS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OBJETIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="conciencia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[0:ALERTA;1:AGITACION PSICOMOTORA;2:SOMNOLENCIA;3:OBNUBILACION;4:ESTUPOR;5:COMA;6:ESTADO VEGETATIVO PERSISTENTE;7:SÍNDROME DE ENCLAUSTRAMIENTO;8:MUERTE CEREBRAL]]></fieldDescription>
+	</field>
 	<field name="NombreMedico" class="java.lang.String"/>
 	<field name="RegistroMEdico" class="java.lang.String"/>
 	<field name="Firma" class="java.lang.String"/>
-	<field name="temperatura" class="java.math.BigDecimal"/>
-	<field name="fc" class="java.lang.Long"/>
-	<field name="sao2" class="java.lang.Long"/>
-	<field name="fr" class="java.math.BigDecimal"/>
-	<field name="tas" class="java.lang.Long"/>
-	<field name="tad" class="java.lang.Long"/>
+	<field name="temperatura" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fc" class="java.lang.Long">
+		<fieldDescription><![CDATA[frecuencia cardiaca, se mide en pulsaciones por minuto(ppm)]]></fieldDescription>
+	</field>
+	<field name="sao2" class="java.lang.Long">
+		<fieldDescription><![CDATA[saturacion de oxigeno, se mide con porcentaje %]]></fieldDescription>
+	</field>
+	<field name="fr" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[frecuencia respiratoria resp/min]]></fieldDescription>
+	</field>
+	<field name="tas" class="java.lang.Long">
+		<fieldDescription><![CDATA[tension arterial sistolica se mide en mmHg]]></fieldDescription>
+	</field>
+	<field name="tad" class="java.lang.Long">
+		<fieldDescription><![CDATA[tension arterial diastolica se mide en mmHg]]></fieldDescription>
+	</field>
 	<field name="Coddiagp" class="java.lang.String"/>
 	<field name="descripcionp" class="java.lang.String"/>
 	<field name="Coddiagrel1" class="java.lang.String"/>
@@ -285,13 +305,25 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`<>3);]]>
 	<field name="descripcionrel3" class="java.lang.String"/>
 	<field name="Coddiagrel4" class="java.lang.String"/>
 	<field name="descripcionrel4" class="java.lang.String"/>
-	<field name="especialidad" class="java.lang.String"/>
-	<field name="tipo" class="java.lang.Long"/>
+	<field name="especialidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.Long">
+		<fieldDescription><![CDATA[0:evolucion;1:valoracion;2:interconsulta]]></fieldDescription>
+	</field>
 	<field name="idevu" class="java.lang.Long"/>
-	<field name="fecha_evo" class="java.lang.String"/>
-	<field name="apertura_ocular" class="java.lang.Integer"/>
-	<field name="respuesta_verbal" class="java.lang.Integer"/>
-	<field name="respuesta_motora" class="java.lang.Integer"/>
+	<field name="fecha_evo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apertura_ocular" class="java.lang.Integer">
+		<fieldDescription><![CDATA[apertura ocular para glasgow (0=Espontánea: 4 puntos;1=A la voz: 3 puntos;2=Al dolor: 2 puntos;3=sin apertura ocular: 1 punto)]]></fieldDescription>
+	</field>
+	<field name="respuesta_verbal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[0= Orientado :5; 1= Desorientado y conversa :4; 2= Palabras inapropiadas :3; 3= Sonidos incomprensibles :2; 4= No responde :1]]></fieldDescription>
+	</field>
+	<field name="respuesta_motora" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1= Obedece órdenes: 6; 2= Localiza estímulos: 5; 3= Retira ante estímulos: 4; 4= Respuesta en flexión: 3; 5= Respuesta en extensión: 2; 6= Sin respuesta motora: 1]]></fieldDescription>
+	</field>
 	<variable name="TA" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
@@ -303,301 +335,301 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`<>3);]]>
 		<variableExpression><![CDATA["GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></variableExpression>
 		<initialValueExpression><![CDATA["GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></initialValueExpression>
 	</variable>
+	<variable name="conciencia" class="java.lang.String">
+		<variableExpression><![CDATA[$F{conciencia}.toString().equals("0")?"ALERTA":
+$F{conciencia}.toString().equals("1")?"AGITACION PSICOMOTORA":
+$F{conciencia}.toString().equals("2")?"SOMNOLENCIA":
+$F{conciencia}.toString().equals("3")?"OBNUBILACION":
+$F{conciencia}.toString().equals("4")?"ESTUPOR":
+$F{conciencia}.toString().equals("5")?"COMA":
+$F{conciencia}.toString().equals("6")?"ESTADO VEGETATIVO PERSISTENTE":
+$F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{conciencia}.toString().equals("0")?"ALERTA":
+$F{conciencia}.toString().equals("1")?"AGITACION PSICOMOTORA":
+$F{conciencia}.toString().equals("2")?"SOMNOLENCIA":
+$F{conciencia}.toString().equals("3")?"OBNUBILACION":
+$F{conciencia}.toString().equals("4")?"ESTUPOR":
+$F{conciencia}.toString().equals("5")?"COMA":
+$F{conciencia}.toString().equals("6")?"ESTADO VEGETATIVO PERSISTENTE":
+$F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
 		<band height="56">
 			<rectangle>
-				<reportElement x="0" y="4" width="530" height="18" backcolor="#99CCFF"/>
+				<reportElement uuid="1d62d1c2-7366-491a-b53f-ae9114dafb3c" x="0" y="4" width="530" height="18" backcolor="#99CCFF"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="0" y="31" width="530" height="1"/>
+				<reportElement uuid="0181b036-74e3-431c-b334-21c3cdd92c7d" x="0" y="31" width="530" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement x="218" y="25" width="100" height="12"/>
+				<reportElement uuid="e3faa52c-d1dc-4c8d-a136-992c3579387d" x="218" y="25" width="100" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="218" y="25" width="100" height="12"/>
+				<reportElement uuid="509d6f7d-47c5-498b-a9b6-3a160df43ae5" x="218" y="25" width="100" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SUBJETIVO]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="46" width="530" height="10"/>
+				<reportElement uuid="b189d696-9be9-488d-981a-b5956b748362" x="0" y="46" width="530" height="10"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SUBJETIVO}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="0" y="33" width="121" height="12"/>
+				<reportElement uuid="7d112a68-14a5-47d3-a73c-53e5bb966ce6" x="0" y="33" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="33" width="121" height="12"/>
+				<reportElement uuid="d8f2da60-d2bc-44cf-a495-564d7c14f9d5" x="0" y="33" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INFORMACION SUBJETIVA]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy h:mm a">
-				<reportElement x="1" y="5" width="529" height="17"/>
+				<reportElement uuid="d6054095-a478-4f67-ae04-3f1b1fe45660" x="1" y="5" width="529" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{tit}+""+$F{fecha_evo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="58">
+		<band height="66">
 			<rectangle radius="10">
-				<reportElement x="1" y="38" width="530" height="20"/>
+				<reportElement uuid="587de99d-19b8-4755-86a8-a0ea50d5c7f4" x="0" y="47" width="530" height="18"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle radius="10">
-				<reportElement x="1" y="11" width="530" height="20"/>
+				<reportElement uuid="74f6f4f5-e541-4663-933d-cad5e03470a9" x="1" y="11" width="530" height="29"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement x="13" y="7" width="121" height="12"/>
+				<reportElement uuid="c99fcae8-8d10-4509-b361-7f545dd739fd" x="13" y="7" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement x="218" y="4" width="100" height="12"/>
+				<reportElement uuid="32b8734e-5a3a-4e51-a043-dcb52aaa1b93" x="218" y="1" width="100" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="218" y="4" width="100" height="12"/>
+				<reportElement uuid="5d6b2534-c1ea-4c5a-84a5-5ae344792f7a" x="218" y="1" width="100" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBJETIVO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="7" width="121" height="12"/>
+				<reportElement uuid="56a70f91-b37a-459f-84e6-a275e54c36f0" x="13" y="7" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SIGNOS VITALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="18" width="18" height="10"/>
+				<reportElement uuid="d5e7dbeb-7c1f-4a90-85ec-d55c10e9e6d7" x="18" y="31" width="13" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FC:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="30" y="19" width="50" height="10"/>
+				<reportElement uuid="d74061dd-1c40-4a46-8288-41b34a70545b" x="31" y="31" width="50" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fc}.equals("") ? "":$F{fc}+" ppm"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="135" y="20" width="47" height="9"/>
+				<reportElement uuid="083b8ae4-9e5e-4843-80e1-b77ac19f0b25" x="134" y="31" width="47" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="221" y="19" width="10" height="10"/>
+				<reportElement uuid="5a01a54d-660f-4b07-9659-c0e2887948cd" x="222" y="31" width="10" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FR:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="232" y="20" width="67" height="10"/>
+				<reportElement uuid="0c859f66-40db-48a5-8025-e812f7aca6f4" x="233" y="32" width="67" height="8"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fr}.equals("") ? "":$F{fr}+" resp/min"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="341" y="19" width="50" height="10"/>
+				<reportElement uuid="29d33eef-ecaa-4ea3-86dc-22e1a55d78a7" x="342" y="31" width="50" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TEMPERATURA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="391" y="20" width="28" height="10"/>
+				<reportElement uuid="1a36d6fa-1f32-45f8-b395-f7ce285cd796" x="392" y="32" width="28" height="8"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{temperatura}.equals("")?"":$F{temperatura}+" °C"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="461" y="20" width="20" height="10"/>
+				<reportElement uuid="bad944d6-cdf6-4ca5-a902-0f01c931e3a0" x="462" y="31" width="20" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sao2:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="21" width="39" height="10"/>
+				<reportElement uuid="9f06a09d-c69a-4a3c-b5bf-a072efa3b1a6" x="481" y="31" width="39" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sao2}.equals("")?"":$F{sao2}+" %"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="121" y="19" width="18" height="10"/>
+				<reportElement uuid="fad219d6-82ca-4b29-bcb3-cac9f1f7120c" x="122" y="31" width="12" height="9"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="444" y="46" width="68" height="10"/>
+				<reportElement uuid="9504416e-3434-44d3-b957-491e324d294b" x="441" y="55" width="68" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RESPUESTA MOTORA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="79" y="47" width="54" height="10"/>
+				<reportElement uuid="f0a8f326-3cf6-44e8-916b-42f36a45de6b" x="79" y="55" width="54" height="10"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{apertura_ocular}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="292" y="47" width="69" height="10"/>
+				<reportElement uuid="14bb374a-1918-4102-ab7b-c82d33a80a32" x="292" y="55" width="69" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{respuesta_verbal}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="13" y="34" width="121" height="12"/>
+				<reportElement uuid="3c4a5ac7-a9f0-44b9-adad-bc7d9a2ebb1d" x="13" y="43" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="230" y="46" width="63" height="10"/>
+				<reportElement uuid="3c1eddb5-c395-46b0-9d82-c6171e340d2a" x="230" y="55" width="63" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RESPUESTA VERBAL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="513" y="47" width="10" height="10"/>
+				<reportElement uuid="2def4d08-eac7-421e-a75c-ee3a82fba76d" x="509" y="55" width="10" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{respuesta_motora}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="46" width="63" height="10"/>
+				<reportElement uuid="75e1ed18-8d39-44a7-b374-00ee63047686" x="16" y="55" width="63" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[APERTURA OCULAR:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="13" y="34" width="121" height="12"/>
+				<reportElement uuid="33034e1d-ba6b-41c3-81ce-04021a0d5e99" x="13" y="43" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{GLAS}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement uuid="b0dcbeb0-38f3-4773-b6d4-1500fbdaca8b" x="92" y="19" width="207" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{conciencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8d85cb4a-273c-4fc1-9b66-4740c86b9016" x="17" y="20" width="75" height="9"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DE CONCIENCIA:]]></text>
+			</staticText>
 		</band>
-		<band height="27">
+		<band height="24">
 			<rectangle>
-				<reportElement x="0" y="3" width="121" height="12"/>
+				<reportElement uuid="73cf7a9a-46d1-48a0-b6cb-2c6ae62f3873" x="0" y="1" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="16" width="530" height="10"/>
+				<reportElement uuid="d6e8fb50-a017-4153-8797-4b01d2a32101" x="0" y="13" width="530" height="10"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{OBJETIVO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="3" width="121" height="12"/>
+				<reportElement uuid="a6e4f559-3de3-405f-99c7-60c9428f8a7c" x="0" y="1" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INFORMACION OBJETIVA]]></text>
 			</staticText>
 		</band>
-		<band height="68">
-			<rectangle radius="10">
-				<reportElement x="0" y="7" width="531" height="21"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</rectangle>
-			<line>
-				<reportElement x="0" y="47" width="530" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</line>
+		<band height="22">
 			<rectangle>
-				<reportElement x="218" y="42" width="100" height="12"/>
+				<reportElement uuid="1de80d6b-9672-432f-ac51-bd718be0d31c" x="206" y="1" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="218" y="42" width="100" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ANALISIS]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="2" y="54" width="528" height="10"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ANALISIS}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="206" y="1" width="121" height="12"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="206" y="1" width="121" height="12"/>
+				<reportElement uuid="c100d9ef-27b5-4ff5-a65a-2e50336fd700" x="206" y="1" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIAGNOSTICOS MEDICOS]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="3" y="17" width="524" height="10"/>
+				<reportElement uuid="db6f8738-a3af-4667-b6c7-0a4e67d6d539" x="1" y="13" width="528" height="8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="7" isBold="false"/>
+					<font fontName="Calibri" size="6" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[("CODIGO DIAGNOSTICO PRINCIPAL:           "+"["+$F{Coddiagp}+"] "+$F{descripcionp})+(
 $F{Coddiagrel1}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO1: "+"["+$F{Coddiagrel1}+"] "+$F{descripcionrel1})+(
@@ -606,32 +638,67 @@ $F{Coddiagrel3}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{Coddiagrel4}+"] "+$F{descripcionrel4})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="44">
+		<band height="23">
 			<line>
-				<reportElement x="0" y="9" width="530" height="1"/>
+				<reportElement uuid="26bce461-2ec4-4f34-a9f8-35a064a00052" x="0" y="5" width="530" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement x="218" y="4" width="100" height="12"/>
+				<reportElement uuid="59936e07-3c88-4832-8327-d024b1b0d0c6" x="218" y="0" width="100" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
+			<staticText>
+				<reportElement uuid="b833b59f-3da4-4e8d-82e6-c24fee2b0282" x="218" y="0" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANALISIS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a90b0f84-3e82-4e09-8a32-94d034363a4d" x="2" y="12" width="528" height="10"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANALISIS}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="14">
+			<line>
+				<reportElement uuid="775e8996-b471-40da-920b-68a63feaf88f" x="0" y="5" width="530" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement uuid="25d512f8-17d6-45fb-add8-19ac7b93173c" x="218" y="0" width="100" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="60e7525c-50ba-4b38-b375-feeb8d6f6ccb" x="218" y="0" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLAN]]></text>
+			</staticText>
 			<componentElement>
-				<reportElement key="table" x="1" y="20" width="529" height="18"/>
+				<reportElement uuid="3166988d-ed1b-4bab-b4cb-8b8b4abfb3ff" key="table" x="1" y="11" width="529" height="3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Medicamentosevu">
+					<datasetRun subDataset="Medicamentosevu" uuid="c9c9b50e-4d4f-4b20-9ec1-387373f74ee9">
 						<datasetParameter name="Idevu">
 							<datasetParameterExpression><![CDATA[$F{idevu}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:columnGroup width="529">
+					<jr:columnGroup width="529" uuid="8aa2dabd-f6d9-4e63-ad93-4022a09b085e">
 						<jr:tableHeader height="12" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="529" height="12"/>
+								<reportElement uuid="f2360969-22a5-42f1-9557-32f4f083b25d" x="0" y="0" width="529" height="12"/>
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
 									<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -645,7 +712,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								<text><![CDATA[  MEDICAMENTOS INDIVIDUALES]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:column width="118">
+						<jr:column width="118" uuid="ae431568-1858-40b4-a26d-e6902462170b">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -655,7 +722,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="116" height="12"/>
+									<reportElement uuid="9d14d40d-1efd-4f93-afdd-d4d075cbfb97" x="2" y="0" width="116" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -671,7 +738,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="116" height="10"/>
+									<reportElement uuid="d140c7fa-6b4e-45ad-9250-8528e7dd45a0" x="2" y="0" width="116" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -679,7 +746,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="68">
+						<jr:column width="68" uuid="019e8594-cb7c-4f78-9b48-9dfb4f016088">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -689,7 +756,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="66" height="12"/>
+									<reportElement uuid="44d30917-793d-483e-8c04-b3afc072a060" x="2" y="0" width="66" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -705,7 +772,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="66" height="10"/>
+									<reportElement uuid="dd0da393-8b43-4108-8bbb-5c19db8db433" x="2" y="0" width="66" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -713,7 +780,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="92">
+						<jr:column width="92" uuid="2c994a4e-f71a-462a-8a61-c12109d36e3c">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -723,7 +790,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="90" height="12"/>
+									<reportElement uuid="b651e297-fd55-4595-88a4-528ba215ba04" x="2" y="0" width="90" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -739,7 +806,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="90" height="10"/>
+									<reportElement uuid="cccde6e4-8486-4b2a-ac88-e56a368a0a8c" x="2" y="0" width="90" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -747,7 +814,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="20">
+						<jr:column width="20" uuid="5dd439ad-7998-4091-b822-7a7045a54f7c">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -757,7 +824,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="18" height="12"/>
+									<reportElement uuid="582671e1-fda9-42e5-b2bb-92f574459da6" x="2" y="0" width="18" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -773,7 +840,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="17" height="10"/>
+									<reportElement uuid="5cd7e9d3-c55e-4715-9b96-5843ef404237" x="2" y="0" width="17" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -781,7 +848,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="40">
+						<jr:column width="40" uuid="c86353a9-46f9-4b06-9035-fbeb977e64ae">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -800,7 +867,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="38" height="10"/>
+									<reportElement uuid="e646013b-e6b9-4077-9fa1-d4da82511d85" x="2" y="0" width="38" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -808,7 +875,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="69">
+						<jr:column width="69" uuid="0a0b0b83-275e-49c0-959a-9b641b8d5469">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -818,7 +885,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="66" height="12"/>
+									<reportElement uuid="e2154f81-c7b9-48fb-9f57-7d704360e142" x="2" y="0" width="66" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -834,7 +901,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="67" height="10"/>
+									<reportElement uuid="0365f1c8-9a95-4d0c-9494-0c3c84c65243" x="2" y="0" width="67" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -842,7 +909,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="122">
+						<jr:column width="122" uuid="7738ce26-5ea9-4112-8f2b-de0dff86530d">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -852,7 +919,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="120" height="12"/>
+									<reportElement uuid="e1fe4d8f-1ccb-44cf-a257-4ba587970164" x="2" y="0" width="120" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -868,7 +935,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="120" height="10"/>
+									<reportElement uuid="9ebb7d55-d053-4402-814d-30ec32c25ba9" x="2" y="0" width="120" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -879,17 +946,10 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 					</jr:columnGroup>
 				</jr:table>
 			</componentElement>
-			<staticText>
-				<reportElement x="218" y="4" width="100" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[PLAN]]></text>
-			</staticText>
 		</band>
-		<band height="31">
+		<band height="4">
 			<subreport>
-				<reportElement x="-1" y="5" width="531" height="22"/>
+				<reportElement uuid="8fc0a0be-2fe7-4250-86f4-8de8b349ddd3" x="-1" y="0" width="531" height="3"/>
 				<subreportParameter name="idevu">
 					<subreportParameterExpression><![CDATA[$F{idevu}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -897,20 +957,20 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Mezclasepi.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="25">
+		<band height="3">
 			<componentElement>
-				<reportElement key="table 2" x="0" y="4" width="530" height="18"/>
+				<reportElement uuid="b1b6ad7f-6b16-401d-b52e-8a560c3932ef" key="table 2" x="-1" y="0" width="530" height="3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="procedimientos">
+					<datasetRun subDataset="procedimientos" uuid="1fed1be6-e494-43cf-b9f7-4ad736cb4b24">
 						<datasetParameter name="idevu">
 							<datasetParameterExpression><![CDATA[$F{idevu}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:columnGroup width="530">
+					<jr:columnGroup width="530" uuid="24ad0b83-469d-4e41-b204-693c2bd8593c">
 						<jr:tableHeader height="12" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="530" height="12"/>
+								<reportElement uuid="61d9a09b-0ba8-407a-b96d-0103a7008bdd" x="0" y="0" width="530" height="12"/>
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
 									<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -924,7 +984,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								<text><![CDATA[  PROCEDIMIENTOS]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:column width="90">
+						<jr:column width="90" uuid="016f5553-5828-4b4c-9d8b-4dc065dff130">
 							<jr:columnHeader style="table 2_CH" height="13" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -934,7 +994,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="90" height="12"/>
+									<reportElement uuid="d3b98412-1a23-4da3-ba0c-0e9b181a70fc" x="0" y="0" width="90" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -950,7 +1010,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="88" height="10"/>
+									<reportElement uuid="ba771cdf-4743-4466-90f6-dbc153f698e0" x="2" y="0" width="88" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -958,7 +1018,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="282">
+						<jr:column width="282" uuid="7dd0a44d-c6b7-48d3-9199-e3c7c73416ca">
 							<jr:columnHeader style="table 2_CH" height="13" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -968,7 +1028,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="282" height="12"/>
+									<reportElement uuid="6ca84458-e3c0-47ad-a730-cb081682de39" x="0" y="0" width="282" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -984,7 +1044,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="0" width="280" height="10"/>
+									<reportElement uuid="152a4b96-44bf-4677-afb5-9bc7696c294a" x="2" y="0" width="280" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -992,7 +1052,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="158">
+						<jr:column width="158" uuid="4fef66d5-2866-4f9d-84a7-164413c11484">
 							<jr:columnHeader style="table 2_CH" height="13" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -1002,7 +1062,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="158" height="12"/>
+									<reportElement uuid="7a7d85b6-7ba1-4dc1-9952-473f02c15a4d" x="0" y="0" width="158" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1018,7 +1078,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="0" width="156" height="10"/>
+									<reportElement uuid="285f244c-2286-4441-9b41-adca2671ec33" x="2" y="0" width="156" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1030,20 +1090,20 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="21">
+		<band height="4">
 			<componentElement>
-				<reportElement key="table 3" x="1" y="1" width="530" height="18"/>
+				<reportElement uuid="f9c34d98-cb87-43c3-a43d-adea24d0e90c" key="table 3" x="1" y="1" width="530" height="3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="vespec">
+					<datasetRun subDataset="vespec" uuid="2184c79c-28e3-4bb5-bd07-34d0d1e8bcf9">
 						<datasetParameter name="idevu">
 							<datasetParameterExpression><![CDATA[$F{idevu}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:columnGroup width="530">
+					<jr:columnGroup width="530" uuid="c3f4ebda-84c8-4484-8c84-28931c9dc9f1">
 						<jr:tableHeader height="12" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="530" height="12"/>
+								<reportElement uuid="8829e63f-2249-4afd-8ea4-97153aea44f0" x="0" y="0" width="530" height="12"/>
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
 									<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -1057,7 +1117,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								<text><![CDATA[  VALORACION ESPECIALISTA]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:column width="90">
+						<jr:column width="90" uuid="b0d2dc63-3c76-4e24-9e41-72592e241e10">
 							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -1067,7 +1127,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="90" height="12"/>
+									<reportElement uuid="ca355f2b-3be7-472f-994c-04dfc4c5864e" x="0" y="0" width="90" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1083,7 +1143,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="88" height="10"/>
+									<reportElement uuid="14235581-1ebf-4dbd-abfc-d5de25b40d98" x="2" y="0" width="88" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1091,7 +1151,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="201">
+						<jr:column width="201" uuid="58a07514-396a-484c-84c7-85f18a41109e">
 							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -1101,7 +1161,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="201" height="12"/>
+									<reportElement uuid="e43be9a7-b3ae-4581-b726-79075987d76a" x="0" y="0" width="201" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1117,7 +1177,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="0" width="199" height="10"/>
+									<reportElement uuid="da90ef67-e5f7-4f68-b969-a35ae0c2127c" x="2" y="0" width="199" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1125,7 +1185,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="105">
+						<jr:column width="105" uuid="54ffd795-36f9-42de-adbf-dae4b029b932">
 							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25"/>
@@ -1135,7 +1195,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="105" height="12"/>
+									<reportElement uuid="5b024e1e-7fda-4a00-b6da-17a6ac58026d" x="0" y="0" width="105" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1151,7 +1211,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="103" height="10"/>
+									<reportElement uuid="dfcbbdf2-27cd-40de-92b1-3ab2528f1dad" x="2" y="0" width="103" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1159,7 +1219,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="134">
+						<jr:column width="134" uuid="e3a14126-77a1-4559-944c-8630f3cb5739">
 							<jr:columnHeader style="table 3_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -1169,7 +1229,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="134" height="12"/>
+									<reportElement uuid="deec47de-ba6a-475a-a023-c84d242b3137" x="0" y="0" width="134" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1185,7 +1245,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="0" width="132" height="10"/>
+									<reportElement uuid="c32d6425-e841-4a9c-a8e9-330336a8d33c" x="2" y="0" width="132" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1197,20 +1257,20 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="24">
+		<band height="4">
 			<componentElement>
-				<reportElement key="table 4" x="1" y="3" width="531" height="18"/>
+				<reportElement uuid="d7df4709-8b5c-4fb1-b25b-a578f129d5c1" key="table 4" x="1" y="1" width="531" height="3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Medidasg">
+					<datasetRun subDataset="Medidasg" uuid="4503cb09-a774-4258-afa5-d8ccb2109fa6">
 						<datasetParameter name="idevu">
 							<datasetParameterExpression><![CDATA[$F{idevu}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:columnGroup width="531">
+					<jr:columnGroup width="531" uuid="6a25cf3f-2aca-4cc5-b447-a84f8326b718">
 						<jr:tableHeader height="12" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="531" height="12"/>
+								<reportElement uuid="fd73df8a-fbde-4214-83ce-39e81c518cfa" x="0" y="0" width="531" height="12"/>
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
 									<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -1224,7 +1284,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								<text><![CDATA[  MEDIDAS GENERALES]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:column width="299">
+						<jr:column width="299" uuid="0985e44c-9b5c-4d55-9a72-0ebf9628189b">
 							<jr:columnHeader style="table 4_CH" height="13" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -1234,7 +1294,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="299" height="12"/>
+									<reportElement uuid="e8a70502-a7dc-40bd-963d-7787b66117db" x="0" y="0" width="299" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1250,7 +1310,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="1" width="297" height="10"/>
+									<reportElement uuid="fc1fea17-ebfd-4e45-90fe-94b79c137724" x="2" y="1" width="297" height="10"/>
 									<textElement>
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1258,7 +1318,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="232">
+						<jr:column width="232" uuid="34c5987e-47a1-4235-bd87-5af6c748e536">
 							<jr:columnHeader style="table 4_CH" height="13" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -1268,7 +1328,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="232" height="12"/>
+									<reportElement uuid="672a617c-739f-4545-819d-7c6cf5e5d32d" x="0" y="0" width="232" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -1283,7 +1343,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField isStretchWithOverflow="true">
-									<reportElement x="2" y="0" width="230" height="10"/>
+									<reportElement uuid="c6c2bcdc-d112-471e-b88c-7c202209d74c" x="2" y="0" width="230" height="10"/>
 									<textElement>
 										<font fontName="Calibri" size="6"/>
 									</textElement>
@@ -1295,30 +1355,30 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="75">
+		<band height="58">
 			<image>
-				<reportElement x="386" y="1" width="120" height="35"/>
+				<reportElement uuid="7b2e495b-fd6e-42e5-9034-c078756a53d4" x="368" y="0" width="120" height="35"/>
 				<imageExpression><![CDATA[$F{Firma}]]></imageExpression>
 			</image>
 			<line>
-				<reportElement x="360" y="37" width="167" height="1"/>
+				<reportElement uuid="1f8026ec-a4bf-40ec-8749-b3fdb9a47ace" x="342" y="36" width="182" height="1"/>
 			</line>
 			<textField>
-				<reportElement x="361" y="47" width="169" height="14"/>
+				<reportElement uuid="a0ad08ce-bd1a-4448-9789-1402b5c14501" x="343" y="37" width="169" height="10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="7" isBold="true" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NombreMedico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="361" y="38" width="55" height="10"/>
+				<reportElement uuid="e8ea838c-2734-4f52-b592-500c026c9907" x="344" y="47" width="55" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<text><![CDATA[Registro Medico N°:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="416" y="38" width="113" height="10"/>
+				<reportElement uuid="8017bae3-00cb-48c3-9f04-ccd8f44ffc6f" x="399" y="47" width="113" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>

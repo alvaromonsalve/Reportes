@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mezclas" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Mezclas">
+		<parameter name="idmezcla" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+    `sum_suministro`.`suministro` AS `Suministro`
+    , `sum_suministro`.`concentracion` AS `Concentracion`
+    , `hcu_evo_mezclas_medicamentos_desc`.`dosis_n` AS `Dosis`
+    , `hcu_evo_mezclas_medicamentos_desc`.`dosis_u`
+    , `hcu_evo_mezclas_medicamentos_desc`.`sol_diluir`
+    , `sum_atc_presentacionfarmaceutica`.`Administracion` AS `AdministracionMedicamento`
+    , `hcu_evo_mezclas_medicamentos`.`id`
+FROM
+    `database`.`hcu_evo_mezclas_medicamentos`
+    INNER JOIN `database`.`hcu_evolucion`
+        ON (`hcu_evo_mezclas_medicamentos`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
+    INNER JOIN `database`.`hcu_evo_mezclas_medicamentos_desc`
+        ON (`hcu_evo_mezclas_medicamentos_desc`.`id_hcu_evo_mezclas_medicamentos` = `hcu_evo_mezclas_medicamentos`.`id`)
+    INNER JOIN `database`.`sum_suministro`
+        ON (`hcu_evo_mezclas_medicamentos_desc`.`id_suministro` = `sum_suministro`.`id`)
+    INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
+        ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
+WHERE (`hcu_evo_mezclas_medicamentos`.`id` =$P{idmezcla}) AND (`hcu_evo_mezclas_medicamentos`.`estado`='1')
+ORDER BY `hcu_evo_mezclas_medicamentos_desc`.`sol_diluir` DESC;]]>
+		</queryString>
+		<field name="Suministro" class="java.lang.String"/>
+		<field name="Concentracion" class="java.lang.String"/>
+		<field name="Dosis" class="java.lang.Float"/>
+		<field name="dosis_u" class="java.lang.String"/>
+		<field name="sol_diluir" class="java.lang.Boolean"/>
+		<field name="AdministracionMedicamento" class="java.lang.String"/>
+		<field name="id" class="java.lang.Long"/>
+		<variable name="Solucion" class="java.lang.String">
+			<variableExpression><![CDATA[($F{sol_diluir}==true ? "SOLUCION PARA DILUIR/MEDICAMENTO PRAL." : "" )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="idevu" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    `hcu_evo_mezclas_medicamentos`.`via`
+    , `hcu_evo_mezclas_medicamentos`.`administracion`
+    , `hcu_evo_mezclas_medicamentos`.`id`
+FROM
+    `database`.`hcu_evo_mezclas_medicamentos`
+    INNER JOIN `database`.`hcu_evolucion`
+        ON (`hcu_evo_mezclas_medicamentos`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
+WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`estado`='1');]]>
+	</queryString>
+	<field name="via" class="java.lang.String"/>
+	<field name="administracion" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="107" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Via de Administración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="9" width="107" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Administración Mezcla:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="3" width="464" height="8"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{via}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="11" width="464" height="8"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table" x="0" y="20" width="571" height="26"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Mezclas">
+						<datasetParameter name="idmezcla">
+							<datasetParameterExpression><![CDATA[$F{id}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="127">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement x="2" y="0" width="124" height="11"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Suministro]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="2" y="0" width="125" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Suministro}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="77">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement x="2" y="0" width="75" height="11"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Concentración]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="2" y="0" width="75" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Concentracion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="26">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement x="2" y="0" width="24" height="11"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Dosis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="2" y="0" width="24" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Dosis}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="2" y="0" width="94" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="94">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="2" y="0" width="91" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Solucion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110">
+						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<staticText>
+								<reportElement x="2" y="0" width="108" height="11"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Calibri" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Administración Medicamento]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25" lineColor="#666666"/>
+								<topPen lineWidth="0.25" lineColor="#666666"/>
+								<leftPen lineWidth="0.25" lineColor="#666666"/>
+								<bottomPen lineWidth="0.25" lineColor="#666666"/>
+								<rightPen lineWidth="0.25" lineColor="#666666"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="4" y="0" width="105" height="11"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Calibri" size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{AdministracionMedicamento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

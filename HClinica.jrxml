@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="4993598c-7288-4c29-a926-3d1866a02fa1">
 	<property name="ireport.zoom" value="1.9487171000000096"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="528"/>
+	<property name="ireport.y" value="1516"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -331,58 +331,6 @@ WHERE
 		<field name="observacion" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-	</subDataset>
-	<subDataset name="medicMezclaHCU" uuid="87661896-7b99-483f-9c67-f0d76a8bae86">
-		<queryString language="SQL">
-			<![CDATA[SELECT
-`sum_suministro`.`suministro`
-    , `sum_suministro`.`concentracion`
-    , `sum_atc_presentacionfarmaceutica`.`Administracion`
-    , `hcu_mezclas_medicamentos_desc`.`dosis_n`
-    , `hcu_mezclas_medicamentos_desc`.`dosis_u`
-    , `hcu_mezclas_medicamentos`.`administracion`
-    , `hcu_mezclas_medicamentos`.`via`
-    , `hcu_mezclas_medicamentos_desc`.`sol_diluir`
-
-
-FROM
-    `database`.`hcu_mezclas_medicamentos_desc`
-    INNER JOIN `database`.`hcu_mezclas_medicamentos`
-        ON (`hcu_mezclas_medicamentos_desc`.`id_hcu_mezclas_medicamentos` = `hcu_mezclas_medicamentos`.`id`)
-    INNER JOIN `database`.`sum_suministro`
-        ON (`hcu_mezclas_medicamentos_desc`.`id_suministro` = `sum_suministro`.`id`)
-    INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
-        ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
-        WHERE `hcu_mezclas_medicamentos`.`estado`='0'
-        ORDER BY `hcu_mezclas_medicamentos_desc`.`sol_diluir` DESC;]]>
-		</queryString>
-		<field name="suministro" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="concentracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="Administracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="dosis_n" class="java.lang.Float">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="dosis_u" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="administracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="via" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="sol_diluir" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[0=es solucion diluyente;1=no es solucion diluyente]]></fieldDescription>
-		</field>
-		<group name="administracion">
-			<groupExpression><![CDATA[$F{administracion}]]></groupExpression>
-		</group>
 	</subDataset>
 	<parameter name="idHC" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -1651,7 +1599,7 @@ WHERE
 ($F{static_cie105_id}.equals("1")? "" : "DIAGNOSTICO RELACIONADO 4:     ["+$F{codigo5}+"] - "+$F{descripcion5})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="61">
+		<band height="41">
 			<line>
 				<reportElement uuid="9f752ef7-edaf-46fc-ba6b-fdf01ec1930b" x="0" y="5" width="528" height="1"/>
 				<graphicElement>
@@ -1664,7 +1612,7 @@ WHERE
 				<text><![CDATA[PLAN DE MANEJO]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement uuid="2defe24b-304f-4eee-b4e3-af051fc7e02d" key="table 2" style="table 2" x="0" y="37" width="528" height="21"/>
+				<reportElement uuid="2defe24b-304f-4eee-b4e3-af051fc7e02d" key="table 2" style="table 2" x="0" y="37" width="528" height="2"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="medicHC" uuid="21f21f3f-ae47-4e01-9bf1-042879f34db2">
 						<datasetParameter name="id_HistoriaC">
@@ -1754,7 +1702,7 @@ WHERE
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="63" >
+					<jr:column width="63" uuid="3d4379e7-fa0d-45af-adb5-07ffd769b072">
 						<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
 							<staticText>
 								<reportElement uuid="f0938f86-f1ee-4e05-97a2-737c68ab579b" style="title2" mode="Transparent" x="0" y="0" width="63" height="12"/>
@@ -1784,7 +1732,7 @@ WHERE
 						</jr:columnHeader>
 						<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement style="texto3" x="0" y="0" width="122" height="10"/>
+								<reportElement uuid="ff628026-a5d2-4ad8-b417-b58b14df386f" style="texto3" x="0" y="0" width="122" height="10"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
 							</textField>
@@ -1808,14 +1756,14 @@ WHERE
 				<textFieldExpression><![CDATA[$P{DestinoHC}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="36">
+		<band height="15">
 			<staticText>
 				<reportElement uuid="063bed03-ec5e-4434-85cd-cc13c652cf00" style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[MEDICAMENTOS EN MEZCLAS]]></text>
 			</staticText>
 			<subreport>
-				<reportElement uuid="2c31d3a1-c528-4547-8c17-39a545201245" x="0" y="12" width="528" height="20"/>
+				<reportElement uuid="2c31d3a1-c528-4547-8c17-39a545201245" x="0" y="12" width="528" height="2"/>
 				<subreportParameter name="idHCU">
 					<subreportParameterExpression><![CDATA[$P{idHC}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -1823,14 +1771,14 @@ WHERE
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCUadMedicMezcla.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="35">
+		<band height="13">
 			<staticText>
 				<reportElement uuid="b45664ab-c55d-4ca8-8756-193430734e12" style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[PROCEDIMIENTOS]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement uuid="3108eec0-3873-4e6f-999d-6bb6df18b40d" key="table 3" style="table 3" x="0" y="11" width="528" height="20"/>
+				<reportElement uuid="3108eec0-3873-4e6f-999d-6bb6df18b40d" key="table 3" style="table 3" x="0" y="11" width="528" height="2"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="procedHc" uuid="6cfc0c32-3a6a-413f-8ee6-43ae37d4e3dc">
 						<datasetParameter name="idHistoriaC">
@@ -1889,14 +1837,14 @@ WHERE
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="37">
+		<band height="16">
 			<staticText>
 				<reportElement uuid="0626bcff-dbcb-47d3-8139-1573491b918a" style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[VALORACION ESPECIALISTA]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement uuid="167a0ff3-d09a-4245-a415-b32ac19ad3e5" key="table 5" style="table 5" x="0" y="12" width="528" height="22"/>
+				<reportElement uuid="167a0ff3-d09a-4245-a415-b32ac19ad3e5" key="table 5" style="table 5" x="0" y="12" width="528" height="2"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="valEspHc" uuid="0e368395-55a3-4141-bb5c-e25d2cb096f1">
 						<datasetParameter name="idHistoriaC">
@@ -1971,9 +1919,9 @@ WHERE
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="34">
+		<band height="16">
 			<componentElement>
-				<reportElement uuid="a8a61cfe-f867-4dd9-a96b-ae9efe25aa28" key="table 6" style="table 6" x="0" y="13" width="528" height="21"/>
+				<reportElement uuid="a8a61cfe-f867-4dd9-a96b-ae9efe25aa28" key="table 6" style="table 6" x="0" y="13" width="528" height="2"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="medidaHc" uuid="592f8bd7-0839-4841-84a0-bbc2614d625e">
 						<datasetParameter name="idHC">
