@@ -310,9 +310,9 @@ FROM
         ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades`
         ON /*(`info_admision`.`id_entidad_admision` = `info_entidades`.`id`) AND*/ (`info_paciente`.`contratante` = `info_entidades`.`id`)
-    INNER JOIN `database`.`info_camas`
+    LEFT JOIN `database`.`info_camas`
         ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
-    INNER JOIN `database`.`config_camas`
+    LEFT JOIN `database`.`config_camas`
         ON (`info_camas`.`id_config_camas` = `config_camas`.`id`)
     INNER JOIN `database`.`info_municipios`
         ON (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)
@@ -326,9 +326,9 @@ FROM
         ON (`static_cie10_3`.`id` = `hcu_evolucion`.`dx3`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_4`
         ON (`static_cie10_4`.`id` = `hcu_evolucion`.`dx4`)
-        WHERE (`hcu_evolucion`.`id`=$P{IDEVOLUCION} AND `hcu_evolucion`.`estado`<>3);]]>
+        WHERE (`hcu_evolucion`.`id`=$P{IDEVOLUCION} AND (`hcu_evolucion`.`estado`=1 OR `hcu_evolucion`.`estado`=2));]]>
 	</queryString>
-	<field name="id_p" class="java.lang.String"/>
+	<field name="id_p" class="java.lang.Long"/>
 	<field name="NUMCAMA" class="java.lang.Integer"/>
 	<field name="NOMBRE" class="java.lang.String"/>
 	<field name="DOCUMENTO" class="java.lang.String"/>
@@ -353,7 +353,7 @@ FROM
 	<field name="fr" class="java.math.BigDecimal"/>
 	<field name="tas" class="java.lang.Long"/>
 	<field name="tad" class="java.lang.Long"/>
-	<field name="conciencia" class="java.lang.Long"/>
+	<field name="conciencia" class="java.lang.Integer"/>
 	<field name="otrossignos" class="java.lang.String"/>
 	<field name="Coddiagp" class="java.lang.String"/>
 	<field name="descripcionp" class="java.lang.String"/>
