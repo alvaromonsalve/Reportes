@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receta" language="groovy" pageWidth="612" pageHeight="396" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="Idevolucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NameReport" class="java.lang.String"/>
+	<parameter name="Version" class="java.lang.String"/>
+	<parameter name="Codigo" class="java.lang.String"/>
+	<parameter name="Servicio" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    CONCAT(`info_paciente`.`tipo_doc`,' - ', `info_paciente`.`num_doc`) AS `identificacion`
+    , CONCAT(`info_paciente`.`nombre1`,' ', `info_paciente`.`nombre2`,' ', `info_paciente`.`apellido1`,' ', `info_paciente`.`apellido2`) AS `nombrepaciente`
+    , `info_entidades`.`nombre_entidad`
+    , `info_municipios`.`nombre` AS `municipio`
+    , `hcu_evo_egreso`.`incapacidad`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `fechainicioincapacidad`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `fechafinincapacidad`
+    , DATEDIFF(`hcu_evo_egreso`.`incapacidad_end`,`hcu_evo_egreso`.`incapacidad_init`) AS `diasincapacidad`
+    , `config_decripcion_login`.`nombres`
+    , `config_decripcion_login`.`apellidos`
+    , `config_decripcion_login`.`ruta_firma`
+    , `cm_profesionales`.`tarjeta_profesional`
+    , `info_paciente`.`hc`
+    , `calc_edad`(`info_paciente`.`fecha_nacimiento`) AS `edad`
+    , DATE_FORMAT(`hcu_evolucion`.`f_digita`, '%d/%m/%Y') AS `fecha`
+    , `info_paciente`.`tipo_afiliacion`
+FROM
+    `database`.`info_historiac`
+    INNER JOIN `database`.`info_admision`
+        ON (`info_historiac`.`id_infoadmision` = `info_admision`.`id`)
+    INNER JOIN `database`.`info_paciente`
+	ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
+    INNER JOIN `database`.`info_entidades`
+        ON (`info_paciente`.`contratante` = `info_entidades`.`id`)
+    INNER JOIN `database`.`info_municipios`
+        ON (`info_paciente`.`id_mun_res` = `info_municipios`.`id`)
+    INNER JOIN `database`.`hcu_evolucion`
+        ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
+    INNER JOIN `database`.`config_decripcion_login`
+        ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`hcu_evo_egreso`
+        ON (`hcu_evo_egreso`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
+    INNER JOIN `database`.`cm_profesionales`
+        ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
+WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
+    AND `hcu_evolucion`.`estado` =4);]]>
+	</queryString>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="nombrepaciente" class="java.lang.String"/>
+	<field name="nombre_entidad" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="incapacidad" class="java.lang.Boolean"/>
+	<field name="fechainicioincapacidad" class="java.lang.String"/>
+	<field name="fechafinincapacidad" class="java.lang.String"/>
+	<field name="diasincapacidad" class="java.lang.Long"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="ruta_firma" class="java.lang.String"/>
+	<field name="tarjeta_profesional" class="java.lang.String"/>
+	<field name="hc" class="java.lang.String"/>
+	<field name="edad" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="tipo_afiliacion" class="java.lang.String"/>
+	<variable name="Nombrem" class="java.lang.String">
+		<variableExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="85" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="530" height="85"/>
+				<subreportParameter name="codigo">
+					<subreportParameterExpression><![CDATA[$P{Codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="version">
+					<subreportParameterExpression><![CDATA[$P{Version}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="servicio">
+					<subreportParameterExpression><![CDATA[$P{Servicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NameReport">
+					<subreportParameterExpression><![CDATA[$P{NameReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotulo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="52" width="14" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="488" y="52" width="6" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="470" y="52" width="18" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="9" isStrikeThrough="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement x="2" y="7" width="528" height="48"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="12" y="2" width="159" height="10"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="12" y="16" width="40" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="364" y="16" width="161" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FECHA: "+$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="187" y="28" width="86" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° HISTORIA CLINICA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="258" y="16" width="24" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="273" y="28" width="89" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="40" width="161" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_entidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="16" width="76" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="431" y="28" width="94" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{tipo_afiliacion}.equals("0") ? "COTIZANTE" :
+    ($F{tipo_afiliacion}.equals("1") ? "BENEFICIARIO" :
+        ($F{tipo_afiliacion}.equals("2") ? "ADICIONAL" : "OTRO")))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="12" y="40" width="85" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATANTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="72" y="28" width="80" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="364" y="28" width="67" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE USUARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="12" y="28" width="60" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDENTIFICACION:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="52" y="16" width="204" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrepaciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="2" width="159" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCAPACIDAD]]></text>
+			</staticText>
+		</band>
+		<band height="31">
+			<staticText>
+				<reportElement x="12" y="4" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="3" width="100" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechainicioincapacidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="204" y="4" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="296" y="3" width="100" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechafinincapacidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="19" width="74" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIAS DE INCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="18" width="117" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diasincapacidad}+" DIAS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="75" splitType="Stretch">
+			<image>
+				<reportElement x="386" y="1" width="120" height="35"/>
+				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="361" y="38" width="55" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<text><![CDATA[Registro Medico N°:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="360" y="37" width="167" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="416" y="38" width="113" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="47" width="169" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Nombrem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
