@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="303"/>
+	<property name="ireport.y" value="326"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -253,6 +253,9 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     , `hcu_evolucion`.`respuesta_motora`
     , `hcu_evo_egreso`.`destino`
     , `hcu_evo_egreso`.`observaciones`
+    , `hcu_evo_egreso`.`incapacidad`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `incapacidadinicio`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `incapacidadfin`
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -326,6 +329,9 @@ FROM
 	<field name="respuesta_motora" class="java.lang.Integer"/>
 	<field name="destino" class="java.lang.Long"/>
 	<field name="observaciones" class="java.lang.String"/>
+	<field name="incapacidad" class="java.lang.Boolean"/>
+	<field name="incapacidadinicio" class="java.lang.String"/>
+	<field name="incapacidadfin" class="java.lang.String"/>
 	<variable name="TA" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
@@ -806,9 +812,9 @@ $F{Coddiagrel3}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{Coddiagrel4}+"] "+$F{descripcionrel4})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="35">
+		<band height="2">
 			<subreport>
-				<reportElement x="0" y="0" width="529" height="35" isRemoveLineWhenBlank="true"/>
+				<reportElement x="0" y="0" width="529" height="0" isRemoveLineWhenBlank="true"/>
 				<subreportParameter name="idevu">
 					<subreportParameterExpression><![CDATA[$P{IDEVOLUCION}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -816,9 +822,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "conducta.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="22">
+		<band height="2">
 			<subreport>
-				<reportElement x="0" y="0" width="530" height="22" isRemoveLineWhenBlank="true"/>
+				<reportElement x="0" y="0" width="530" height="0" isRemoveLineWhenBlank="true"/>
 				<subreportParameter name="idevu">
 					<subreportParameterExpression><![CDATA[$P{IDEVOLUCION}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -826,9 +832,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Mezclas.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="23">
+		<band height="2">
 			<componentElement>
-				<reportElement key="table 2" x="0" y="2" width="530" height="18"/>
+				<reportElement key="table 2" x="0" y="2" width="530" height="0" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="procedimientos">
 						<datasetParameter name="idevu">
@@ -959,9 +965,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="43">
+		<band height="65">
 			<line>
-				<reportElement x="0" y="23" width="530" height="1"/>
+				<reportElement x="0" y="39" width="530" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
@@ -984,24 +990,66 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
                 $F{destino}.intValue() == 4 ? "UCI":"UCE")))))]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="0" y="17" width="121" height="12"/>
+				<reportElement x="0" y="33" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="17" width="121" height="12"/>
+				<reportElement x="0" y="33" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RECOMENDACIONES]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="32" width="529" height="10"/>
+				<reportElement x="0" y="48" width="529" height="10"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="16" width="49" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="16" width="14" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidad} == true ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="16" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="171" y="16" width="60" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="16" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="323" y="16" width="96" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
