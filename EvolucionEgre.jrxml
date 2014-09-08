@@ -520,12 +520,12 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 			</staticText>
 		</band>
 		<band height="67">
-			<rectangle radius="10">
-				<reportElement x="0" y="7" width="531" height="20"/>
+			<line>
+				<reportElement x="0" y="7" width="529" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
-			</rectangle>
+			</line>
 			<line>
 				<reportElement x="0" y="49" width="530" height="1"/>
 				<graphicElement>
