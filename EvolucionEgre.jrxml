@@ -241,6 +241,9 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     , `hcu_evolucion`.`respuesta_motora`
     , `hcu_evo_egreso`.`destino`
     , `hcu_evo_egreso`.`observaciones`
+    , `hcu_evo_egreso`.`incapacidad`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `incapacidadinicio`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `incapacidadfin`
     FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -296,6 +299,9 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 	<field name="respuesta_motora" class="java.lang.Integer"/>
 	<field name="destino" class="java.lang.Long"/>
 	<field name="observaciones" class="java.lang.String"/>
+	<field name="incapacidad" class="java.lang.Boolean"/>
+	<field name="incapacidadinicio" class="java.lang.String"/>
+	<field name="incapacidadfin" class="java.lang.String"/>
 	<variable name="TA" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
@@ -981,9 +987,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="42">
+		<band height="54">
 			<line>
-				<reportElement x="0" y="24" width="530" height="1"/>
+				<reportElement x="0" y="34" width="530" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
@@ -1006,24 +1012,66 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
                 $F{destino}.intValue() == 4 ? "UCI":"UCE")))))]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="0" y="18" width="121" height="12"/>
+				<reportElement x="0" y="28" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="18" width="121" height="12"/>
+				<reportElement x="0" y="28" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RECOMENDACIONES]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="31" width="529" height="10"/>
+				<reportElement x="0" y="41" width="529" height="10"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="16" width="14" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidad} == true ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="78" y="16" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="16" width="49" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCAPACIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="16" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="16" width="60" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="16" width="96" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="75">
