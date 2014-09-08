@@ -251,10 +251,8 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
         ON (`config_decripcion_login`.`id` = `hcu_evolucion`.`usuario`)
     INNER JOIN `database`.`cm_profesionales`
         ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
-    INNER JOIN `database`.`cm_esp_pprofesional`
-        ON (`cm_esp_pprofesional`.`id_profesional` = `cm_profesionales`.`id`)
     INNER JOIN `database`.`static_especialidades`
-        ON (`cm_esp_pprofesional`.`id_especialidad` = `static_especialidades`.`id`)
+        ON (`hcu_evolucion`.`id_static_especialidades` = `static_especialidades`.`id`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_1`
         ON (`static_cie10_1`.`id` = `hcu_evolucion`.`dx1`)
     INNER JOIN `database`.`static_cie10` AS `static_cie10_2`
@@ -265,7 +263,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
         ON (`static_cie10_4`.`id` = `hcu_evolucion`.`dx4`)
     INNER JOIN `database`.`hcu_evo_egreso`
         ON (`hcu_evo_egreso`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
-WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=3);]]>
+WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 	</queryString>
 	<field name="SUBJETIVO" class="java.lang.String"/>
 	<field name="ANALISIS" class="java.lang.String"/>
@@ -573,7 +571,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<text><![CDATA[DX EGRESO]]></text>
 			</staticText>
 		</band>
-		<band height="39">
+		<band height="21">
 			<line>
 				<reportElement x="0" y="9" width="530" height="1"/>
 				<graphicElement>
@@ -587,7 +585,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</graphicElement>
 			</rectangle>
 			<componentElement>
-				<reportElement key="table" x="1" y="19" width="529" height="18"/>
+				<reportElement key="table" x="1" y="19" width="529" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Medicamentosevu">
 						<datasetParameter name="Idevu">
@@ -847,9 +845,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<text><![CDATA[CONDUCTA]]></text>
 			</staticText>
 		</band>
-		<band height="35">
+		<band height="2">
 			<subreport>
-				<reportElement x="-1" y="11" width="531" height="22"/>
+				<reportElement x="-1" y="0" width="531" height="2" isRemoveLineWhenBlank="true"/>
 				<subreportParameter name="idevu">
 					<subreportParameterExpression><![CDATA[$F{idevu}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -857,9 +855,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Mezclasepi.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="22">
+		<band height="4">
 			<componentElement>
-				<reportElement key="table 2" x="0" y="2" width="530" height="18"/>
+				<reportElement key="table 2" x="0" y="2" width="530" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="procedimientos">
 						<datasetParameter name="idevu">

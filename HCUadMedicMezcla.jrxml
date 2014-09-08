@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HCAcopañante" pageWidth="527" pageHeight="842" columnWidth="527" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="efd4a32d-0835-44cc-b01c-a27856a75d13">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HCAcopañante" pageWidth="527" pageHeight="842" columnWidth="527" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -88,7 +88,7 @@
 			<pen lineWidth="0.5" lineColor="#999999"/>
 		</box>
 	</style>
-	<subDataset name="HCUMezcla" uuid="1f21513e-c72a-466f-b40c-3abb729ed2e4">
+	<subDataset name="HCUMezcla">
 		<parameter name="hcuId_Mezcla" class="java.lang.String"/>
 		<parameter name="nombre" class="java.lang.String"/>
 		<queryString>
@@ -157,9 +157,9 @@ WHERE
 	<detail>
 		<band height="31">
 			<componentElement>
-				<reportElement uuid="9c6e26e8-0663-41fc-9668-0adfdb890a20" key="table 2" style="table 2" x="0" y="5" width="528" height="21"/>
+				<reportElement key="table 2" style="table 2" x="0" y="5" width="528" height="21"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="HCUMezcla" uuid="17b412b4-ebeb-4b21-9c59-649ea0e2029a">
+					<datasetRun subDataset="HCUMezcla">
 						<datasetParameter name="hcuId_Mezcla">
 							<datasetParameterExpression><![CDATA[$F{id}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -168,95 +168,95 @@ WHERE
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:columnGroup width="528" uuid="0abec799-9435-4e57-b87d-a6e49bd8299d">
+					<jr:columnGroup width="528">
 						<jr:tableHeader height="12" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="8eb2ead2-ffce-443c-aa3b-48e45f7b90bb" x="2" y="0" width="526" height="12"/>
+								<reportElement x="2" y="0" width="526" height="12"/>
 								<textElement>
 									<font size="6" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:tableHeader>
-						<jr:column width="138" uuid="adc130be-c557-41f6-ab3d-b47b42e3f14a">
+						<jr:column width="138">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1">
 								<staticText>
-									<reportElement uuid="6f431d69-7fb3-47fb-b425-c6df7d4930f3" style="title_desc" x="0" y="0" width="138" height="11"/>
+									<reportElement style="title_desc" x="0" y="0" width="138" height="11"/>
 									<textElement textAlignment="Center"/>
 									<text><![CDATA[Suministro]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField>
-									<reportElement uuid="08039672-9ef7-4804-aef6-278f06cabb9a" style="text_desc" x="2" y="0" width="136" height="11"/>
+									<reportElement style="text_desc" x="2" y="0" width="136" height="11"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{suministro}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="75" uuid="0ab18574-9af0-42ba-b002-3ea8293fc80d">
+						<jr:column width="75">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1">
 								<staticText>
-									<reportElement uuid="eaab582e-f140-4b5d-9432-445e50afc277" style="title_desc" x="0" y="0" width="75" height="11"/>
+									<reportElement style="title_desc" x="0" y="0" width="75" height="11"/>
 									<textElement textAlignment="Center"/>
 									<text><![CDATA[Concentracion]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField>
-									<reportElement uuid="61653598-e97c-4924-b348-ad7720a2e6be" style="text_desc" x="2" y="0" width="73" height="11"/>
+									<reportElement style="text_desc" x="2" y="0" width="73" height="11"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{concentracion}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="24" uuid="9d79af4f-7e84-433b-96a9-a3a5f7edac1d">
+						<jr:column width="24">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1">
 								<staticText>
-									<reportElement uuid="7a58d65f-0fae-43e0-bd6e-ef5432bf019f" style="title_desc" x="0" y="0" width="24" height="11"/>
+									<reportElement style="title_desc" x="0" y="0" width="24" height="11"/>
 									<textElement textAlignment="Center"/>
 									<text><![CDATA[Dosis]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField>
-									<reportElement uuid="8a1dd8cd-4019-4c2b-98f4-4ae343bcd351" style="text_desc" x="2" y="0" width="22" height="11"/>
+									<reportElement style="text_desc" x="2" y="0" width="22" height="11"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{dosis_n}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="94" uuid="0f87d6b0-030d-42c0-99fd-710aef11b929">
+						<jr:column width="94">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1"/>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField>
-									<reportElement uuid="f272ed55-ca1b-49eb-a6dd-c4b58c62fa1d" style="text_desc" x="2" y="0" width="92" height="11"/>
+									<reportElement style="text_desc" x="2" y="0" width="92" height="11"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="91" uuid="d74eb8fd-6c56-4e9d-b0bf-8975884685fc">
+						<jr:column width="91">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1"/>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField isStretchWithOverflow="true">
-									<reportElement uuid="ed58c8c4-edc3-4ead-bb43-711080031a8e" style="text_desc" x="2" y="0" width="89" height="12"/>
+									<reportElement style="text_desc" x="2" y="0" width="89" height="12"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$V{solucion}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="106" uuid="a6095bd8-2e98-44bf-b9ef-68111c81254c">
+						<jr:column width="106">
 							<jr:columnHeader style="table 2_CH" height="11" rowSpan="1">
 								<staticText>
-									<reportElement uuid="2c058706-14e8-4f2f-9d92-c58da2a721cb" style="title_desc" x="0" y="0" width="105" height="11"/>
+									<reportElement style="title_desc" x="0" y="0" width="105" height="11"/>
 									<textElement textAlignment="Center"/>
 									<text><![CDATA[Administración Medicamento]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="table 2_TD" height="12" rowSpan="1">
 								<textField isStretchWithOverflow="true">
-									<reportElement uuid="f09bb8cf-b012-4da5-a44f-555ee43e0476" style="text_desc" x="2" y="0" width="103" height="11"/>
+									<reportElement style="text_desc" x="2" y="0" width="103" height="11"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{Administracion}]]></textFieldExpression>
 								</textField>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="982"/>
+	<property name="ireport.x" value="114"/>
+	<property name="ireport.y" value="1040"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -344,7 +344,7 @@ WHERE
 	<parameter name="codigo" class="java.lang.String"/>
 	<parameter name="DestinoHC" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[        SELECT
+		<![CDATA[SELECT
     (CONCAT(`info_paciente`.`nombre1`,' ',`info_paciente`.`nombre2`,' ',`info_paciente`.`apellido1`,' ',`info_paciente`.`apellido2`)) AS NOMBRE
     , `info_paciente`.`estado_civil` AS `ESTADOCIVIL`
     , `info_paciente`.`genero` AS `SEXO`
@@ -1790,38 +1790,6 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<text><![CDATA[DESTINO:]]></text>
 			</staticText>
 		</band>
-		<band height="16">
-			<staticText>
-				<reportElement style="title_desc" x="7" y="4" width="53" height="10"/>
-				<textElement/>
-				<text><![CDATA[INCAPACIDAD:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="60" y="4" width="12" height="10"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{incapacidad} == true ? "x" : ""]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement style="title_desc" x="84" y="4" width="90" height="10"/>
-				<textElement/>
-				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="174" y="4" width="67" height="10"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{fechainiincapacidad}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement style="title_desc" x="244" y="4" width="90" height="10"/>
-				<textElement/>
-				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="334" y="4" width="100" height="10"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{Fechafinincapacidad}]]></textFieldExpression>
-			</textField>
-		</band>
 		<band height="2">
 			<subreport>
 				<reportElement x="1" y="0" width="528" height="2"/>
@@ -2095,6 +2063,17 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "EvolucionE.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="2">
+			<subreport>
+				<reportElement x="0" y="0" width="529" height="2"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<subreportParameter name="idhc">
+					<subreportParameterExpression><![CDATA[$P{idHC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "EvolucionEgre.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
