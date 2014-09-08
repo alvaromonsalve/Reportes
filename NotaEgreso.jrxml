@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="326"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -270,9 +270,9 @@ FROM
         ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades`
         ON /*(`info_admision`.`id_entidad_admision` = `info_entidades`.`id`) AND*/ (`info_paciente`.`contratante` = `info_entidades`.`id`)
-    LEFT JOIN `database`.`info_camas`
+    INNER JOIN `database`.`info_camas`
         ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
-    LEFT JOIN `database`.`config_camas`
+    INNER JOIN `database`.`config_camas`
         ON (`info_camas`.`id_config_camas` = `config_camas`.`id`)
     INNER JOIN `database`.`info_municipios`
         ON (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)

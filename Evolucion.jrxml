@@ -310,9 +310,9 @@ FROM
         ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades`
         ON /*(`info_admision`.`id_entidad_admision` = `info_entidades`.`id`) AND*/ (`info_paciente`.`contratante` = `info_entidades`.`id`)
-    LEFT JOIN `database`.`info_camas`
+    INNER JOIN `database`.`info_camas`
         ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
-    LEFT JOIN `database`.`config_camas`
+    INNER JOIN `database`.`config_camas`
         ON (`info_camas`.`id_config_camas` = `config_camas`.`id`)
     INNER JOIN `database`.`info_municipios`
         ON (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)
