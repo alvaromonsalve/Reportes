@@ -62,7 +62,7 @@
     , `hcu_evo_egreso`.`incapacidad`
     , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `fechainicioincapacidad`
     , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `fechafinincapacidad`
-    , DATEDIFF(`hcu_evo_egreso`.`incapacidad_end`,`hcu_evo_egreso`.`incapacidad_init`) AS `diasincapacidad`
+    , DATEDIFF(`hcu_evo_egreso`.`incapacidad_end`,`hcu_evo_egreso`.`incapacidad_init`)+1 AS `diasincapacidad`
     , `config_decripcion_login`.`nombres`
     , `config_decripcion_login`.`apellidos`
     , `config_decripcion_login`.`ruta_firma`
@@ -84,7 +84,7 @@ FROM
     INNER JOIN `database`.`hcu_evolucion`
         ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
     INNER JOIN `database`.`config_decripcion_login`
-        ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+        ON (`hcu_evolucion`.`usuario` = `config_decripcion_login`.`id`)
     INNER JOIN `database`.`hcu_evo_egreso`
         ON (`hcu_evo_egreso`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
     INNER JOIN `database`.`cm_profesionales`
