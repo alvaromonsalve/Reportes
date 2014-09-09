@@ -1068,7 +1068,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</textElement>
 				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="322" y="16" width="96" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
