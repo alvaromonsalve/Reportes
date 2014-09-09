@@ -23,6 +23,86 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="Mezclas">
 		<parameter name="idmezcla" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -111,7 +191,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 				<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement key="table" x="0" y="0" width="571" height="26"/>
+				<reportElement key="table" x="0" y="19" width="571" height="26"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Mezclas">
 						<datasetParameter name="idmezcla">
@@ -120,7 +200,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
 					<jr:column width="127">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -136,7 +216,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<text><![CDATA[Suministro]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -154,7 +234,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="77">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -170,7 +250,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<text><![CDATA[Concentración]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -188,7 +268,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="26">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -204,7 +284,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<text><![CDATA[Dosis]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -222,7 +302,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="96">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -231,7 +311,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<rightPen lineWidth="0.25" lineColor="#666666"/>
 							</box>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -249,7 +329,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="94">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
 								<leftPen lineWidth="0.25" lineColor="#666666"/>
@@ -257,7 +337,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<rightPen lineWidth="0.25" lineColor="#666666"/>
 							</box>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -275,7 +355,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="110">
-						<jr:columnHeader style="table_CH" height="11" rowSpan="1">
+						<jr:columnHeader style="table 1_CH" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
@@ -291,7 +371,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu})AND (`hcu_evo_mezclas_medicamentos`.`esta
 								<text><![CDATA[Administración Medicamento]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell height="11" rowSpan="1">
+						<jr:detailCell style="table 1_TD" height="11" rowSpan="1">
 							<box>
 								<pen lineWidth="0.25" lineColor="#666666"/>
 								<topPen lineWidth="0.25" lineColor="#666666"/>
