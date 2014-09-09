@@ -105,13 +105,13 @@ WHERE (`hcu_evolucion`.`id` =$P{ideegre} AND hcu_evolucion.`estado`=4);]]>
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac` ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
-    INNER JOIN `database`.`config_decripcion_login` ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`config_decripcion_login` ON (`hcu_evolucion`.`usuario` = `config_decripcion_login`.`id`)
     INNER JOIN `database`.`info_admision` ON (`info_historiac`.`id_infoadmision` = `info_admision`.`id`)
     INNER JOIN `database`.`cm_profesionales` ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
     INNER JOIN `database`.`info_paciente` ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades` ON (`info_paciente`.`contratante` = `info_entidades`.`id`)
     INNER JOIN `database`.`info_municipios` ON (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)
-WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4);]]>
+WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4) GROUP BY `hcu_evolucion`.`id` ASC LIMIT 1;]]>
 	</queryString>
 	<field name="identificacion" class="java.lang.String"/>
 	<field name="hc" class="java.lang.String"/>

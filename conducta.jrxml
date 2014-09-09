@@ -160,7 +160,7 @@ FROM
         ON (`sum_suministro`.`id_pricipioactivo` = `sum_atc_principioactivo`.`id`)
     INNER JOIN `database`.`sum_atc_presentacionfarmaceutica`
         ON (`sum_suministro`.`id_presentacionfarmaceutica` = `sum_atc_presentacionfarmaceutica`.`id`)
-WHERE (`hcu_evolucion`.`id` = $P{idevu});]]>
+WHERE (`hcu_evolucion`.`id` =$P{idevu}) GROUP BY `hcu_evolucion`.`id` ASC LIMIT 1;]]>
 	</queryString>
 	<field name="PrincipioActivo" class="java.lang.String"/>
 	<field name="Concentracion" class="java.lang.String"/>
