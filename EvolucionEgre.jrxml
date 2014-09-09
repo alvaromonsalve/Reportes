@@ -1025,13 +1025,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="51">
-			<line>
-				<reportElement x="0" y="34" width="530" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</line>
+		<band height="14">
 			<rectangle>
 				<reportElement x="0" y="2" width="121" height="12"/>
 				<graphicElement>
@@ -1049,68 +1043,44 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
             $F{destino}.intValue()== 3 ? "HOSPITALIZACION":(
                 $F{destino}.intValue() == 4 ? "UCI":"UCE")))))]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="3">
+			<subreport>
+				<reportElement x="0" y="1" width="530" height="2"/>
+				<subreportParameter name="idhc">
+					<subreportParameterExpression><![CDATA[$P{idhc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "incapaegreso.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="24">
+			<line>
+				<reportElement x="0" y="7" width="530" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</line>
 			<rectangle>
-				<reportElement x="0" y="28" width="121" height="12"/>
+				<reportElement x="0" y="1" width="121" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="0" y="28" width="121" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[RECOMENDACIONES]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="41" width="529" height="10"/>
+				<reportElement x="0" y="14" width="529" height="10"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="50" y="16" width="14" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{incapacidad} == true ? "X" : ""]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="78" y="16" width="92" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="7" isBold="true"/>
+				<reportElement x="0" y="1" width="121" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
+				<text><![CDATA[RECOMENDACIONES]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="1" y="16" width="49" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[INCAPACIDAD:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="230" y="16" width="92" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="170" y="16" width="60" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="322" y="16" width="96" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
-			</textField>
 		</band>
 		<band height="62">
 			<staticText>

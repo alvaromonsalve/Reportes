@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incapaegreso" language="groovy" pageWidth="427" pageHeight="15" orientation="Landscape" columnWidth="427" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idhc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     `hcu_evolucion`.`subjetivo` AS `SUBJETIVO`
+    , `hcu_evolucion`.`analisis` AS `ANALISIS`
+    , `hcu_evolucion`.`objetivo` AS `OBJETIVO`
+    ,(CONCAT( `config_decripcion_login`.`nombres`, ' ', `config_decripcion_login`.`apellidos`)) AS `NombreMedico`
+    , `cm_profesionales`.`tarjeta_profesional` AS `RegistroMEdico`
+    , `config_decripcion_login`.`ruta_firma` AS `Firma`
+    , `hcu_evolucion`.`temperatura`
+    , `hcu_evolucion`.`fc`
+    , `hcu_evolucion`.`sao2`
+    , `hcu_evolucion`.`fr`
+    , `hcu_evolucion`.`tas`
+    , `hcu_evolucion`.`tad`
+    , `static_cie10`.`codigo` AS `Coddiagp`
+    , `static_cie10`.`descripcion` AS `descripcionp`
+    , `static_cie10_1`.`codigo` AS `Coddiagrel1`
+    , `static_cie10_1`.`descripcion` AS `descripcionrel1`
+    , `static_cie10_2`.`codigo` AS `Coddiagrel2`
+    , `static_cie10_2`.`descripcion` AS `descripcionrel2`
+    , `static_cie10_3`.`codigo` AS `Coddiagrel3`
+    , `static_cie10_3`.`descripcion` AS `descripcionrel3`
+    , `static_cie10_4`.`codigo` AS `Coddiagrel4`
+    , `static_cie10_4`.`descripcion` AS `descripcionrel4`
+    , `static_especialidades`.`especialidad`
+    , `hcu_evolucion`.`tipo`
+    , `hcu_evolucion`.`id` AS `idevu`
+    , DATE_FORMAT(`hcu_evolucion`.`fecha_evo`,'%d/%m/%Y %h:%i %p') AS `fecha_evo`
+    ,`hcu_evolucion`.`apertura_ocular`
+    , `hcu_evolucion`.`respuesta_verbal`
+    , `hcu_evolucion`.`respuesta_motora`
+    , `hcu_evo_egreso`.`destino`
+    , `hcu_evo_egreso`.`observaciones`
+    , `hcu_evo_egreso`.`incapacidad`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `incapacidadinicio`
+    , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `incapacidadfin`
+    FROM
+    `database`.`hcu_evolucion`
+    INNER JOIN `database`.`info_historiac`
+        ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
+        INNER JOIN `database`.`static_cie10`
+        ON (`hcu_evolucion`.`dx` = `static_cie10`.`id`)
+    INNER JOIN `database`.`config_decripcion_login`
+        ON (`config_decripcion_login`.`id` = `hcu_evolucion`.`usuario`)
+    INNER JOIN `database`.`cm_profesionales`
+        ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
+    INNER JOIN `database`.`static_especialidades`
+        ON (`hcu_evolucion`.`id_static_especialidades` = `static_especialidades`.`id`)
+    INNER JOIN `database`.`static_cie10` AS `static_cie10_1`
+        ON (`static_cie10_1`.`id` = `hcu_evolucion`.`dx1`)
+    INNER JOIN `database`.`static_cie10` AS `static_cie10_2`
+        ON (`static_cie10_2`.`id` = `hcu_evolucion`.`dx2`)
+    INNER JOIN `database`.`static_cie10` AS `static_cie10_3`
+        ON (`static_cie10_3`.`id` = `hcu_evolucion`.`dx3`)
+    INNER JOIN `database`.`static_cie10` AS `static_cie10_4`
+        ON (`static_cie10_4`.`id` = `hcu_evolucion`.`dx4`)
+    INNER JOIN `database`.`hcu_evo_egreso`
+        ON (`hcu_evo_egreso`.`id_hcu_evolucion` = `hcu_evolucion`.`id`)
+WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
+	</queryString>
+	<field name="SUBJETIVO" class="java.lang.String"/>
+	<field name="ANALISIS" class="java.lang.String"/>
+	<field name="OBJETIVO" class="java.lang.String"/>
+	<field name="NombreMedico" class="java.lang.String"/>
+	<field name="RegistroMEdico" class="java.lang.String"/>
+	<field name="Firma" class="java.lang.String"/>
+	<field name="temperatura" class="java.math.BigDecimal"/>
+	<field name="fc" class="java.lang.Long"/>
+	<field name="sao2" class="java.lang.Long"/>
+	<field name="fr" class="java.math.BigDecimal"/>
+	<field name="tas" class="java.lang.Long"/>
+	<field name="tad" class="java.lang.Long"/>
+	<field name="Coddiagp" class="java.lang.String"/>
+	<field name="descripcionp" class="java.lang.String"/>
+	<field name="Coddiagrel1" class="java.lang.String"/>
+	<field name="descripcionrel1" class="java.lang.String"/>
+	<field name="Coddiagrel2" class="java.lang.String"/>
+	<field name="descripcionrel2" class="java.lang.String"/>
+	<field name="Coddiagrel3" class="java.lang.String"/>
+	<field name="descripcionrel3" class="java.lang.String"/>
+	<field name="Coddiagrel4" class="java.lang.String"/>
+	<field name="descripcionrel4" class="java.lang.String"/>
+	<field name="especialidad" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.Long"/>
+	<field name="idevu" class="java.lang.Long"/>
+	<field name="fecha_evo" class="java.lang.String"/>
+	<field name="apertura_ocular" class="java.lang.Integer"/>
+	<field name="respuesta_verbal" class="java.lang.Integer"/>
+	<field name="respuesta_motora" class="java.lang.Integer"/>
+	<field name="destino" class="java.lang.Long"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="incapacidad" class="java.lang.Boolean"/>
+	<field name="incapacidadinicio" class="java.lang.String"/>
+	<field name="incapacidadfin" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="1" width="49" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCAPACIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="1" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="1" width="96" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="179" y="1" width="60" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="1" width="14" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incapacidad} == true ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="239" y="1" width="92" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

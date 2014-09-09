@@ -614,6 +614,16 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4) GR
 				</textElement>
 				<textFieldExpression><![CDATA[$V{Nombrem}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="2" y="37" width="167" height="1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="38" width="167" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBIDO]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 </jasperReport>
