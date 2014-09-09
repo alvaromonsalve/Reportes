@@ -989,7 +989,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="54">
+		<band height="51">
 			<line>
 				<reportElement x="0" y="34" width="530" height="1"/>
 				<graphicElement>
@@ -1076,7 +1076,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="75">
+		<band height="62">
 			<staticText>
 				<reportElement x="361" y="39" width="55" height="10"/>
 				<textElement>
