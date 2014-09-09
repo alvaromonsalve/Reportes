@@ -519,39 +519,13 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 				<text><![CDATA[SÍNTESIS]]></text>
 			</staticText>
 		</band>
-		<band height="67">
+		<band height="25">
 			<line>
 				<reportElement x="0" y="7" width="529" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</line>
-			<line>
-				<reportElement x="0" y="49" width="530" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</line>
-			<rectangle>
-				<reportElement x="207" y="44" width="123" height="12"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#666666"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="207" y="44" width="123" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[CONSIDERACIONES ADICIONALES]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="2" y="56" width="528" height="10"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ANALISIS}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="2" y="15" width="525" height="10"/>
 				<textElement verticalAlignment="Top">
@@ -575,6 +549,34 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DX EGRESO]]></text>
+			</staticText>
+		</band>
+		<band height="24">
+			<line>
+				<reportElement x="0" y="7" width="530" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="207" y="0" width="123" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="14" width="528" height="10"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANALISIS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="207" y="0" width="123" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSIDERACIONES ADICIONALES]]></text>
 			</staticText>
 		</band>
 		<band height="21">
