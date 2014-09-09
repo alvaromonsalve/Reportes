@@ -178,7 +178,7 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[NOMBRE:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="364" y="16" width="161" height="10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="7" isBold="true"/>
@@ -199,47 +199,47 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[EDAD:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="273" y="28" width="89" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hc}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="99" y="40" width="161" height="10"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="40" width="453" height="10"/>
 				<textElement>
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_entidad}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="282" y="16" width="76" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="431" y="28" width="94" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6" isBold="false"/>
+					<font fontName="Calibri" size="7" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{tipo_afiliacion}.equals("0") ? "COTIZANTE" :
     ($F{tipo_afiliacion}.equals("1") ? "BENEFICIARIO" :
         ($F{tipo_afiliacion}.equals("2") ? "ADICIONAL" : "OTRO")))]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="12" y="40" width="85" height="10"/>
+				<reportElement mode="Transparent" x="12" y="40" width="60" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CONTRATANTE:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="72" y="28" width="80" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
@@ -257,10 +257,10 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[IDENTIFICACION:]]></text>
 			</staticText>
-			<textField pattern="">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="52" y="16" width="204" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6" isBold="false"/>
+					<font fontName="Calibri" size="7" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombrepaciente}]]></textFieldExpression>
 			</textField>
@@ -280,10 +280,10 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="104" y="3" width="100" height="10"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="4" width="100" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechainicioincapacidad}]]></textFieldExpression>
 			</textField>
@@ -294,10 +294,10 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="296" y="3" width="100" height="10"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="296" y="4" width="100" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechafinincapacidad}]]></textFieldExpression>
 			</textField>
@@ -308,10 +308,10 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion}
 				</textElement>
 				<text><![CDATA[DIAS DE INCAPACIDAD:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="87" y="18" width="117" height="10"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="87" y="19" width="117" height="10"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="6"/>
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diasincapacidad}+" DIAS"]]></textFieldExpression>
 			</textField>

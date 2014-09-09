@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.3636363636363658"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="206"/>
+	<property name="ireport.y" value="227"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -767,7 +767,7 @@ $V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></initialValueExpression>
 				</textElement>
 				<text><![CDATA[ESTADO DE CONCIENCIA:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement style="text_desc" x="406" y="16" width="118" height="9"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{conciencia}==null?"":$F{conciencia}==0?"ALERTA":$F{conciencia}==1?"AGITACION PSICOMOTORA":
