@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="985"/>
+	<property name="ireport.y" value="968"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -229,7 +229,8 @@
      sum_atc_principioactivo.`nombre` AS principioact,
      sum_atc_presentacionfarmaceutica.`nombre` AS presfarmaceutica,
      sum_suministro.`concentracion` AS concentracion,
-     sum_suministro.`viaadministracion` AS viaadministracion
+     sum_suministro.`viaadministracion` AS viaadministracion,
+info_posologia_hcu.cantidad
 FROM
      `database`.`info_historiac` info_historiac INNER JOIN `database`.`Config_decripcion_login` Config_decripcion_login ON info_historiac.`id_usuario` = Config_decripcion_login.`id`
      INNER JOIN `database`.`info_posologia_hcu` info_posologia_hcu ON info_historiac.`id` = info_posologia_hcu.`id_historiac`
@@ -241,24 +242,15 @@ FROM
      INNER JOIN `database`.`sum_atc_presentacionfarmaceutica` sum_atc_presentacionfarmaceutica ON sum_suministro.`id_presentacionfarmaceutica` = sum_atc_presentacionfarmaceutica.`id`
 WHERE `info_historiac`.id = $P{id_HistoriaC}]]>
 		</queryString>
-		<field name="dosis_n" class="java.lang.Float">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="dosis_u" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="administracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
+		<field name="dosis_n" class="java.lang.Float"/>
+		<field name="dosis_u" class="java.lang.String"/>
+		<field name="administracion" class="java.lang.String"/>
 		<field name="id_sum_suministro" class="java.lang.Long"/>
 		<field name="principioact" class="java.lang.String"/>
 		<field name="presfarmaceutica" class="java.lang.String"/>
-		<field name="concentracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="viaadministracion" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
+		<field name="concentracion" class="java.lang.String"/>
+		<field name="viaadministracion" class="java.lang.String"/>
+		<field name="cantidad" class="java.lang.Float"/>
 	</subDataset>
 	<subDataset name="procedHc">
 		<parameter name="idHistoriaC" class="java.lang.String">
@@ -1764,10 +1756,10 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="122">
+						<jr:column width="75">
 							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
 								<staticText>
-									<reportElement style="title2" mode="Transparent" x="0" y="0" width="122" height="12"/>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="75" height="12"/>
 									<textElement textAlignment="Center">
 										<font size="7"/>
 									</textElement>
@@ -1776,9 +1768,37 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 							</jr:columnHeader>
 							<jr:detailCell style="table 2_TD" height="10" rowSpan="1">
 								<textField isStretchWithOverflow="true">
-									<reportElement style="texto3" x="2" y="0" width="120" height="10"/>
+									<reportElement style="texto3" x="2" y="0" width="73" height="10"/>
 									<textElement/>
 									<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="47">
+							<jr:columnHeader style="table 2_CH" height="12" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement style="title2" mode="Transparent" x="0" y="0" width="47" height="12"/>
+									<textElement textAlignment="Center"/>
+									<text><![CDATA[Cantidad]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="10" rowSpan="1">
+								<box>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="45" height="10"/>
+									<textElement/>
+									<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
@@ -1803,7 +1823,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 		</band>
 		<band height="3">
 			<componentElement>
-				<reportElement key="table 3" style="table 3" x="0" y="0" width="528" height="2"/>
+				<reportElement key="table 3" style="table 3" x="0" y="0" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="procedHc">
 						<datasetParameter name="idHistoriaC">
@@ -1882,7 +1902,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 		</band>
 		<band height="3">
 			<componentElement>
-				<reportElement key="table 5" style="table 5" x="0" y="1" width="528" height="2"/>
+				<reportElement key="table 5" style="table 5" x="0" y="1" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="valEspHc">
 						<datasetParameter name="idHistoriaC">
@@ -1977,7 +1997,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 		</band>
 		<band height="4">
 			<componentElement>
-				<reportElement key="table 6" style="table 6" x="0" y="2" width="528" height="2"/>
+				<reportElement key="table 6" style="table 6" x="0" y="2" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="medidaHc">
 						<datasetParameter name="idHC">

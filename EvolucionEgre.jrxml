@@ -117,6 +117,7 @@
     , `hcu_evo_posologia`.`dosis_u`
     , `sum_suministro`.`viaadministracion` AS `ViadeAdministracion`
     , `hcu_evo_posologia`.`administracion` AS `Observacion`
+,`hcu_evo_posologia`.cantidad
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -138,6 +139,7 @@ WHERE (`hcu_evolucion`.`id` = $P{Idevu});]]>
 		<field name="dosis_u" class="java.lang.String"/>
 		<field name="ViadeAdministracion" class="java.lang.String"/>
 		<field name="Observacion" class="java.lang.String"/>
+		<field name="cantidad" class="java.lang.Float"/>
 	</subDataset>
 	<subDataset name="procedimientos">
 		<parameter name="idevu" class="java.lang.String">
@@ -808,7 +810,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="122">
+						<jr:column width="77">
 							<jr:columnHeader style="table_CH" height="12" rowSpan="1">
 								<box>
 									<pen lineWidth="0.25" lineColor="#666666"/>
@@ -818,7 +820,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<staticText>
-									<reportElement x="2" y="0" width="120" height="12"/>
+									<reportElement x="2" y="0" width="75" height="12"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="Calibri" size="7" isBold="true"/>
 									</textElement>
@@ -834,11 +836,45 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 									<rightPen lineWidth="0.25" lineColor="#666666"/>
 								</box>
 								<textField>
-									<reportElement x="2" y="0" width="120" height="10"/>
+									<reportElement x="2" y="0" width="75" height="10"/>
 									<textElement verticalAlignment="Middle">
 										<font fontName="Calibri" size="6"/>
 									</textElement>
 									<textFieldExpression><![CDATA[$F{Observacion}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="45">
+							<jr:columnHeader style="table 1_CH" height="12" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<staticText>
+									<reportElement x="0" y="0" width="45" height="12"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Calibri" size="7" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Cantidad]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25" lineColor="#666666"/>
+									<leftPen lineWidth="0.25" lineColor="#666666"/>
+									<bottomPen lineWidth="0.25" lineColor="#666666"/>
+									<rightPen lineWidth="0.25" lineColor="#666666"/>
+								</box>
+								<textField>
+									<reportElement x="2" y="0" width="43" height="10"/>
+									<textElement>
+										<font fontName="Calibri" size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
