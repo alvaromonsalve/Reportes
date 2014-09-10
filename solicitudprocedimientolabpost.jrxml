@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solPorcedimientos" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="fc6ed459-f2b3-4ca8-82b6-fc6a1c92e1a6">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="60"/>
+	<property name="ireport.y" value="40"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -129,26 +129,52 @@ FROM
     INNER JOIN `database`.`static_estructura_cups`
         ON (`config_cups`.`id_estructura_cups` = `static_estructura_cups`.`id`)
 WHERE (hcu_evolucion.`id` =$P{idevu}
-    AND `hcu_evolucion`.`estado` =2 AND config_cups.`id_estructura_cups` = '17')
+    AND (`hcu_evolucion`.`estado` =2 OR `hcu_evolucion`.`estado` =4) AND config_cups.`id_estructura_cups` = '17')
     ORDER BY `hcu_evo_orden_procedimiento`.`id` DESC LIMIT 1]]>
 	</queryString>
-	<field name="nombre1" class="java.lang.String"/>
-	<field name="nombre2" class="java.lang.String"/>
-	<field name="apellido1" class="java.lang.String"/>
-	<field name="apellido2" class="java.lang.String"/>
-	<field name="Edad" class="java.lang.String"/>
+	<field name="nombre1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Edad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="Fecha" class="java.sql.Timestamp"/>
-	<field name="tipo_doc" class="java.lang.String"/>
-	<field name="num_doc" class="java.lang.String"/>
-	<field name="hc" class="java.lang.String"/>
+	<field name="tipo_doc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_doc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="Entiadmision" class="java.lang.String"/>
 	<field name="Enticontratante" class="java.lang.String"/>
 	<field name="tipouser" class="java.lang.Integer"/>
-	<field name="id" class="java.lang.Long"/>
-	<field name="nombres" class="java.lang.String"/>
-	<field name="apellidos" class="java.lang.String"/>
-	<field name="ruta_firma" class="java.lang.String"/>
-	<field name="tarjeta_profesional" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ruta_firma" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tarjeta_profesional" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="nombreCompleto" class="java.lang.String">
 		<variableExpression><![CDATA[$F{nombre1}+" "+$F{nombre2}+" "+$F{apellido1}+" "+$F{apellido2}]]></variableExpression>
 		<initialValueExpression><![CDATA[$F{nombre1}+" "+$F{nombre2}+" "+$F{apellido1}+" "+$F{apellido2}]]></initialValueExpression>
