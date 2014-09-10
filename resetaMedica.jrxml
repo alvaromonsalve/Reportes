@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resetaMedica" pageWidth="611" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="527" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="edad57e3-2de4-4d59-b70c-25b1ea87e396">
-	<property name="ireport.zoom" value="1.8150000000000004"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resetaMedica" pageWidth="611" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="527" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
@@ -70,7 +70,7 @@
 			<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
 		</box>
 	</style>
-	<subDataset name="DiagCie10" uuid="4795bc89-a251-4aa9-bc60-bc5ece60dcb5">
+	<subDataset name="DiagCie10">
 		<parameter name="IdHC" class="java.lang.String">
 			<parameterDescription><![CDATA[]]></parameterDescription>
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -127,6 +127,7 @@ info_historiac.id = $P{IdHC}]]>
 	<parameter name="id_hc" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="entidadadmision" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[call `rep_recetaMedica`($P{id_hc})]]>
 	</queryString>
@@ -238,15 +239,15 @@ info_historiac.id = $P{IdHC}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="151" splitType="Stretch">
+		<band height="163" splitType="Stretch">
 			<rectangle radius="5">
-				<reportElement uuid="004c1904-220a-430b-9bd9-f5ef4e674574" x="-1" y="91" width="527" height="38"/>
+				<reportElement x="-1" y="91" width="527" height="52"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Double" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<subreport>
-				<reportElement uuid="1e5afaf0-1d9f-4333-9304-c4a687cfecef" x="0" y="0" width="527" height="85"/>
+				<reportElement x="0" y="0" width="527" height="85"/>
 				<subreportParameter name="codigo">
 					<subreportParameterExpression><![CDATA[$P{codigo}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -263,91 +264,91 @@ info_historiac.id = $P{IdHC}]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotulo.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement uuid="b13a55ac-d87d-49f4-b926-6d5977f361b3" x="470" y="52" width="18" height="20"/>
+				<reportElement x="470" y="52" width="18" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="9" isStrikeThrough="false" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="79e23a8a-1923-40b8-9b4d-1a6235d43ca6" x="488" y="52" width="6" height="20"/>
+				<reportElement x="488" y="52" width="6" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement uuid="ab369924-1b1c-432c-ac23-b6692d8b60a6" x="494" y="52" width="14" height="20"/>
+				<reportElement x="494" y="52" width="14" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="9" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="35b4f8c7-c020-49e6-bcad-80af9f7e363b" style="title2" mode="Transparent" x="10" y="114" width="60" height="14"/>
+				<reportElement style="title2" mode="Transparent" x="10" y="114" width="60" height="14"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[DOCUMENTO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="269da482-0fbd-4e4e-b2e4-1caba2b4edb1" style="title2" mode="Transparent" x="185" y="114" width="86" height="14"/>
+				<reportElement style="title2" mode="Transparent" x="185" y="114" width="86" height="14"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[N° HISTORIA CLINICA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="4e9ba45d-d764-47cc-87e0-cb25adf93921" style="title2" mode="Transparent" x="362" y="114" width="67" height="14"/>
+				<reportElement style="title2" mode="Transparent" x="362" y="114" width="67" height="14"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[TIPO DE USUARIO:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement uuid="a0183c08-78c3-47f4-ab5a-01f320049630" style="title1" x="10" y="100" width="341" height="14"/>
+				<reportElement style="title1" x="10" y="100" width="341" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{nombreCompleto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="9a92965d-0e00-4047-a21e-016919d324c8" style="texto1" mode="Transparent" x="70" y="114" width="80" height="14"/>
+				<reportElement style="texto1" mode="Transparent" x="70" y="114" width="80" height="14"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{documento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="cee7afc7-bd25-40ac-ac94-85b2428e6142" style="texto1" mode="Transparent" x="271" y="114" width="80" height="14"/>
+				<reportElement style="texto1" mode="Transparent" x="271" y="114" width="80" height="14"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{hc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="9711595d-a2ee-40be-9dd7-7860ca2e4c27" style="title1" mode="Opaque" x="11" y="85" width="245" height="12"/>
+				<reportElement style="title1" mode="Opaque" x="11" y="85" width="245" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{numPrescripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="d41c4393-037d-459b-81a2-bcae7b3524e5" style="texto1" x="362" y="100" width="161" height="14"/>
+				<reportElement style="texto1" x="362" y="100" width="161" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b40a7b16-de95-4283-881f-79bfee6f381e" style="texto1" mode="Transparent" x="429" y="114" width="94" height="14"/>
+				<reportElement style="texto1" mode="Transparent" x="429" y="114" width="94" height="14"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{tipousuario}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement uuid="10cec2cf-2236-41ef-8050-662cf6a0bc9b" key="table 1" style="table 1" x="4" y="131" width="519" height="20"/>
+				<reportElement key="table 1" style="table 1" x="4" y="143" width="519" height="20"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="DiagCie10" uuid="7e6304be-d118-4034-bb8a-c91762227820">
+					<datasetRun subDataset="DiagCie10">
 						<datasetParameter name="IdHC">
 							<datasetParameterExpression><![CDATA[$P{id_hc}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="109" uuid="978dadce-3402-4a9b-9842-a7582086a0d5">
+					<jr:column width="109">
 						<jr:columnHeader style="table 1_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement uuid="d9669f9e-48f9-4ef0-ac82-149773da0e4b" style="title3" mode="Transparent" x="0" y="0" width="109" height="10"/>
+								<reportElement style="title3" mode="Transparent" x="0" y="0" width="109" height="10"/>
 								<textElement/>
 								<text><![CDATA[DX Principal]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="4b4e2bc9-9c9a-4914-9bee-35566c40ec8c" style="texto3" x="0" y="0" width="109" height="10"/>
+								<reportElement style="texto3" x="0" y="0" width="109" height="10"/>
 								<textElement>
 									<font size="5"/>
 								</textElement>
@@ -355,17 +356,17 @@ info_historiac.id = $P{IdHC}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="107" uuid="1526b80e-2f44-404d-835f-43c1d50f65b9">
+					<jr:column width="107">
 						<jr:columnHeader style="table 1_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement uuid="969646b5-d719-4a27-909a-be6ac4d2ef89" style="title3" mode="Transparent" x="0" y="0" width="107" height="10"/>
+								<reportElement style="title3" mode="Transparent" x="0" y="0" width="107" height="10"/>
 								<textElement/>
 								<text><![CDATA[DX Relacionado 1]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="91b788b0-a9ba-4f4a-af0b-2226ae3f676b" style="texto3" x="0" y="0" width="107" height="10"/>
+								<reportElement style="texto3" x="0" y="0" width="107" height="10"/>
 								<textElement>
 									<font size="5"/>
 								</textElement>
@@ -373,17 +374,17 @@ info_historiac.id = $P{IdHC}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="105" uuid="961a63a8-7b96-49ba-b7ba-ad4c91b02542">
+					<jr:column width="105">
 						<jr:columnHeader style="table 1_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement uuid="eb148a83-408f-44d3-9272-1c169c512762" style="title3" mode="Transparent" x="0" y="0" width="105" height="10"/>
+								<reportElement style="title3" mode="Transparent" x="0" y="0" width="105" height="10"/>
 								<textElement/>
 								<text><![CDATA[DX Relacionado 2]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="aac04be4-9827-4be0-b24f-848b9aa6e708" style="texto3" x="0" y="0" width="105" height="10"/>
+								<reportElement style="texto3" x="0" y="0" width="105" height="10"/>
 								<textElement>
 									<font size="5"/>
 								</textElement>
@@ -391,17 +392,17 @@ info_historiac.id = $P{IdHC}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="109" uuid="ace73589-dd7d-4f80-8b82-4df537687a92">
+					<jr:column width="109">
 						<jr:columnHeader style="table 1_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement uuid="418c798d-2302-46e6-93ff-61730d3e4482" style="title3" mode="Transparent" x="0" y="0" width="109" height="10"/>
+								<reportElement style="title3" mode="Transparent" x="0" y="0" width="109" height="10"/>
 								<textElement/>
 								<text><![CDATA[DX Relacionado 3]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="7257ccde-6835-45d8-a08f-d18da0704aac" style="texto3" x="0" y="0" width="109" height="10"/>
+								<reportElement style="texto3" x="0" y="0" width="109" height="10"/>
 								<textElement>
 									<font size="5"/>
 								</textElement>
@@ -409,17 +410,17 @@ info_historiac.id = $P{IdHC}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="ec56fca2-c4a6-446f-948e-487a440c085c">
+					<jr:column width="90">
 						<jr:columnHeader style="table 1_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement uuid="3a054951-17e2-44d9-9c5d-b25eef566979" style="title3" mode="Transparent" x="0" y="0" width="90" height="10"/>
+								<reportElement style="title3" mode="Transparent" x="0" y="0" width="90" height="10"/>
 								<textElement/>
 								<text><![CDATA[DX Relacionado 4]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="10" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="7af3706a-a67d-4390-bbff-198aa7a5cc84" style="texto3" x="0" y="0" width="90" height="10"/>
+								<reportElement style="texto3" x="0" y="0" width="90" height="10"/>
 								<textElement>
 									<font size="5"/>
 								</textElement>
@@ -429,55 +430,67 @@ info_historiac.id = $P{IdHC}]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement style="title2" mode="Transparent" x="11" y="128" width="79" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[ENTIDAD ADMISION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="128" width="433" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{entidadadmision}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="19">
 			<rectangle>
-				<reportElement uuid="5a08475e-a9f0-4a84-844b-ce8fe0d95f9d" mode="Opaque" x="1" y="8" width="522" height="11" backcolor="#EEEDED"/>
+				<reportElement mode="Opaque" x="1" y="8" width="522" height="11" backcolor="#EEEDED"/>
 				<graphicElement>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="e74926e0-84f1-4076-a4f7-9b511039c342" style="title3" mode="Transparent" x="80" y="9" width="60" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="80" y="9" width="60" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[CONCENTRACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="658cea05-3c51-42c2-b3bd-0d120757dc93" style="title3" mode="Transparent" x="1" y="9" width="79" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="1" y="9" width="79" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[PRINCIPIO ACTIVO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="eb430833-8406-46c6-8373-313acf8376dc" style="title3" mode="Transparent" x="1" y="1" width="10" height="8"/>
+				<reportElement style="title3" mode="Transparent" x="1" y="1" width="10" height="8"/>
 				<textElement>
 					<font fontName="Calibri" isBold="true"/>
 				</textElement>
 				<text><![CDATA[R/]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="6c511982-a16b-4208-b555-7a4253493409" style="title3" mode="Transparent" x="140" y="9" width="68" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="140" y="9" width="68" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[FORMA FARMACEUTICA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="cab6416b-2eb6-457a-998a-f2bdd2090876" style="title3" mode="Transparent" x="434" y="9" width="89" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="434" y="9" width="89" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[CANTIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="6f029d23-5cad-4346-84c3-af892dab3fc3" style="title3" mode="Transparent" x="343" y="9" width="91" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="343" y="9" width="91" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[OBSERVACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b29bbb07-17e4-4139-9286-310765ac6b06" style="title3" mode="Transparent" x="277" y="9" width="66" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="277" y="9" width="66" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[VIA DE ADMINISTRACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="f1811180-8ebc-4a48-8732-405135cf7bb7" style="title3" mode="Transparent" x="208" y="9" width="70" height="10"/>
+				<reportElement style="title3" mode="Transparent" x="208" y="9" width="70" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[DOSIS]]></text>
 			</staticText>
@@ -486,49 +499,49 @@ info_historiac.id = $P{IdHC}]]>
 	<detail>
 		<band height="10" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="8de922be-8992-480b-a3f8-053c24c608f2" style="texto3" x="1" y="0" width="79" height="10"/>
+				<reportElement style="texto3" x="1" y="0" width="79" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{principioact}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="9440912c-7f43-40a8-85e0-cfccb9b049cc" style="texto3" x="206" y="0" width="16" height="10"/>
+				<reportElement style="texto3" x="206" y="0" width="16" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{dosis_n}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="5e190347-919b-4c84-9aed-a59548722236" style="texto3" x="223" y="0" width="54" height="10"/>
+				<reportElement style="texto3" x="223" y="0" width="54" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{dosis_u}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="8f873188-3eef-43ed-9262-08c3369703eb" style="texto3" x="343" y="0" width="91" height="10"/>
+				<reportElement style="texto3" x="343" y="0" width="91" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{administracion}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="f4142147-be73-4d1e-a267-8191719e84bc" style="texto3" x="278" y="0" width="64" height="10"/>
+				<reportElement style="texto3" x="278" y="0" width="64" height="10"/>
 				<textElement>
 					<font isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{viaadministracion}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="447dba81-f9a3-449d-bb9a-385921ca0dd7" style="texto3" x="80" y="0" width="60" height="10"/>
+				<reportElement style="texto3" x="80" y="0" width="60" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{concentracion}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="535db2ea-3860-40da-8a5a-6758f38035ba" style="texto3" x="140" y="0" width="66" height="10"/>
+				<reportElement style="texto3" x="140" y="0" width="66" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{presfarmaceutica}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="6e733e82-1ac3-48e2-a2c7-d11f1f4ee507" style="texto3" x="434" y="0" width="14" height="10"/>
+				<reportElement style="texto3" x="434" y="0" width="14" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="88bca2ea-7263-43e8-8939-ecb560c1873b" style="texto3" x="448" y="0" width="75" height="10"/>
+				<reportElement style="texto3" x="448" y="0" width="75" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{cantidad_texto}]]></textFieldExpression>
 			</textField>
@@ -537,24 +550,24 @@ info_historiac.id = $P{IdHC}]]>
 	<pageFooter>
 		<band height="63">
 			<line>
-				<reportElement uuid="f36bbbd4-a7eb-45f1-a3c3-5ad5ce836a19" x="356" y="38" width="167" height="1"/>
+				<reportElement x="356" y="38" width="167" height="1"/>
 			</line>
 			<textField>
-				<reportElement uuid="b3b1d0fb-d51b-44aa-91ec-663275c5fdd9" style="title2" x="356" y="51" width="167" height="10"/>
+				<reportElement style="title2" x="356" y="51" width="167" height="10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{nameMedic}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement uuid="01c93dac-c75c-4dea-a7c4-ee4bbf91af4e" x="383" y="2" width="120" height="35"/>
+				<reportElement x="383" y="2" width="120" height="35"/>
 				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="8d1b8fbf-821c-4427-9712-fc2b575f75c7" style="texto3" mode="Transparent" x="360" y="41" width="58" height="10"/>
+				<reportElement style="texto3" mode="Transparent" x="360" y="41" width="58" height="10"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Registro Medico N°:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="054f610d-e5b0-44ec-bdf3-2a5b4e9f35d0" style="texto3" x="418" y="41" width="105" height="10"/>
+				<reportElement style="texto3" x="418" y="41" width="105" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
 			</textField>

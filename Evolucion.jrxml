@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.3636363636363658"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="227"/>
+	<property name="ireport.y" value="83"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -296,6 +296,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     ,`hcu_evolucion`.`apertura_ocular`
     , `hcu_evolucion`.`respuesta_verbal`
     , `hcu_evolucion`.`respuesta_motora`
+,`entidadadmision`.`nombre_entidad` AS `entiadmision`
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -310,6 +311,8 @@ FROM
         ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades`
         ON /*(`info_admision`.`id_entidad_admision` = `info_entidades`.`id`) AND*/ (`info_paciente`.`contratante` = `info_entidades`.`id`)
+INNER JOIN `database`.`info_entidades` AS `entidadadmision`
+	ON (`info_admision`.`id_entidad_admision` = `entidadadmision`.`id`)
     INNER JOIN `database`.`info_camas`
         ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
     INNER JOIN `database`.`config_camas`
@@ -368,6 +371,7 @@ FROM
 	<field name="apertura_ocular" class="java.lang.Integer"/>
 	<field name="respuesta_verbal" class="java.lang.Integer"/>
 	<field name="respuesta_motora" class="java.lang.Integer"/>
+	<field name="entiadmision" class="java.lang.String"/>
 	<variable name="Glas" class="java.lang.Integer">
 		<variableExpression><![CDATA[$V{glasgow_ao}>0 || $V{glasgow_rv}>0 || $V{glasgow_rm}>0 ?
 $V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></variableExpression>
@@ -638,6 +642,18 @@ $V{glasgow_ao}+ $V{glasgow_rm} + $V{glasgow_rv} :0]]></initialValueExpression>
 				</textElement>
 				<text><![CDATA[TIPO DE AFILIACION:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement style="title_desc" mode="Transparent" x="391" y="33" width="70" height="9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD ADMISION:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="392" y="43" width="137" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="30">
 			<line>

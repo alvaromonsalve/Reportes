@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receta" language="groovy" pageWidth="612" pageHeight="396" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="90"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -104,6 +104,7 @@ WHERE (`hcu_evolucion`.`id` =$P{ideegre} AND hcu_evolucion.`estado`=4);]]>
     , `config_decripcion_login`.`ruta_firma`
     , `cm_profesionales`.`tarjeta_profesional`
     , DATE_FORMAT(`hcu_evolucion`.`f_digita`, '%d/%m/%Y') AS `fecha`
+,`entidadadmision`.`nombre_entidad` AS `entiadmision`
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac` ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
@@ -112,6 +113,8 @@ FROM
     INNER JOIN `database`.`cm_profesionales` ON (`cm_profesionales`.`id_descripcion_login` = `config_decripcion_login`.`id`)
     INNER JOIN `database`.`info_paciente` ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades` ON (`info_paciente`.`contratante` = `info_entidades`.`id`)
+INNER JOIN `database`.`info_entidades` AS `entidadadmision`
+	ON (`info_admision`.`id_entidad_admision` = `entidadadmision`.`id`)
     INNER JOIN `database`.`info_municipios` ON (`info_municipios`.`id` = `info_paciente`.`id_mun_res`)
 WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4) GROUP BY `hcu_evolucion`.`id` ASC LIMIT 1;]]>
 	</queryString>
@@ -127,6 +130,7 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4) GR
 	<field name="ruta_firma" class="java.lang.String"/>
 	<field name="tarjeta_profesional" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
+	<field name="entiadmision" class="java.lang.String"/>
 	<variable name="Nombrem" class="java.lang.String">
 		<variableExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></variableExpression>
 		<initialValueExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></initialValueExpression>
@@ -289,6 +293,20 @@ WHERE (`hcu_evolucion`.`id` =$P{Idevolucion} AND `hcu_evolucion`.`estado` =4) GR
 				<textFieldExpression><![CDATA[($F{tipo_afiliacion}.equals("0") ? "COTIZANTE" :
     ($F{tipo_afiliacion}.equals("1") ? "BENEFICIARIO" :
         ($F{tipo_afiliacion}.equals("2") ? "ADICIONAL" : "OTRO")))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="259" y="40" width="66" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD ADMISION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="40" width="199" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="4" splitType="Stretch">
