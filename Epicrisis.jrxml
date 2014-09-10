@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="985"/>
+	<property name="ireport.y" value="853"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -427,6 +427,7 @@ static_cie105.descripcion AS descripcion5, `info_admision`.`estadoIngreso`
 ,`hcu_evo_egreso`.`incapacidad`
 ,DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `fechainiincapacidad`
 ,DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `Fechafinincapacidad`
+,`entidadadmision`.`nombre_entidad` AS `entiadmision`
 FROM
     `database`.`info_historiac`
     INNER JOIN `database`.`info_admision`
@@ -437,6 +438,8 @@ FROM
         ON (`info_admision`.`id_datos_personales` = `info_paciente`.`id`)
     INNER JOIN `database`.`info_entidades`
         ON (`info_paciente`.`contratante` = `info_entidades`.`id`)
+INNER JOIN `database`.`info_entidades` AS `entidadadmision`
+	ON (`info_admision`.`id_entidad_admision` = `entidadadmision`.`id`)
     INNER JOIN `database`.`info_camas`
         ON (`info_camas`.`id_info_historiac` = `info_historiac`.`id`)
     INNER JOIN `database`.`config_camas`
@@ -561,6 +564,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 	<field name="incapacidad" class="java.lang.Boolean"/>
 	<field name="fechainiincapacidad" class="java.lang.String"/>
 	<field name="Fechafinincapacidad" class="java.lang.String"/>
+	<field name="entiadmision" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -892,11 +896,6 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textElement/>
 				<text><![CDATA[FECHA INGRESO:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement style="title2" x="378" y="15" width="67" height="10"/>
-				<textElement/>
-				<text><![CDATA[HORA INGRESO:]]></text>
-			</staticText>
 			<rectangle>
 				<reportElement x="425" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -916,7 +915,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{estadoIngreso}.equals("0") ? "CONCIENTE" : ($F{estadoIngreso}.equals("1") ? "INCONCIENTE" : ($F{estadoIngreso}.equals("2") ? "MUERTO" : "OTRO"))]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMMM yyyy">
-				<reportElement x="297" y="15" width="81" height="10"/>
+				<reportElement x="297" y="15" width="59" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
 			</textField>
@@ -926,7 +925,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{mediodeingreso}.equals("1") ? "INGRESO POR SUS PROPIOS MEDIOS" : "NO INGRESO POR SUS PROPIOS MEDIOS"]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement x="445" y="15" width="81" height="10"/>
+				<reportElement x="353" y="15" width="16" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{hora_ingreso}]]></textFieldExpression>
 			</textField>
@@ -957,6 +956,18 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
                                         ($F{causaExterna}.equals("12")?"SOSPECHA DE MALTRATO EMOCIONAL":
                                             ($F{causaExterna}.equals("13")?"ENFERMEDAD GENERAL":
                                                 ($F{causaExterna}.equals("14")?"ENFERMEDAD PROFESIONAL":"OTRA")))))))))))))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="title2" x="369" y="15" width="65" height="10"/>
+				<textElement/>
+				<text><![CDATA[ENTIDAD ADMISION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="434" y="16" width="91" height="10"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="54">

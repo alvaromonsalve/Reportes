@@ -120,15 +120,15 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="331" y="1" width="96" height="10"/>
+				<reportElement x="179" y="2" width="60" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="179" y="1" width="60" height="10"/>
-				<textElement>
+				<reportElement x="331" y="1" width="96" height="10"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
