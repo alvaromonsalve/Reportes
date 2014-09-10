@@ -1031,9 +1031,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<text><![CDATA[FECHA INICIO INCAPACIDAD:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="171" y="17" width="60" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
+				<reportElement x="323" y="16" width="68" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{incapacidadinicio}]]></textFieldExpression>
 			</textField>
@@ -1045,9 +1045,9 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<text><![CDATA[FECHA FIN DE INCAPACIDAD:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="323" y="16" width="96" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
+				<reportElement x="171" y="16" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{incapacidadfin}]]></textFieldExpression>
 			</textField>
