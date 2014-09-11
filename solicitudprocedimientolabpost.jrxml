@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solPorcedimientos" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="fc6ed459-f2b3-4ca8-82b6-fc6a1c92e1a6">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="40"/>
+	<property name="ireport.y" value="23"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -91,7 +91,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevo}
     , `info_paciente`.`nombre2`
     , `info_paciente`.`apellido1`
     , `info_paciente`.`apellido2`
-    , `info_admision`.`edad` AS `Edad`
+    , `calc_edad`(`info_paciente`.`fecha_nacimiento`) AS `Edad`
     , `hcu_evolucion`.`fecha_evo` AS `Fecha`
     , `info_paciente`.`tipo_doc`
     , `info_paciente`.`num_doc`

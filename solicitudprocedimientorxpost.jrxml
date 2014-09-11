@@ -91,7 +91,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevo}
     , `info_paciente`.`nombre2`
     , `info_paciente`.`apellido1`
     , `info_paciente`.`apellido2`
-    , `info_admision`.`edad` AS `Edad`
+    , `calc_edad`(`info_paciente`.`fecha_nacimiento`) AS `Edad`
     , `hcu_evolucion`.`fecha_evo` AS `Fecha`
     , `info_paciente`.`tipo_doc`
     , `info_paciente`.`num_doc`
