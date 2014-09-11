@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solPorcedimientos" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="33c6dbc0-55b9-4978-a577-e37098bcf6eb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solicitudprocedimientorxpost" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -47,7 +47,7 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="proced" uuid="82fe16ec-e5d6-4456-bcec-88563c8c5a96">
+	<subDataset name="proced">
 		<parameter name="idevo" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -213,13 +213,13 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 	<pageHeader>
 		<band height="142" splitType="Stretch">
 			<rectangle radius="5">
-				<reportElement x="0" y="89" width="528" height="48" uuid="099f5952-6ae8-4bf4-a9e3-2aa2e4d1d765"/>
+				<reportElement x="0" y="89" width="528" height="48"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<subreport>
-				<reportElement x="0" y="0" width="528" height="85" uuid="7ed71cf1-1f09-4de4-8415-d9858ed1a0c0"/>
+				<reportElement x="0" y="0" width="528" height="85"/>
 				<subreportParameter name="codigo">
 					<subreportParameterExpression><![CDATA[$P{codigo}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -236,108 +236,108 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rotulo.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="470" y="52" width="18" height="20" uuid="bd10d014-9a3b-447f-86c3-6da509c8e7e2"/>
+				<reportElement x="470" y="52" width="18" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="9" isStrikeThrough="false" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="488" y="52" width="6" height="20" uuid="f29ac207-0ff4-4ad7-9455-02d9b8604f47"/>
+				<reportElement x="488" y="52" width="6" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement x="494" y="52" width="14" height="20" uuid="7576b050-0186-44cf-b086-08d2708b5ecb"/>
+				<reportElement x="494" y="52" width="14" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="9" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="10" y="110" width="60" height="10" uuid="83f22ad8-d109-430c-b01d-4b9b476b51ab"/>
+				<reportElement style="title2" mode="Transparent" x="10" y="110" width="60" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[DOCUMENTO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="185" y="110" width="86" height="10" uuid="1a79eb12-537c-4776-9c9d-3a679a1ec192"/>
+				<reportElement style="title2" mode="Transparent" x="185" y="110" width="86" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[N° HISTORIA CLINICA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="362" y="110" width="67" height="10" uuid="1e0cdf68-3d33-4e72-9526-731dd33b5f5f"/>
+				<reportElement style="title2" mode="Transparent" x="362" y="110" width="67" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[TIPO DE USUARIO:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement style="title2" x="50" y="98" width="204" height="10" uuid="2a1077ab-ad81-4acc-b539-fc28c1055f3a"/>
+				<reportElement style="title2" x="50" y="98" width="204" height="10"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{nombreCompleto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto2" mode="Transparent" x="70" y="110" width="80" height="10" uuid="5bdea124-238c-4faf-bf65-a4f72d2cd82a"/>
+				<reportElement style="texto2" mode="Transparent" x="70" y="110" width="80" height="10"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{documento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto2" mode="Transparent" x="271" y="110" width="89" height="10" uuid="72e2ac69-1718-4c29-b0df-7bb19a735b21"/>
+				<reportElement style="texto2" mode="Transparent" x="271" y="110" width="89" height="10"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{hc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto2" x="362" y="98" width="161" height="10" uuid="70d18a6a-8351-4641-85a0-ca7ce6ac3d69"/>
+				<reportElement style="texto2" x="362" y="98" width="161" height="10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto2" mode="Transparent" x="429" y="110" width="94" height="10" uuid="fbc5d5c0-b585-418d-994c-15996c8d1f5e"/>
+				<reportElement style="texto2" mode="Transparent" x="429" y="110" width="94" height="10"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{tipousuario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="texto2" x="280" y="98" width="76" height="10" uuid="c3a8456d-00cd-4224-bde0-ce2e4f0bd3c3"/>
+				<reportElement style="texto2" x="280" y="98" width="76" height="10"/>
 				<textFieldExpression><![CDATA[$F{Edad}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="10" y="122" width="85" height="10" uuid="f4f804f6-6b37-4c9f-a92f-cb0bc59cf93c"/>
+				<reportElement style="title2" mode="Transparent" x="10" y="122" width="85" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[ENTIDAD ADMISION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="texto2" x="96" y="122" width="175" height="10" uuid="25abd94e-f428-4884-b4a6-b2d7c51ee949"/>
+				<reportElement style="texto2" x="96" y="122" width="175" height="10"/>
 				<textFieldExpression><![CDATA[$F{Entiadmision}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="275" y="122" width="85" height="10" uuid="45862b96-0223-4e2c-871e-c4ed0dacbbfc"/>
+				<reportElement style="title2" mode="Transparent" x="275" y="122" width="85" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[CONTRATANTE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="texto2" x="362" y="122" width="161" height="10" uuid="8b0cc4ac-a413-4e75-ac86-d154cea67e25"/>
+				<reportElement style="texto2" x="362" y="122" width="161" height="10"/>
 				<textFieldExpression><![CDATA[$F{Enticontratante}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="256" y="98" width="24" height="10" uuid="7e9a1040-8bc0-4302-af02-ad874be1380b"/>
+				<reportElement style="title2" mode="Transparent" x="256" y="98" width="24" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[EDAD:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="10" y="98" width="40" height="10" uuid="2a9e6c91-698b-4009-ad34-2a993f05571d"/>
+				<reportElement style="title2" mode="Transparent" x="10" y="98" width="40" height="10"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[NOMBRE:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="10" y="84" width="159" height="10" uuid="340bcb21-58fa-4196-ac96-1b4ba3394ba4"/>
+				<reportElement x="10" y="84" width="159" height="10"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="10" y="84" width="159" height="10" uuid="5879eb06-d684-4b0e-84ff-caad8945d8c7"/>
+				<reportElement x="10" y="84" width="159" height="10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
@@ -348,9 +348,9 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 	<detail>
 		<band height="22" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table" x="0" y="0" width="528" height="20" uuid="8b88a006-5c74-4eef-88e1-1a449a2ad2aa"/>
+				<reportElement key="table" x="0" y="0" width="528" height="20"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="proced" uuid="9d6ede8e-0965-48b7-b592-29aeb67eecfd">
+					<datasetRun subDataset="proced">
 						<datasetParameter name="idevo">
 							<datasetParameterExpression><![CDATA[$P{idevu}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -359,10 +359,10 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="16b15b13-3c46-44c6-bfd4-d79dbe95a754">
+					<jr:column width="90">
 						<jr:columnHeader style="table_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="10" uuid="9c461921-65cc-47ce-9747-43b2ca571e1e"/>
+								<reportElement x="0" y="0" width="90" height="10"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Calibri" size="7" isBold="true"/>
 								</textElement>
@@ -371,7 +371,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="10" rowSpan="1">
 							<textField>
-								<reportElement x="2" y="0" width="88" height="10" uuid="b15102c6-86c8-48bd-95d7-11be18994d93"/>
+								<reportElement x="2" y="0" width="88" height="10"/>
 								<textElement>
 									<font fontName="Calibri" size="6"/>
 								</textElement>
@@ -379,10 +379,10 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="282" uuid="29ae7f6d-c6a3-432f-9e95-d6c67b5d40ed">
+					<jr:column width="282">
 						<jr:columnHeader style="table_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="282" height="10" uuid="1acf19ce-e1e3-4844-913f-6374af63f9ea"/>
+								<reportElement x="0" y="0" width="282" height="10"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Calibri" size="7" isBold="true"/>
 								</textElement>
@@ -391,7 +391,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="10" rowSpan="1">
 							<textField>
-								<reportElement x="2" y="0" width="280" height="10" uuid="7c8d7796-0371-48ab-967a-87d61c6587a9"/>
+								<reportElement x="2" y="0" width="280" height="10"/>
 								<textElement>
 									<font fontName="Calibri" size="6"/>
 								</textElement>
@@ -399,10 +399,10 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="158" uuid="ea5361c8-fe39-4259-a638-bfec5568fc8d">
+					<jr:column width="158">
 						<jr:columnHeader style="table_CH" height="10" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="158" height="10" uuid="093852ce-fcbd-4fab-be82-39b25ea8f778"/>
+								<reportElement x="0" y="0" width="158" height="10"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Calibri" size="7" isBold="true"/>
 								</textElement>
@@ -411,7 +411,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="10" rowSpan="1">
 							<textField>
-								<reportElement x="2" y="0" width="156" height="10" uuid="6e3f7baf-6ecb-4cb3-92b4-acf3ff9079e0"/>
+								<reportElement x="2" y="0" width="156" height="10"/>
 								<textElement>
 									<font fontName="Calibri" size="6"/>
 								</textElement>
@@ -426,24 +426,24 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 	<pageFooter>
 		<band height="63">
 			<line>
-				<reportElement x="356" y="38" width="167" height="1" uuid="5ef8741e-38e1-44fc-91d1-0ff64708e62d"/>
+				<reportElement x="356" y="38" width="167" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="title2" x="358" y="49" width="167" height="14" uuid="ebdce265-11db-4f94-a365-a8123952eb3e"/>
+				<reportElement style="title2" x="358" y="49" width="167" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{nameMedic}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="383" y="2" width="120" height="35" uuid="f397e465-445f-4d85-867e-f9aac7c49828"/>
+				<reportElement x="383" y="2" width="120" height="35"/>
 				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="texto3" mode="Transparent" x="360" y="39" width="58" height="10" uuid="c580d98f-0d91-4a75-9e2c-acdc751e6d33"/>
+				<reportElement style="texto3" mode="Transparent" x="360" y="39" width="58" height="10"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Registro Medico N°:]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="texto3" x="418" y="39" width="105" height="10" uuid="d601e003-5183-423d-928e-27bf1479814d"/>
+				<reportElement style="texto3" x="418" y="39" width="105" height="10"/>
 				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
 			</textField>
 		</band>
