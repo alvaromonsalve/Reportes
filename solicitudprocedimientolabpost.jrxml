@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solicitudprocedimientolabpost" pageWidth="612" pageHeight="395" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="23"/>
+	<property name="ireport.y" value="21"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -68,7 +68,7 @@ FROM
     INNER JOIN `database`.`config_cups`
         ON (`config_cups`.`id` = `hcu_evo_orden_procedimiento_desc`.`id_config_cups`)
 WHERE (`hcu_evolucion`.`id` =$P{idevo}
-    AND `hcu_evolucion`.`estado` =2
+    AND (`hcu_evolucion`.`estado` =2 OR `hcu_evolucion`.`estado` =4)
     AND `hcu_evo_orden_procedimiento`.`id` =$P{idconsecutivo} AND config_cups.`id_estructura_cups` = '17');]]>
 		</queryString>
 		<field name="codigo" class="java.lang.String"/>
@@ -300,6 +300,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 			</textField>
 			<textField>
 				<reportElement style="texto2" x="280" y="98" width="76" height="10"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{Edad}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -309,6 +310,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 			</staticText>
 			<textField>
 				<reportElement style="texto2" x="96" y="122" width="175" height="10"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{Entiadmision}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -318,6 +320,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 			</staticText>
 			<textField>
 				<reportElement style="texto2" x="362" y="122" width="161" height="10"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{Enticontratante}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -444,6 +447,7 @@ WHERE (hcu_evolucion.`id` =$P{idevu}
 			</staticText>
 			<textField>
 				<reportElement style="texto3" x="418" y="39" width="105" height="10"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{tarjeta_profesional}]]></textFieldExpression>
 			</textField>
 		</band>
