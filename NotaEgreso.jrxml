@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="107"/>
-	<property name="ireport.y" value="134"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="324"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -388,9 +388,9 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="64">
+		<band height="74" splitType="Prevent">
 			<rectangle radius="10">
-				<reportElement x="0" y="6" width="529" height="57"/>
+				<reportElement x="0" y="6" width="529" height="68"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
@@ -577,21 +577,21 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				<textFieldExpression><![CDATA[$F{ZONA} == "R" ? "RURAL" : "URBANO"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="391" y="34" width="70" height="10"/>
+				<reportElement x="13" y="63" width="70" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ENTIDAD ADMISION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="391" y="44" width="138" height="10"/>
+				<reportElement x="84" y="63" width="445" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="58">
+		<band height="58" splitType="Prevent">
 			<rectangle radius="10">
 				<reportElement x="2" y="38" width="530" height="20"/>
 				<graphicElement>
@@ -756,7 +756,7 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				<textFieldExpression><![CDATA[$V{glas}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="28">
+		<band height="28" splitType="Prevent">
 			<rectangle>
 				<reportElement x="0" y="3" width="121" height="12"/>
 				<graphicElement>
@@ -778,7 +778,7 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				<text><![CDATA[SÍNTESIS]]></text>
 			</staticText>
 		</band>
-		<band height="62">
+		<band height="62" splitType="Prevent">
 			<rectangle>
 				<reportElement x="0" y="1" width="121" height="12"/>
 				<graphicElement>
@@ -830,7 +830,7 @@ $F{Coddiagrel3}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{Coddiagrel4}+"] "+$F{descripcionrel4})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<subreport>
 				<reportElement x="0" y="0" width="529" height="0" isRemoveLineWhenBlank="true"/>
 				<subreportParameter name="idevu">
@@ -840,7 +840,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "conducta.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<subreport>
 				<reportElement x="0" y="0" width="530" height="0" isRemoveLineWhenBlank="true"/>
 				<subreportParameter name="idevu">
@@ -850,7 +850,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Mezclas.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<componentElement>
 				<reportElement key="table 2" x="0" y="2" width="530" height="0" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -983,7 +983,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="65">
+		<band height="65" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="39" width="530" height="1"/>
 				<graphicElement>
@@ -991,13 +991,13 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement x="0" y="1" width="121" height="12"/>
+				<reportElement x="0" y="1" width="171" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="0" y="1" width="121" height="12"/>
+				<reportElement x="0" y="1" width="171" height="12"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
@@ -1072,7 +1072,7 @@ $F{Coddiagrel4}.equals("0000")?"":"\nCODIGO DIAGNOSTICO RELACIONADO3: "+"["+$F{C
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="75">
+		<band height="75" splitType="Prevent">
 			<textField>
 				<reportElement x="361" y="47" width="169" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

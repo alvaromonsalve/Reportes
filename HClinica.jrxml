@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="743"/>
+	<property name="ireport.x" value="98"/>
+	<property name="ireport.y" value="1102"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -431,8 +431,9 @@ static_cie105.descripcion AS descripcion5,
 Config_decripcion_login.nombres AS nombres,
 Config_decripcion_login.apellidos AS apellidos,
 Config_decripcion_login.ruta_firma AS ruta_firma,
-cm_profesionales.tarjeta_profesional
-,`entidadadmision`.`nombre_entidad` AS `entiadmision`
+cm_profesionales.tarjeta_profesional,
+entidadadmision.nombre_entidad AS entiadmision,
+info_historiac.destino
 FROM
 info_historiac
 INNER JOIN Config_decripcion_login ON info_historiac.id_usuario = Config_decripcion_login.id
@@ -538,6 +539,7 @@ WHERE
 	<field name="ruta_firma" class="java.lang.String"/>
 	<field name="tarjeta_profesional" class="java.lang.String"/>
 	<field name="entiadmision" class="java.lang.String"/>
+	<field name="destino" class="java.lang.String"/>
 	<variable name="desc_genero" class="java.lang.String">
 		<variableExpression><![CDATA[( ($F{genero}.equals("M")) ? "MASCULINO" : "FEMENINO" )]]></variableExpression>
 		<initialValueExpression><![CDATA[( ($F{genero}.equals("M")) ? "MASCULINO" : "FEMENINO" )]]></initialValueExpression>
@@ -865,7 +867,7 @@ WHERE
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="127" splitType="Stretch">
+		<band height="40" splitType="Prevent">
 			<subreport>
 				<reportElement x="0" y="2" width="528" height="38"/>
 				<subreportParameter name="idAdmi">
@@ -874,124 +876,128 @@ WHERE
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCAcopañante.jasper"]]></subreportExpression>
 			</subreport>
-			<rectangle radius="5">
-				<reportElement x="0" y="46" width="528" height="42"/>
+		</band>
+		<band height="57" splitType="Prevent">
+			<line>
+				<reportElement x="0" y="6" width="528" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.25" lineColor="#999999"/>
+					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
-			</rectangle>
+			</line>
 			<staticText>
-				<reportElement style="title1" x="218" y="42" width="100" height="12"/>
+				<reportElement style="title2" mode="Transparent" x="5" y="45" width="67" height="10"/>
+				<textElement/>
+				<text><![CDATA[OTROS DATOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="title1" x="218" y="0" width="100" height="12"/>
 				<textElement/>
 				<text><![CDATA[DATOS DE ADMISION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" x="5" y="56" width="67" height="10"/>
+				<reportElement style="title2" x="5" y="14" width="67" height="10"/>
 				<textElement/>
 				<text><![CDATA[CAUSA EXTERNA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="text_desc" x="72" y="56" width="146" height="10"/>
+				<reportElement style="text_desc" x="72" y="14" width="146" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{causaExterna}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" x="218" y="56" width="79" height="10"/>
+				<reportElement style="title2" x="218" y="14" width="79" height="10"/>
 				<textElement/>
 				<text><![CDATA[FECHA INGRESO:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement style="text_desc" x="297" y="56" width="59" height="10"/>
+				<reportElement style="text_desc" x="297" y="14" width="59" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement style="text_desc" x="356" y="56" width="16" height="10"/>
+				<reportElement style="text_desc" x="356" y="14" width="16" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{hora_ingreso}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" x="5" y="67" width="67" height="10"/>
+				<reportElement style="title2" x="5" y="25" width="67" height="10"/>
 				<textElement/>
 				<text><![CDATA[ESTADO INGRESO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" x="218" y="67" width="79" height="10"/>
+				<reportElement style="title2" x="218" y="25" width="79" height="10"/>
 				<textElement/>
 				<text><![CDATA[MEDIO DE INGRESO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="72" y="67" width="146" height="10"/>
+				<reportElement x="72" y="25" width="146" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{estadoIngreso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="text_desc" x="297" y="67" width="229" height="10"/>
+				<reportElement style="text_desc" x="297" y="25" width="229" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{mediodeingreso}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="93" width="528" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.25" lineStyle="Double" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-			<staticText>
-				<reportElement style="title1" x="218" y="89" width="100" height="12"/>
-				<textElement/>
-				<text><![CDATA[MOTIVO DE CONSULTA]]></text>
-			</staticText>
 			<textField>
-				<reportElement style="encab" x="425" y="90" width="101" height="10"/>
-				<textElement>
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{nivel_triage}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement style="title2" mode="Transparent" x="5" y="78" width="67" height="10"/>
-				<textElement/>
-				<text><![CDATA[OTROS DATOS:]]></text>
-			</staticText>
-			<textField>
-				<reportElement style="text_desc" x="72" y="78" width="454" height="10"/>
+				<reportElement style="text_desc" x="72" y="45" width="454" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{otrosDatos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="encab" mode="Opaque" x="421" y="42" width="105" height="12"/>
+				<reportElement style="encab" mode="Opaque" x="421" y="0" width="105" height="12"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["N° de ADMISION: "+$F{id}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement style="texto3" mode="Transparent" x="5" y="116" width="521" height="10"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{motivo_consulta}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement style="title2" x="5" y="101" width="133" height="10"/>
-				<textElement/>
-				<text><![CDATA[ORIGEN DE LA ENFERMEDAD O ACCIDENTE:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="141" y="101" width="175" height="10"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{causa_externa}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement style="title2" x="372" y="56" width="64" height="10"/>
+				<reportElement style="title2" x="5" y="35" width="64" height="10"/>
 				<textElement/>
 				<text><![CDATA[ENTIDAD ADMISION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="436" y="56" width="90" height="10"/>
+				<reportElement x="72" y="35" width="454" height="10"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="23">
+		<band height="34" splitType="Prevent">
+			<line>
+				<reportElement x="0" y="5" width="528" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Double" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="title1" x="218" y="1" width="100" height="12"/>
+				<textElement/>
+				<text><![CDATA[MOTIVO DE CONSULTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="encab" x="425" y="2" width="101" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{nivel_triage}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="texto3" mode="Transparent" x="5" y="24" width="521" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{motivo_consulta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="title2" x="5" y="13" width="133" height="10"/>
+				<textElement/>
+				<text><![CDATA[ORIGEN DE LA ENFERMEDAD O ACCIDENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="141" y="13" width="175" height="10"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{causa_externa}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="23" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="5" width="528" height="1"/>
 				<graphicElement>
@@ -1014,7 +1020,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{alergias}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="10">
+		<band height="10" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="0" width="110" height="10"/>
 				<textElement/>
@@ -1026,7 +1032,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{ingresos_previos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="10">
+		<band height="10" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="0" width="110" height="10"/>
 				<textElement/>
@@ -1038,7 +1044,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{traumatismos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="10">
+		<band height="10" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="0" width="110" height="10"/>
 				<textElement/>
@@ -1050,7 +1056,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{tratamientos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="79">
+		<band height="79" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="5" width="528" height="1"/>
 				<graphicElement>
@@ -1164,7 +1170,7 @@ WHERE
 				<text><![CDATA[OBSERVACIONES Y OTROS:]]></text>
 			</staticText>
 		</band>
-		<band height="11">
+		<band height="11" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="0" width="98" height="10"/>
 				<textElement/>
@@ -1176,7 +1182,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{ant_familiares}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="6" width="528" height="1"/>
 				<graphicElement>
@@ -1194,7 +1200,7 @@ WHERE
 				<text><![CDATA[ENFERMEDAD ACTUAL]]></text>
 			</staticText>
 		</band>
-		<band height="63">
+		<band height="63" splitType="Prevent">
 			<rectangle radius="5">
 				<reportElement x="0" y="13" width="528" height="27"/>
 				<graphicElement>
@@ -1338,7 +1344,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{aspectogeneral}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="22">
+		<band height="22" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
 				<reportElement style="texto3" x="5" y="12" width="521" height="10"/>
 				<textElement/>
@@ -1350,7 +1356,7 @@ WHERE
 				<text><![CDATA[NEUROLOGICO ORL Y CARA]]></text>
 			</staticText>
 		</band>
-		<band height="22">
+		<band height="22" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" x="5" y="1" width="100" height="10"/>
 				<textElement/>
@@ -1362,7 +1368,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{cardio}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" x="5" y="1" width="100" height="10"/>
 				<textElement/>
@@ -1374,7 +1380,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{respiratorio}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="22">
+		<band height="22" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" x="5" y="1" width="100" height="10"/>
 				<textElement/>
@@ -1386,7 +1392,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{gastro}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
 				<reportElement style="texto3" x="5" y="13" width="521" height="10"/>
 				<textElement/>
@@ -1398,7 +1404,7 @@ WHERE
 				<text><![CDATA[GENITOURINARIO]]></text>
 			</staticText>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<textField>
 				<reportElement style="texto3" x="5" y="12" width="521" height="10"/>
 				<textElement/>
@@ -1410,7 +1416,7 @@ WHERE
 				<text><![CDATA[HEMATOINFECCIOSO]]></text>
 			</staticText>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" x="5" y="1" width="100" height="10"/>
 				<textElement/>
@@ -1422,7 +1428,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{endo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" x="5" y="1" width="100" height="10"/>
 				<textElement/>
@@ -1434,7 +1440,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{osteo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="25">
+		<band height="25" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="6" width="528" height="1"/>
 				<graphicElement>
@@ -1452,7 +1458,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{hallazgo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="5" width="528" height="1"/>
 				<graphicElement>
@@ -1474,7 +1480,7 @@ WHERE
 ($F{static_cie105_id}.toString().equals("1")? "" : "DIAGNOSTICO RELACIONADO 4:     ["+$F{codigo5}+"] - "+$F{descripcion5})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="41">
+		<band height="41" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="5" width="528" height="1"/>
 				<graphicElement>
@@ -1626,12 +1632,12 @@ WHERE
 				<text><![CDATA[DESTINO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="texto3" x="114" y="13" width="412" height="10"/>
+				<reportElement x="110" y="13" width="416" height="10"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$P{DestinoHC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{destino}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="15">
+		<band height="15" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
@@ -1646,7 +1652,7 @@ WHERE
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCUadMedicMezcla.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="13">
+		<band height="13" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
@@ -1712,7 +1718,7 @@ WHERE
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="16">
+		<band height="16" splitType="Prevent">
 			<staticText>
 				<reportElement style="encab" mode="Opaque" x="5" y="0" width="100" height="10"/>
 				<textElement textAlignment="Left"/>
@@ -1794,7 +1800,7 @@ WHERE
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="16">
+		<band height="16" splitType="Prevent">
 			<componentElement>
 				<reportElement key="table 6" style="table 6" x="0" y="13" width="528" height="2"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -1846,7 +1852,7 @@ WHERE
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="88">
+		<band height="88" splitType="Prevent">
 			<image>
 				<reportElement x="388" y="1" width="120" height="35"/>
 				<imageExpression><![CDATA[$F{ruta_firma}]]></imageExpression>

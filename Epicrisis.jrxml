@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HClinica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="599"/>
+	<property name="ireport.y" value="981"/>
 	<style name="title1" mode="Opaque" fill="Solid" radius="5" hAlign="Center" vAlign="Middle" fontName="Calibri" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
 		<box>
@@ -611,7 +611,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="93">
+		<band height="93" splitType="Prevent">
 			<rectangle radius="5">
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="86"/>
 				<graphicElement>
@@ -841,7 +841,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{TIPOAFILIACION}.equals("0") ? "COTIZANTE" : ($F{TIPOAFILIACION}.equals("1") ? "BENEFICIARIO" : ($F{TIPOAFILIACION}.equals("2") ? "ADICIONAL" : "OTRO"))]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="39">
+		<band height="39" splitType="Prevent">
 			<subreport>
 				<reportElement x="0" y="1" width="528" height="38"/>
 				<subreportParameter name="idhc">
@@ -851,13 +851,13 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCAcopañante.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="47">
-			<rectangle radius="5">
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="7" width="528" height="40"/>
+		<band height="56" splitType="Prevent">
+			<line>
+				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.25" lineStyle="Double" lineColor="#666666"/>
+					<pen lineWidth="0.25" lineColor="#666666"/>
 				</graphicElement>
-			</rectangle>
+			</line>
 			<rectangle>
 				<reportElement x="218" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -877,7 +877,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<text><![CDATA[ESTADO INGRESO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="title2" mode="Transparent" x="5" y="37" width="67" height="10"/>
+				<reportElement style="title2" mode="Transparent" x="5" y="46" width="67" height="10"/>
 				<textElement/>
 				<text><![CDATA[OTROS DATOS:]]></text>
 			</staticText>
@@ -930,12 +930,12 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{hora_ingreso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="85" y="37" width="30" height="10"/>
+				<reportElement x="72" y="46" width="30" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{materna}.equals("1")? "MATERNA" : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="115" y="37" width="423" height="10"/>
+				<reportElement x="102" y="46" width="424" height="10"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{exposicion_dolor}.equals("1")  ? "EXPOSICION AL DOLOR" :"SIN OTROS DATOS DE ADMISION"]]></textFieldExpression>
 			</textField>
@@ -958,19 +958,19 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
                                                 ($F{causaExterna}.equals("14")?"ENFERMEDAD PROFESIONAL":"OTRA")))))))))))))]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="title2" x="369" y="15" width="65" height="10"/>
+				<reportElement style="title2" x="5" y="36" width="65" height="10"/>
 				<textElement/>
 				<text><![CDATA[ENTIDAD ADMISION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="434" y="16" width="91" height="10"/>
+				<reportElement x="72" y="36" width="454" height="10"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="54">
+		<band height="54" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="26" width="529" height="1"/>
 				<graphicElement>
@@ -1034,7 +1034,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<text><![CDATA[NOTA DE INGRESO]]></text>
 			</staticText>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
@@ -1065,7 +1065,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{alergias}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="11">
+		<band height="11" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
 				<textElement/>
@@ -1077,7 +1077,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{ingresos_previos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="11">
+		<band height="11" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
 				<textElement/>
@@ -1089,7 +1089,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{traumatismos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="11">
+		<band height="11" splitType="Prevent">
 			<staticText>
 				<reportElement style="title_desc" x="5" y="1" width="110" height="10"/>
 				<textElement/>
@@ -1101,7 +1101,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{tratamientos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="35">
+		<band height="35" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
@@ -1162,7 +1162,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{desc_hdd}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="35">
+		<band height="35" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
@@ -1223,7 +1223,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{otros_habitos}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
@@ -1249,7 +1249,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{enfermedad_actual}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="35">
+		<band height="35" splitType="Prevent">
 			<rectangle radius="5">
 				<reportElement x="0" y="7" width="528" height="28"/>
 				<graphicElement>
@@ -1380,7 +1380,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{otros}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1400,7 +1400,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{aspectogeneral}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1420,7 +1420,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{cara}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1440,7 +1440,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{cardio}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1460,7 +1460,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{respiratorio}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="25">
+		<band height="25" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1480,7 +1480,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{gastro}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="25">
+		<band height="25" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1500,7 +1500,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{renal}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1520,7 +1520,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{hemato}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1540,7 +1540,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{endo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<rectangle>
 				<reportElement x="5" y="1" width="100" height="12"/>
 				<graphicElement>
@@ -1560,7 +1560,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{osteo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="24">
+		<band height="24" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="529" height="1"/>
 				<graphicElement>
@@ -1586,7 +1586,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<textFieldExpression><![CDATA[$F{hallazgo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="23">
+		<band height="23" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="529" height="1"/>
 				<graphicElement>
@@ -1616,7 +1616,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 ($F{static_cie105_id}.toString().equals("1")? "" : "DIAGNOSTICO RELACIONADO 4:     ["+$F{codigo5}+"] - "+$F{descripcion5})]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="26">
+		<band height="26" splitType="Prevent">
 			<line>
 				<reportElement x="0" y="7" width="528" height="1"/>
 				<graphicElement>
@@ -1822,7 +1822,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<text><![CDATA[DESTINO:]]></text>
 			</staticText>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<subreport>
 				<reportElement x="1" y="0" width="528" height="2"/>
 				<subreportParameter name="idHCU">
@@ -1832,7 +1832,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "HCUadMedicMezcla.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="3">
+		<band height="3" splitType="Prevent">
 			<componentElement>
 				<reportElement key="table 3" style="table 3" x="0" y="0" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -1911,7 +1911,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="3">
+		<band height="3" splitType="Prevent">
 			<componentElement>
 				<reportElement key="table 5" style="table 5" x="0" y="1" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -2006,7 +2006,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="4">
+		<band height="4" splitType="Prevent">
 			<componentElement>
 				<reportElement key="table 6" style="table 6" x="0" y="2" width="528" height="2" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -2062,7 +2062,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="61">
+		<band height="61" splitType="Prevent">
 			<textField>
 				<reportElement x="361" y="47" width="167" height="14"/>
 				<textElement textAlignment="Center"/>
@@ -2086,7 +2086,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<imageExpression><![CDATA[$F{Firma}]]></imageExpression>
 			</image>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<subreport>
 				<reportElement x="1" y="0" width="527" height="2"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
@@ -2097,7 +2097,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "EvolucionE.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="2">
+		<band height="2" splitType="Prevent">
 			<subreport>
 				<reportElement x="0" y="0" width="529" height="2"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
@@ -2110,7 +2110,7 @@ WHERE (`info_historiac`.`id` = $P{idHC}) GROUP BY `info_historiac`.`id` DESC LIM
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="10">
+		<band height="10" splitType="Prevent">
 			<textField>
 				<reportElement x="0" y="0" width="528" height="10"/>
 				<textElement/>
