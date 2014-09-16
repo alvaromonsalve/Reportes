@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" pageWidth="530" pageHeight="710" columnWidth="530" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="14"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -242,6 +242,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     ,`hcu_evolucion`.`apertura_ocular`
     , `hcu_evolucion`.`respuesta_verbal`
     , `hcu_evolucion`.`respuesta_motora`
+    , `hcu_evolucion`.`otrossignos`
     FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -294,16 +295,13 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=2);]]>
 	<field name="apertura_ocular" class="java.lang.Integer"/>
 	<field name="respuesta_verbal" class="java.lang.Integer"/>
 	<field name="respuesta_motora" class="java.lang.Integer"/>
+	<field name="otrossignos" class="java.lang.String"/>
 	<variable name="TA" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
 	<variable name="tit" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION POR "+$F{especialidad}+" - ":"INTERCONSULTA POR "+$F{especialidad}+" - "))]]></variableExpression>
 		<initialValueExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION POR "+$F{especialidad}+" - ":"INTERCONSULTA POR "+$F{especialidad}+" - "))]]></initialValueExpression>
-	</variable>
-	<variable name="GLAS" class="java.lang.String">
-		<variableExpression><![CDATA["GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></variableExpression>
-		<initialValueExpression><![CDATA["GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></initialValueExpression>
 	</variable>
 	<variable name="conciencia" class="java.lang.String">
 		<variableExpression><![CDATA[$F{conciencia}.toString().equals("0")?"ALERTA":
@@ -322,6 +320,35 @@ $F{conciencia}.toString().equals("4")?"ESTUPOR":
 $F{conciencia}.toString().equals("5")?"COMA":
 $F{conciencia}.toString().equals("6")?"ESTADO VEGETATIVO PERSISTENTE":
 $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CEREBRAL"]]></initialValueExpression>
+	</variable>
+	<variable name="glas" class="java.lang.String">
+		<variableExpression><![CDATA["GLASGOW: "+($V{Aperturao}+$V{Respuestav}+$V{Respuestam})]]></variableExpression>
+	</variable>
+	<variable name="Aperturao" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{apertura_ocular}.intValue() == 0 ? 4 :
+    ($F{apertura_ocular}.intValue() == 1 ? 3 :
+        ($F{apertura_ocular}.intValue() == 2 ? 2 : 1)))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{apertura_ocular}.intValue() == 0 ? 4 :
+    ($F{apertura_ocular}.intValue() == 1 ? 3 :
+        ($F{apertura_ocular}.intValue() == 2 ? 2 : 1)))]]></initialValueExpression>
+	</variable>
+	<variable name="Respuestav" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{respuesta_verbal}.intValue() == 0 ? 5 :
+    ($F{respuesta_verbal}.intValue() == 1 ? 4 :
+        ($F{respuesta_verbal}.intValue() == 2 ? 3 :
+            ($F{respuesta_verbal}.intValue() == 3 ? 2 : 1))))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{respuesta_verbal}.intValue() == 0 ? 5 :
+    ($F{respuesta_verbal}.intValue() == 1 ? 4 :
+        ($F{respuesta_verbal}.intValue() == 2 ? 3 :
+            ($F{respuesta_verbal}.intValue() == 3 ? 2 : 1))))]]></initialValueExpression>
+	</variable>
+	<variable name="Respuestam" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{respuesta_motora}.intValue() == 0 ? 6 :
+    ($F{respuesta_motora}.intValue() == 1 ? 5 :
+        ($F{respuesta_motora}.intValue() == 2 ? 4 :
+            ($F{respuesta_motora}.intValue() == 3 ? 3 :
+                ($F{respuesta_motora}.intValue() == 4 ? 2 : 1)))))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{respuesta_motora}.intValue() == 0 ? 6 :      ($F{respuesta_motora}.intValue() == 1 ? 5 :          ($F{respuesta_motora}.intValue() == 2 ? 4 :              ($F{respuesta_motora}.intValue() == 3 ? 3 :                  ($F{respuesta_motora}.intValue() == 4 ? 2 : 1)))))]]></initialValueExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -381,7 +408,7 @@ $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CE
 				<textFieldExpression><![CDATA[$V{tit}+""+$F{fecha_evo}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="66">
+		<band height="89">
 			<rectangle radius="10">
 				<reportElement x="0" y="47" width="530" height="18"/>
 				<graphicElement>
@@ -502,14 +529,14 @@ $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CE
 				<textElement verticalAlignment="Top">
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{apertura_ocular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{Aperturao}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="292" y="55" width="69" height="10"/>
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_verbal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{Respuestav}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="13" y="43" width="121" height="12"/>
@@ -529,7 +556,7 @@ $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CE
 				<textElement>
 					<font fontName="Calibri" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_motora}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{Respuestam}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="16" y="55" width="63" height="10"/>
@@ -543,7 +570,7 @@ $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{GLAS}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{glas}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="19" width="207" height="10"/>
@@ -559,6 +586,20 @@ $F{conciencia}.toString().equals("7")?"SÍNDROME DE ENCLAUSTRAMIENTO":"MUERTE CE
 				</textElement>
 				<text><![CDATA[ESTADO DE CONCIENCIA:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="16" y="67" width="63" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OTROS SIGNOS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="16" y="77" width="513" height="10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otrossignos}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="24">
 			<rectangle>

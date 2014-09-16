@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Evolucion1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="530" leftMargin="41" rightMargin="41" topMargin="41" bottomMargin="41">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="324"/>
+	<property name="ireport.y" value="192"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -257,6 +257,7 @@ WHERE (`hcu_evolucion`.`id` =$P{idevu}) AND (`hcu_evo_medidasg`.`estado` ='1');]
     , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_end`, '%d/%m/%Y') AS `incapacidadinicio`
     , DATE_FORMAT(`hcu_evo_egreso`.`incapacidad_init`, '%d/%m/%Y') AS `incapacidadfin`
 ,`entidadadmision`.`nombre_entidad` AS `entiadmision`
+    , `hcu_evolucion`.`otrossignos`
 FROM
     `database`.`hcu_evolucion`
     INNER JOIN `database`.`info_historiac`
@@ -336,11 +337,38 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 	<field name="incapacidadinicio" class="java.lang.String"/>
 	<field name="incapacidadfin" class="java.lang.String"/>
 	<field name="entiadmision" class="java.lang.String"/>
+	<field name="otrossignos" class="java.lang.String"/>
 	<variable name="TA" class="java.lang.String">
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
 	<variable name="glas" class="java.lang.String">
-		<variableExpression><![CDATA["GLASGOW: "+($F{apertura_ocular}+$F{respuesta_verbal}+$F{respuesta_motora})]]></variableExpression>
+		<variableExpression><![CDATA["GLASGOW: "+($V{Aperturao}+$V{Respuestav}+$V{Respuestam})]]></variableExpression>
+	</variable>
+	<variable name="Aperturao" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{apertura_ocular}.intValue() == 0 ? 4 :
+    ($F{apertura_ocular}.intValue() == 1 ? 3 :
+        ($F{apertura_ocular}.intValue() == 2 ? 2 : 1)))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{apertura_ocular}.intValue() == 0 ? 4 :
+    ($F{apertura_ocular}.intValue() == 1 ? 3 :
+        ($F{apertura_ocular}.intValue() == 2 ? 2 : 1)))]]></initialValueExpression>
+	</variable>
+	<variable name="Respuestav" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{respuesta_verbal}.intValue() == 0 ? 5 :
+    ($F{respuesta_verbal}.intValue() == 1 ? 4 :
+        ($F{respuesta_verbal}.intValue() == 2 ? 3 :
+            ($F{respuesta_verbal}.intValue() == 3 ? 2 : 1))))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{respuesta_verbal}.intValue() == 0 ? 5 :
+    ($F{respuesta_verbal}.intValue() == 1 ? 4 :
+        ($F{respuesta_verbal}.intValue() == 2 ? 3 :
+            ($F{respuesta_verbal}.intValue() == 3 ? 2 : 1))))]]></initialValueExpression>
+	</variable>
+	<variable name="Respuestam" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{respuesta_motora}.intValue() == 0 ? 6 :
+    ($F{respuesta_motora}.intValue() == 1 ? 5 :
+        ($F{respuesta_motora}.intValue() == 2 ? 4 :
+            ($F{respuesta_motora}.intValue() == 3 ? 3 :
+                ($F{respuesta_motora}.intValue() == 4 ? 2 : 1)))))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{respuesta_motora}.intValue() == 0 ? 6 :      ($F{respuesta_motora}.intValue() == 1 ? 5 :          ($F{respuesta_motora}.intValue() == 2 ? 4 :              ($F{respuesta_motora}.intValue() == 3 ? 3 :                  ($F{respuesta_motora}.intValue() == 4 ? 2 : 1)))))]]></initialValueExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -591,7 +619,7 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				<textFieldExpression><![CDATA[$F{entiadmision}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="58" splitType="Prevent">
+		<band height="81" splitType="Prevent">
 			<rectangle radius="10">
 				<reportElement x="2" y="38" width="530" height="20"/>
 				<graphicElement>
@@ -713,13 +741,6 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				</textElement>
 				<text><![CDATA[APERTURA OCULAR:]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="80" y="47" width="54" height="10"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{apertura_ocular}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="231" y="46" width="63" height="10"/>
 				<textElement>
@@ -727,13 +748,6 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				</textElement>
 				<text><![CDATA[RESPUESTA VERBAL:]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="293" y="47" width="69" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_verbal}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="445" y="46" width="68" height="10"/>
 				<textElement>
@@ -741,19 +755,47 @@ INNER JOIN `database`.`info_entidades` AS `entidadadmision`
 				</textElement>
 				<text><![CDATA[RESPUESTA MOTORA:]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="514" y="47" width="10" height="10"/>
-				<textElement>
-					<font fontName="Calibri" size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{respuesta_motora}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="14" y="34" width="121" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{glas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="46" width="100" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Aperturao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="46" width="100" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Respuestav}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="46" width="10" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Respuestam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="60" width="63" height="10"/>
+				<textElement>
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OTROS SIGNOS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="17" y="71" width="447" height="10"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otrossignos}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="28" splitType="Prevent">
