@@ -310,8 +310,8 @@ WHERE (`info_historiac`.`id` =$P{idhc} AND `hcu_evolucion`.`estado`=4);]]>
 		<variableExpression><![CDATA[($F{tas}+"/"+$F{tad})+" mmHg"]]></variableExpression>
 	</variable>
 	<variable name="tit" class="java.lang.String">
-		<variableExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION POR "+$F{especialidad}+" - ":"INTERCONSULTA POR "+$F{especialidad}+" - "))]]></variableExpression>
-		<initialValueExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION POR "+$F{especialidad}+" - ":"INTERCONSULTA POR "+$F{especialidad}+" - "))]]></initialValueExpression>
+		<variableExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN DE EGRESO POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION DE EGRESO POR "+$F{especialidad}+" - ":"INTERCONSULTA DE EGRESO POR "+$F{especialidad}+" - "))]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{tipo}.intValue() == 0 ?"EVOLUCIÓN DE EGRESO POR "+$F{especialidad}+" - ":($F{tipo}.intValue() == 1 ? "VALORACION DE EGRESO POR "+$F{especialidad}+" - ":"INTERCONSULTA DE EGRESO POR "+$F{especialidad}+" - "))]]></initialValueExpression>
 	</variable>
 	<variable name="glas" class="java.lang.String">
 		<variableExpression><![CDATA["GLASGOW: "+($V{Aperturao}+$V{Respuestav}+$V{Respuestam})]]></variableExpression>
