@@ -120,7 +120,7 @@ FROM
     INNER JOIN `database`.`info_historiac`
         ON (`hcu_evolucion`.`id_info_historiac` = `info_historiac`.`id`)
     INNER JOIN `database`.`config_decripcion_login`
-        ON (`info_historiac`.`id_usuario` = `config_decripcion_login`.`id`)
+        ON (`hcu_evolucion`.`usuario` = `config_decripcion_login`.`id`)
     INNER JOIN `database`.`info_admision`
         ON (`info_historiac`.`id_infoadmision` = `info_admision`.`id`)
     INNER JOIN `database`.`info_paciente`
